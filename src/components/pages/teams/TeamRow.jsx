@@ -4,7 +4,7 @@ import TeamMeta from "./TeamMeta";
 
 const TeamRow = ({ team }) => {
   return (
-    <li>
+    <li className="teams__team-row">
       <TeamHeader
         isFavorite={team.isFavorite}
         name={team.name}

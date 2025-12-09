@@ -6,3 +6,8 @@ export const formatPokemonId = (id) => {
   const padded = String(id).padStart(3, "0");
   return `#${padded}`;
 };
+
+export const getTeamSprites = (pokemon, allPokemon) => {
+  const match = allPokemon.find((p) => p.id === pokemon.id);
+  return match.sprite;
+};

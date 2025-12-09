@@ -5,7 +5,7 @@ const TeamRowsContainer = () => {
   const content = mockTeams.map((team) => {
     return <TeamRow key={team.id} team={team} />;
   });
-  return <ul>{content}</ul>;
+  return <ul className="teams__wrapper">{content}</ul>;
 };
 
 export default TeamRowsContainer;
