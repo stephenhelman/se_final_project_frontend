@@ -10,7 +10,7 @@ const TeamRow = ({ team }) => {
         name={team.name}
         description={team.description}
       />
-      <TeamPlayers players={team.players} />
+      <TeamPlayers team={team.players} page="teams" />
       <TeamMeta updated={team.lastUpdated} numPokemon={team.players.length} />
     </li>
   );
