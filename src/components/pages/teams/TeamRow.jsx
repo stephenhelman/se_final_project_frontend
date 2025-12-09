@@ -11,7 +11,7 @@ const TeamRow = ({ team }) => {
         description={team.description}
       />
       <TeamPlayers players={team.players} />
-      <TeamMeta updated={team.lastUpdated} />
+      <TeamMeta updated={team.lastUpdated} numPokemon={team.players.length} />
     </li>
   );
 };

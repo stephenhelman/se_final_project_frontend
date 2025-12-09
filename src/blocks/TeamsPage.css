@@ -69,6 +69,13 @@
   color: rgb(var(--gray-900));
 }
 
+.teams__utility-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+
 .teams__team-players {
   padding: 0;
   width: 100%;
@@ -89,4 +96,18 @@
 
 .teams__sprite_type_blank {
   background-color: rgb(var(--gray-200));
+}
+
+.teams__meta-info {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}
+
+.teams__number-display,
+.teams__last-updated {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgb(var(--gray-600));
 }
