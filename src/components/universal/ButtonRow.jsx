@@ -12,8 +12,8 @@ const ButtonRow = ({ page }) => {
   );
 
   return (
-    <div>
-      <div>
+    <div className="searchbar__button-row">
+      <div className="searchbar__universal-buttons">
         {sortButton}
         {favoritesButton}
       </div>

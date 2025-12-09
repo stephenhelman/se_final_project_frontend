@@ -11,7 +11,7 @@ const TypeFiltersContent = () => {
       />
     );
   });
-  return <ul>{content}</ul>;
+  return <ul className="sidebar__filters-container">{content}</ul>;
 };
 
 export default TypeFiltersContent;

@@ -1,14 +1,13 @@
 //present on both pages (Pokedex and Teams)
 import TypeFiltersContent from "./filters/TypeFiltersContent";
+import "../../blocks/Sidebar.css";
 
 const Sidebar = () => {
   return (
-    <aside>
-      <section>
-        <h4>Filters</h4>
-        <TypeFiltersContent />
-      </section>
-    </aside>
+    <section className="sidebar">
+      <h4 className="sidebar__title">Filters</h4>
+      <TypeFiltersContent />
+    </section>
   );
 };
 

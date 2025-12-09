@@ -1,0 +1,57 @@
+:root {
+  /* Brand Colors*/
+  --primary-color: 232, 72, 85;
+  --primary-light: 243, 106, 118;
+  --primary-dark: 199, 56, 68;
+  --secondary-color: 58, 93, 168;
+  --secondary-light: 78, 115, 194;
+  --secondary-dark: 43, 71, 126;
+  --highlight-color: 245, 224, 110;
+
+  /* Neutral Gray Colors*/
+  --gray-50: 249, 250, 251;
+  --gray-100: 243, 244, 246;
+  --gray-200: 229, 231, 235;
+  --gray-300: 209, 213, 219;
+  --gray-400: 156, 163, 175;
+  --gray-500: 107, 114, 128;
+  --gray-600: 75, 85, 99;
+  --gray-700: 55, 65, 81;
+  --gray-800: 31, 41, 55;
+  --gray-900: 17, 24, 39;
+
+  /* Pokemon Type Colors */
+  --type-normal: 168, 167, 122;
+  --type-fire: 238, 129, 48;
+  --type-water: 99, 144, 240;
+  --type-electric: 247, 208, 44;
+  --type-grass: 122, 199, 76;
+  --type-ice: 150, 217, 214;
+  --type-fighting: 194, 46, 40;
+  --type-poison: 163, 62, 161;
+  --type-ground: 226, 191, 101;
+  --type-flying: 169, 143, 243;
+  --type-psychic: 249, 85, 135;
+  --type-bug: 166, 185, 26;
+  --type-rock: 182, 161, 54;
+  --type-ghost: 115, 87, 151;
+  --type-dragon: 111, 53, 252;
+  --type-dark: 112, 87, 70;
+  --type-steel: 183, 183, 206;
+  --type-fairy: 214, 133, 173;
+
+  /* Semantic Response Colors*/
+  --semantic-success: 76, 175, 80;
+  --semantic-warning: 244, 162, 54;
+  --semantic-error: 229, 72, 77;
+  --semantic-info: 59, 130, 246;
+}
+
+.app {
+  height: 100vh;
+  max-width: 1360px;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
