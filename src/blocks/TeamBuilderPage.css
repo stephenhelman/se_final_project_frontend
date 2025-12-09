@@ -1,0 +1,108 @@
+.team-builder {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1360px;
+  height: calc(100% - 72px);
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 12px;
+  padding: 24px;
+  background-color: rgb(var(--gray-100));
+}
+
+.team-builder__form {
+  padding: 0 12px;
+  border-right: 1px solid rgb(var(--gray-300));
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form__title {
+  margin: 0 auto;
+  padding: 0;
+  font-size: 28px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: rgb(var(--gray-900));
+}
+
+.form__fieldset {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  gap: 16px;
+  padding: 12px 0;
+  margin: 0;
+}
+
+.form__label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgb(var(--gray-700));
+}
+
+.form__input {
+  box-sizing: border-box;
+  padding: 0 10px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 16;
+  line-height: 24px;
+  font-weight: 400;
+  border: 1px solid rgb(var(--gray-300));
+}
+
+.form__list-item,
+.form__team {
+  margin: 0;
+  padding: 0;
+}
+
+.form__team-wrapper {
+  display: grid;
+  place-content: center;
+  width: 100%;
+}
+
+.form__team {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  row-gap: 20px;
+  column-gap: 40px;
+}
+
+.form__list-item {
+  list-style-type: none;
+}
+
+.form__blank-card {
+  max-width: 125px;
+  max-height: 150px;
+  width: 100%;
+  height: 150px;
+  display: grid;
+  place-content: center;
+  background-color: rgb(var(--gray-200));
+  border-radius: 12px;
+}
+
+.form__blank-card-icon {
+  height: 40px;
+  width: 40px;
+}
+
+.form__submit-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}

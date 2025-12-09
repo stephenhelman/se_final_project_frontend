@@ -1,5 +1,5 @@
+import TeamPlayers from "../../universal/TeamPlayers";
 import TeamHeader from "./TeamHeader";
-import TeamPlayers from "./TeamPlayers";
 import TeamMeta from "./TeamMeta";
 
 const TeamRow = ({ team }) => {

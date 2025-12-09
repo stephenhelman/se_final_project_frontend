@@ -79,19 +79,13 @@
 .teams__team-players {
   padding: 0;
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
 }
 .teams__list-item {
   list-style: none;
-}
-
-.teams__sprite {
   width: 125px;
   height: 125px;
-  background-color: #fff;
-  border-radius: 12px;
 }
 
 .teams__sprite_type_blank {

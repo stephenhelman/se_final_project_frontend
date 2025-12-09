@@ -1,23 +1,24 @@
-//Card that displays the pokemon information
 import PokemonSprite from "./PokemonSprite";
 import PokemonCardDescription from "./PokemonCardDescription";
 import "../../../blocks/PokemonCard.css";
-const PokemonCard = ({ pokemon }) => {
-  //conditionally render the type of card based on what prop is passed into the card
-  //TODO - destructure pokemon props to get source and name
-  const mainPokemonType = pokemon.types[0];
+const PokemonCard = ({ pokemon, cardType, size }) => {
   return (
-    <article className={`pokemon-card pokemon-card_type_${mainPokemonType}`}>
+    <article
+      className={`pokemon-card  pokemon-card_type_${cardType}`}
+      onClick={cardType === "team-selector" ? "" : undefined}
+    >
       <PokemonSprite
         source={pokemon.sprite}
         pokemonName={pokemon.name}
-        cardType="pokemon-card"
+        cardType={cardType}
       />
-      <PokemonCardDescription
-        pokemon={pokemon}
-        cardType="pokemon-card"
-        size="large"
-      />
+      {size !== "small" && (
+        <PokemonCardDescription
+          pokemon={pokemon}
+          cardType={cardType}
+          size={size}
+        />
+      )}
     </article>
   );
 };

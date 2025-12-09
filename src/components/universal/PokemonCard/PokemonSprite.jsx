@@ -6,7 +6,7 @@ const PokemonSprite = ({ pokemonName, source, cardType }) => {
     <img
       src={source}
       alt={pokemonName}
-      className={`sprite ${cardType}__sprite`}
+      className={`sprite sprite_type_${cardType}`}
     />
   );
 };

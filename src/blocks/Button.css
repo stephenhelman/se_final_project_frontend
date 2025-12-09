@@ -3,12 +3,23 @@
   border-radius: 8px;
 }
 
+.button_type_primary {
+  background-color: rgb(var(--primary-color));
+  color: #fff;
+  padding: 12px 20px;
+  height: 40px;
+  white-space: nowrap;
+  font-size: 16;
+  line-height: 1;
+}
+
 .button_type_ghost {
   border-color: rgb(var(--gray-300));
   background-color: rgb(var(--gray-200));
   color: rgb(var(--gray-700));
   padding: 0 12px;
   height: 40px;
+  white-space: nowrap;
 }
 
 .button_type_icon {

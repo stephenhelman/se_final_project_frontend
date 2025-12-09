@@ -1,5 +1,5 @@
 const BlankSprite = () => {
-  return <div className="teams__sprite teams__sprite_type_blank"></div>;
+  return <div className="sprite sprite_type_blank"></div>;
 };
 
 export default BlankSprite;

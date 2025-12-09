@@ -1,0 +1,87 @@
+import PokemonSprite from "./PokemonCard/PokemonSprite";
+import BlankSprite from "../pages/teams/BlankSprite";
+import BlankCard from "../pages/teamBuilder/BlankCard";
+import { mockPokemon } from "../../utils/constants";
+import { matchPokemon } from "../../utils/utils";
+import PokemonCard from "./PokemonCard/PokemonCard";
+
+const TeamPlayers = ({ team = null, page }) => {
+  let content;
+  //If the page is teams => this will build a row of 6 pokemon sprites
+  if (page === "teams") {
+    if (team.length !== 6) {
+      content = team.map((pokemon, i) => {
+        const match = matchPokemon(pokemon, mockPokemon);
+        return (
+          <li key={i} className="teams__list-item">
+            <PokemonSprite
+              pokemonName={pokemon.name}
+              source={match.sprite}
+              cardType="teams"
+            />
+          </li>
+        );
+      });
+      const emptySpaces = 6 - team.length;
+      for (let i = 0; i < emptySpaces; i++) {
+        content.push(
+          <li key={i + team.length} className="teams__list-item">
+            <BlankSprite />
+          </li>
+        );
+      }
+      return <ul className="teams__team-players">{content}</ul>;
+    }
+    content = team.map((pokemon, i) => {
+      const match = matchPokemon(pokemon, mockPokemon);
+      return (
+        <li key={i} className="teams__list-item">
+          <PokemonSprite
+            pokemonName={pokemon.name}
+            source={match.sprite}
+            cardType="teams"
+          />
+        </li>
+      );
+    });
+    return <ul className="teams__team-players">{content}</ul>;
+  }
+
+  //if page is team-builder => this will render a 3x2 grid of pokemon cards
+  if (page === "team-builder") {
+    if (team.length !== 6) {
+      content = team.map((pokemon, i) => {
+        const match = matchPokemon(pokemon, mockPokemon);
+        return (
+          <li key={i} className="form__list-item">
+            <PokemonCard
+              pokemon={match}
+              cardType="team-builder"
+              size="medium"
+            />
+          </li>
+        );
+      });
+      const emptySpaces = 6 - team.length;
+      for (let i = 0; i < emptySpaces; i++) {
+        content.push(
+          <li key={i + team.length} className="form__list-item">
+            <BlankCard />
+          </li>
+        );
+      }
+      return <ul className="form__team">{content}</ul>;
+    }
+    content = team.map((pokemon) => {
+      const match = matchPokemon(pokemon, mockPokemon);
+      return (
+        <li key={match.id} className="form__list-item">
+          <PokemonCard pokemon={match} cardType="team-builder" size="medium" />
+        </li>
+      );
+    });
+    return <ul className="form__team">{content}</ul>;
+  }
+};
+
+export default TeamPlayers;

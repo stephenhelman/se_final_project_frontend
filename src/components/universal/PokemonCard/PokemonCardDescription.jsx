@@ -3,17 +3,21 @@ import TypeChip from "../TypeChip";
 import { formatPokemonId } from "../../../utils/utils";
 
 const PokemonCardDescription = ({ pokemon, cardType, size }) => {
-  const pokemonNameClass = `${cardType}__name`;
+  const mainPokemonType = pokemon.types[0];
   const pokemonId = formatPokemonId(pokemon.id);
   const pokemonNameElement =
     size === "large" ? (
-      <h4 className={pokemonNameClass}>{pokemon.name}</h4>
+      <h4 className={`pokemon-card__name pokemon-card__name_type_${cardType}`}>
+        {pokemon.name}
+      </h4>
     ) : (
-      <p className={pokemonNameClass}>{pokemon.name}</p>
+      <p className={`pokemon-card__name pokemon-card__name_type_${cardType}`}>
+        {pokemon.name}
+      </p>
     );
   const pokemonIdElement = <p className="pokemon-card__id">{pokemonId}</p>;
   const pokemonInfoElement = (
-    <div className={`${cardType}__info`}>
+    <div className={`pokemon-card__info pokemon-card__info_type_${cardType}`}>
       {pokemonNameElement}
       {size === "large" && pokemonIdElement}
     </div>
@@ -28,7 +32,9 @@ const PokemonCardDescription = ({ pokemon, cardType, size }) => {
   );
 
   return (
-    <div className={`${cardType}__description`}>
+    <div
+      className={`pokemon-card__description pokemon-card_type_${mainPokemonType} pokemon-card__description_type_${cardType}`}
+    >
       {pokemonInfoElement}
       {types}
     </div>
