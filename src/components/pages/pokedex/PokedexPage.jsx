@@ -1,6 +1,7 @@
 import Sidebar from "../../layout/Sidebar";
 import ContentWrapper from "../../layout/ContentWrapper";
 import PokedexGrid from "./PokedexGrid";
+import { mockPokemon } from "../../../utils/constants";
 
 import "../../../blocks/Pokedex.css";
 
@@ -13,7 +14,7 @@ const PokedexPage = () => {
         page="pokedex"
         searchPlaceholder="Search Pokemon"
       >
-        <PokedexGrid />
+        <PokedexGrid cardType="pokedex" size="large" pokemon={mockPokemon} />
       </ContentWrapper>
     </main>
   );
