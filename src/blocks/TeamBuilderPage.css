@@ -106,3 +106,21 @@
   align-items: center;
   gap: 16px;
 }
+
+.team-builder__selector-header {
+  width: 100%;
+  margin: 16px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.team-builder__selector-title {
+  font-size: 24;
+  font-weight: 600;
+  line-height: 1.3;
+  color: rgb(var(--gray-900));
+  margin: 0;
+}

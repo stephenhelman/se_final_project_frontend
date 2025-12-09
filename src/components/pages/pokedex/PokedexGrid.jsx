@@ -1,14 +1,13 @@
 import PokemonCard from "../../universal/PokemonCard/PokemonCard";
-import { mockPokemon } from "../../../utils/constants";
 
-const PokedexGrid = () => {
-  const content = mockPokemon.map((pokemon) => {
+const PokedexGrid = ({ size, cardType, pokemon }) => {
+  const content = pokemon.map((pokemon) => {
     return (
       <PokemonCard
         pokemon={pokemon}
         key={pokemon.id}
-        cardType="pokedex"
-        size="large"
+        cardType={cardType}
+        size={size}
       />
     );
   });
