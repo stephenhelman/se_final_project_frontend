@@ -1,1 +1,0 @@
-//gallery of smaller SpriteTHumbs

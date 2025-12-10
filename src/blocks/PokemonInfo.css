@@ -1,0 +1,128 @@
+.pokemon-info {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.pokemon-info__sprite-selection-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pokemon-info__hero-sprite-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.pokemon-info__sprite-nav-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.pokemon-info__sprite-nav-button {
+  background-color: transparent;
+  border: none;
+}
+
+.pokemon-info__sprite-nav {
+  height: 20px;
+  width: 20px;
+}
+
+.pokemon-info__hero-sprite {
+  background-color: #fff;
+  border-radius: 12px;
+  width: 200px;
+  height: 200px;
+}
+
+.pokemon-info__hero-sprite-description {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pokemon-info__hero-sprite-text {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: rgb(var(--gray-900));
+  padding: 0;
+  margin: 0;
+}
+
+.pokemon-info__sprite-gallery {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+}
+
+.pokemon-info__list-item {
+  list-style-type: none;
+}
+
+.pokemon-info__sprite-button {
+  background-color: transparent;
+  border: none;
+}
+
+.pokemon-info__gallery-sprite {
+  height: 60px;
+  width: 60px;
+  background-color: #fff;
+  border-radius: 12px;
+}
+
+.pokemon-info__flavor-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  background-color: rgb(var(--gray-50));
+  border: 1px solid rgb(var(--gray-200));
+  padding: 12px 12px;
+  border-radius: 12px;
+}
+
+.pokemon-info__flavor-text-title,
+.pokemon-info__flavor-text-content,
+.pokemon-info__flavor-text-counter {
+  padding: 0;
+  margin: 0;
+}
+
+.pokemon-info__flavor-text-title {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: rgb(var(--gray-700));
+}
+
+.pokemon-info__flavor-text-content {
+  font-size: 14px;
+  height: 84px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgb(var(--gray-800));
+}
+
+.pokemon-info__flavor-text-counter {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgb(var(--gray-800));
+  align-self: flex-end;
+}
