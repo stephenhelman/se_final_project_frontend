@@ -72,3 +72,10 @@ export const rotateArrayLeft = (arr, shifts) => {
   // Combine the two parts to form the rotated array
   return [...firstPart, ...secondPart];
 };
+
+export const formatNameOwnership = (name) => {
+  const lastLetter = name.at(-1);
+  if (lastLetter === "s") {
+    return `${name}'`;
+  } else return `${name}'s`;
+};

@@ -9,10 +9,10 @@ function App() {
   return (
     <>
       <Navbar />
-      <PokedexPage />
+      {/* <PokedexPage /> */}
       {/* <TeamsPage /> */}
       {/* <TeamBuilderPage /> */}
-      {/* <PokemonDetailsPage /> */}
+      <PokemonDetailsPage />
     </>
   );
 }

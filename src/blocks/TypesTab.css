@@ -1,0 +1,120 @@
+.types-tab {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.types-tab__header,
+.types-tab__card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  justify-content: center;
+  padding: 12px;
+  margin: 0;
+  background-color: rgb(var(--gray-50));
+  border-radius: 12px;
+  border: 1px solid rgb(var(--gray-200));
+  width: 100%;
+  height: 100%;
+  gap: 24px;
+}
+.types-tab__header {
+  max-height: 77px;
+  flex: 0;
+}
+
+.types-tab__title {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: rgb(var(--gray-900));
+  padding: 0;
+  margin: 0;
+}
+
+.types-tab__types {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.types-tab__select-message {
+  justify-content: flex-start;
+  padding-top: 24px;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: rgb(var(--gray-900));
+}
+
+.types-tab__list-item {
+  list-style-type: none;
+}
+
+.types-tab__card {
+  flex-direction: column;
+  flex: 1;
+  gap: 12px;
+}
+
+.types-tab__toggle-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex: 0;
+}
+
+.types-tab__toggle-switch {
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 0 6px 12px;
+  background-color: transparent;
+  border: none;
+  color: rgb(var(--gray-600));
+}
+
+.types-tab__toggle-switch_active {
+  border-bottom: 2px solid rgb(var(--secondary-color));
+  color: rgb(var(--secondary-color));
+}
+
+.types-tab__card-row-wrapper {
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.types-tab__stat-title {
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: rgb(var(--gray-800));
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.types-tab__stat-chips-wrapper {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}

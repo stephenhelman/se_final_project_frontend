@@ -16,7 +16,7 @@ const Attributes = ({ pokemon }) => {
   const eggGroupContent = eggGroups.map((egg, index) => {
     return (
       <li key={index} className="stats__list-item stats__list-item-egg">
-        <TypeChip type={egg} size="large" />
+        <TypeChip type={egg} size="small" />
       </li>
     );
   });
