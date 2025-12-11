@@ -1,7 +1,13 @@
 //universal button component - primary, ghost, auth
 import "../../blocks/Button.css";
 
-const Button = ({ buttonCategory, buttonText, buttonType, buttonIcon }) => {
+const Button = ({
+  buttonCategory,
+  buttonText,
+  buttonType,
+  buttonIcon,
+  clickFunction = null,
+}) => {
   if (buttonCategory === "icon") {
     const buttonName = buttonIcon.split("/")[2].replace(".svg", "");
     return (
@@ -14,6 +20,7 @@ const Button = ({ buttonCategory, buttonText, buttonType, buttonIcon }) => {
     <button
       type={buttonType}
       className={`button button_type_${buttonCategory}`}
+      onClick={clickFunction ? clickFunction : null}
     >
       {buttonText}
     </button>

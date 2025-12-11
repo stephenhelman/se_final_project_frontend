@@ -1,13 +1,16 @@
 import { parseGenderAndShiny } from "../../../../utils/utils";
 import HeroSprite from "./HeroSprite";
 
-const HeroSpriteWrapper = ({ heroSprite }) => {
+const HeroSpriteWrapper = ({ heroSprite, onPrevClick, onNextClick }) => {
   const spriteDescription = parseGenderAndShiny(heroSprite.spriteName);
 
   return (
     <div className="pokemon-info__hero-sprite-wrapper">
       <div className="pokemon-info__sprite-nav-wrapper">
-        <button className="pokemon-info__sprite-nav-button">
+        <button
+          className="pokemon-info__sprite-nav-button"
+          onClick={onPrevClick}
+        >
           <img
             src="src/images/prev.svg"
             alt="previous sprite"
@@ -15,7 +18,10 @@ const HeroSpriteWrapper = ({ heroSprite }) => {
           />
         </button>
         <HeroSprite sprite={heroSprite} />
-        <button className="pokemon-info__sprite-nav-button">
+        <button
+          className="pokemon-info__sprite-nav-button"
+          onClick={onNextClick}
+        >
           <img
             src="src/images/next.svg"
             alt="previous sprite"

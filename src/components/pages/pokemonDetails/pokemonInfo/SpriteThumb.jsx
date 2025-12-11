@@ -1,8 +1,11 @@
 //Sprite thumbnails inside of SPriteGallery
 
-const SpriteThumb = ({ sprite }) => {
+const SpriteThumb = ({ sprite, onThumbClick }) => {
   return (
-    <button className="pokemon-info__sprite-button">
+    <button
+      className="pokemon-info__sprite-button"
+      onClick={() => onThumbClick(sprite)}
+    >
       <img
         src={sprite.url}
         alt={sprite.spriteName}

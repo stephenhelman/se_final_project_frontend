@@ -1,11 +1,11 @@
 //gallery of smaller SpriteTHumbs
 import SpriteThumb from "./SpriteThumb";
 
-const SpriteGallery = ({ sprites }) => {
+const SpriteGallery = ({ sprites, onThumbClick }) => {
   const content = sprites.map((sprite) => {
     return (
       <li key={sprite.id} className="pokemon-info__list-item">
-        <SpriteThumb sprite={sprite} />
+        <SpriteThumb sprite={sprite} onThumbClick={onThumbClick} />
       </li>
     );
   });

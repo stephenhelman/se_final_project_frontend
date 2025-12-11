@@ -342,6 +342,15 @@ export const pikachu = {
     speed: 90,
   },
 
+  attributes: {
+    height: 4,
+    weight: 60,
+    color: "Yellow",
+    habitat: "Forest",
+  },
+
+  eggGroups: ["ground", "fairy"],
+
   flavorText: [
     "When several of these POKéMON gather, their electricity could build and cause lightning storms.",
     "It keeps its tail raised to monitor its surroundings. If you yank its tail, it will try to bite you.",

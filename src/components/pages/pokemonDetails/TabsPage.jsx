@@ -1,8 +1,21 @@
-//wrapper for tabbed content types, stats, evolutions, moves
-import React from "react";
+import Tabs from "./Tabs";
+import ActiveTab from "./ActiveTab";
 
-const TabsPage = () => {
-  return <div>TabsPage</div>;
+import { useState } from "react";
+
+const TabsPage = ({ pokemon }) => {
+  const [activeTab, setActiveTab] = useState("types");
+
+  const handleTabClick = (target) => {
+    setActiveTab(target);
+  };
+
+  return (
+    <section className="pokemon-details__tabs tabs">
+      <Tabs activeTab={activeTab} handleTabClick={handleTabClick} />
+      <ActiveTab pokemon={pokemon} activeTab={activeTab} />
+    </section>
+  );
 };
 
 export default TabsPage;

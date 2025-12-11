@@ -46,3 +46,29 @@ export const buildSpriteGallery = (sprites) => {
 
   return { heroSprite, gallerySprites };
 };
+
+export const convertStat = (stat, reductionFactor) => {
+  if (typeof stat !== "number") {
+    return stat;
+  }
+  return stat * reductionFactor;
+};
+
+export const rotateArrayLeft = (arr, shifts) => {
+  // Ensure shifts is within the bounds of the array length
+  const actualShifts = shifts % arr.length;
+
+  // If shifts is 0 or the array is empty, return a copy of the original array
+  if (actualShifts === 0 || arr.length === 0) {
+    return [...arr];
+  }
+
+  // Slice the array into two parts:
+  // 1. Elements from the shift point to the end
+  // 2. Elements from the beginning to the shift point
+  const firstPart = arr.slice(actualShifts);
+  const secondPart = arr.slice(0, actualShifts);
+
+  // Combine the two parts to form the rotated array
+  return [...firstPart, ...secondPart];
+};
