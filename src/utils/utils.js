@@ -79,3 +79,15 @@ export const formatNameOwnership = (name) => {
     return `${name}'`;
   } else return `${name}'s`;
 };
+
+export const playBattleCry = (currentAudio, audioArray, setterFunction) => {
+  // Stop the current audio if it exists and is playing
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0; // Reset playback to the beginning
+  }
+  const randomIndex = Math.floor(Math.random() * audioArray.length);
+  const newAudio = new Audio(audioArray[randomIndex]);
+  setterFunction(newAudio); // Update the state with the new Audio object
+  newAudio.play();
+};

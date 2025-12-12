@@ -1,5 +1,7 @@
 import BrandInfo from "./BrandInfo";
 import NavAuth from "./NavAuth";
+import { Link } from "react-router-dom";
+
 import "../../blocks/Navbar.css";
 const Navbar = () => {
   return (
@@ -9,8 +11,12 @@ const Navbar = () => {
           <BrandInfo />
         </li>
         <li className="navbar__list-item navbar__links">
-          <a className="navbar__link">Pokédex</a>
-          <a className="navbar__link">Teams</a>
+          <Link to="/" className="navbar__link">
+            Pokédex
+          </Link>
+          <Link to="teams" className="navbar__link">
+            Teams
+          </Link>
         </li>
         <li className="navbar__list-item navbar__auth">
           <NavAuth />

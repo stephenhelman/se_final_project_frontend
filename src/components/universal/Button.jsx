@@ -11,7 +11,11 @@ const Button = ({
   if (buttonCategory === "icon") {
     const buttonName = buttonIcon.split("/")[2].replace(".svg", "");
     return (
-      <button className={`button button_type_${buttonCategory}`} type="button">
+      <button
+        className={`button button_type_${buttonCategory}`}
+        type="button"
+        onClick={clickFunction ? clickFunction : null}
+      >
         <img src={buttonIcon} alt={buttonName} className="button__image" />
       </button>
     );

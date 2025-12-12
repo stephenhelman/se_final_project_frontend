@@ -1,8 +1,11 @@
+import { iconConfig } from "../../utils/imageUtils";
+
 const BrandInfo = () => {
+  const { logoIcon } = iconConfig;
   return (
     <>
       <img
-        src="src/images/logo.svg"
+        src={logoIcon}
         alt="Pokemon Trainer Hub Logo"
         className="navbar__logo"
       />

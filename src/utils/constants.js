@@ -1,3 +1,5 @@
+export const POKE_BASE_URL = "https://pokeapi.co/api/v2/";
+
 export const pokemonGroupTypes = [
   {
     id: "physical",
@@ -38,6 +40,52 @@ export const statusFilterOptions = [
     value: "caught",
   },
 ];
+
+const pokemonModel = {
+  id: "",
+  name: "",
+
+  types: [],
+  sprites: [],
+
+  stats: {
+    hp: "",
+    attack: "",
+    defense: "",
+    specialAttack: "",
+    specialDefense: "",
+    speed: "",
+  },
+
+  attributes: {
+    height: "",
+    weight: "",
+    color: "",
+    habitat: "",
+  },
+
+  eggGroups: [],
+
+  flavorText: [],
+
+  moves: [],
+
+  evolutionChain: {
+    type: "linear" || "non-linear",
+    chain: {
+      one: {
+        name: "",
+        id: "",
+        growthRate: "",
+        trigger: "",
+        additionalInfo: {
+          expRequired: "",
+          lvlRequired: "",
+        },
+      },
+    },
+  },
+};
 
 export const mockPokemon = [
   {

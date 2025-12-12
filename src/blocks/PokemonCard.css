@@ -37,7 +37,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
-  color: rgb(var(--gray-500));
+  color: rgb(var(--gray-700));
 }
 
 .pokemon-card__types-row {
@@ -68,8 +68,8 @@
 .pokemon-card_type_fighting {
   background-color: rgba(var(--type-fighting), 0.8);
 }
-.pokemon-card_type_posion {
-  background-color: rgba(var(--type-posion), 0.8);
+.pokemon-card_type_poison {
+  background-color: rgba(var(--type-poison), 0.8);
 }
 .pokemon-card_type_ground {
   background-color: rgba(var(--type-ground), 0.8);

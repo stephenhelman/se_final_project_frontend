@@ -1,11 +1,12 @@
-//Header for section back arrow, Pokemon Id, Pokemon Name, Favorites Icon
+import { iconConfig } from "../../../utils/imageUtils";
 
 const DetailsHeader = ({ pokemon }) => {
+  const { backIcon, favoriteIcon } = iconConfig;
   return (
     <header className="pokemon-details__header">
       <button className="pokemon-details__header-button">
         <img
-          src="src/images/back.svg"
+          src={backIcon}
           alt="back button"
           className="pokemon-details__header-icon"
         />
@@ -16,7 +17,7 @@ const DetailsHeader = ({ pokemon }) => {
       </div>
       <button className="pokemon-details__header-button">
         <img
-          src="src/images/favorite.svg"
+          src={favoriteIcon}
           alt="favorite button"
           className="pokemon-details__header-icon"
         />
