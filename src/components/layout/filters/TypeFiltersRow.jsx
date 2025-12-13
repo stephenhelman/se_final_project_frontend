@@ -1,10 +1,10 @@
 import TypeChip from "../../universal/TypeChip";
 
-const TypeFiltersRow = ({ label, types }) => {
+const TypeFiltersRow = ({ label, types, handleFilterTypes }) => {
   const content = types.map((type) => {
     return (
       <li key={type} className="sidebar__type-chip">
-        <TypeChip type={type} size="large" />
+        <TypeChip type={type} size="large" clickFunction={handleFilterTypes} />
       </li>
     );
   });

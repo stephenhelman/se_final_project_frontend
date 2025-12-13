@@ -1,13 +1,14 @@
 import TypeFiltersRow from "./TypeFiltersRow";
 import { pokemonGroupTypes } from "../../../utils/constants";
 
-const TypeFiltersContent = () => {
+const TypeFiltersContent = ({ handleFilterTypes }) => {
   const content = pokemonGroupTypes.map((groupType) => {
     return (
       <TypeFiltersRow
         key={groupType.id}
         label={groupType.label}
         types={groupType.types}
+        handleFilterTypes={handleFilterTypes}
       />
     );
   });
