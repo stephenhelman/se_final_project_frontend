@@ -7,9 +7,9 @@ import { useData } from "../../../hooks/useData";
 import "../../../blocks/Pokedex.css";
 
 const PokedexPage = () => {
-  const { data, isLoading } = useData();
+  const { index, isLoading } = useData();
 
-  if (isLoading || !data) return <Preloader />;
+  if (isLoading || !index) return <Preloader />;
 
   return (
     <main className="pokedex">
@@ -19,7 +19,7 @@ const PokedexPage = () => {
         page="pokedex"
         searchPlaceholder="Search Pokemon"
       >
-        <PokedexGrid cardType="pokedex" size="large" pokemon={data} />
+        <PokedexGrid cardType="pokedex" size="large" pokemon={index} />
       </ContentWrapper>
     </main>
   );

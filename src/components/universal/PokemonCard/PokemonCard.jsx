@@ -10,17 +10,9 @@ const PokemonCard = ({ pokemon, cardType, size }) => {
   const [mousePosition, setMousePosition] = useState(false);
   const navigate = useNavigate();
 
-  const spriteToUse = pokemon.sprites.find((sprite) => {
-    return sprite.spriteName === "front_default";
-  });
-
   const handleInfoClick = () => {
-    console.log("navigating");
     navigate(`pokemon/${pokemon.id}`);
   };
-
-  //mouseEnterstate => make info and favorite buttons appear
-  //mouseExitState => make info and favorite buttons disappear
 
   const handleMouseMove = () => {
     setMousePosition((prev) => !prev);
@@ -42,7 +34,7 @@ const PokemonCard = ({ pokemon, cardType, size }) => {
         />
       )}
       <PokemonSprite
-        source={spriteToUse.url}
+        source={pokemon.sprite}
         pokemonName={pokemon.name}
         cardType={cardType}
       />

@@ -1,5 +1,5 @@
 const StatBar = ({ stat }) => {
-  const width = stat / 100;
+  const width = stat / 255;
 
   return (
     <div className="stats__stat-bar-wrapper">

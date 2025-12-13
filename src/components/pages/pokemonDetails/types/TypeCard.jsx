@@ -1,7 +1,7 @@
 import CardRow from "./CardRow";
 
 const TypeCard = ({ stats }) => {
-  const content = stats.map((stat, index) => {
+  const content = Object.entries(stats).map((stat, index) => {
     return (
       <li key={index} className="types-tab__list-item">
         <CardRow stat={stat} />

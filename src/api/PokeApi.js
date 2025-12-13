@@ -18,19 +18,17 @@ class PokeApi extends Api {
     return this._initializeRequest().then(this._checkResponse);
   }
 
-  getOnePokemon(url) {
-    this._parseUrlForId(url);
+  getOnePokemon(id) {
     this._generateRequestOptions({
-      endpoint: `pokemon/${this._id}`,
+      endpoint: `pokemon/${id}`,
       method: "GET",
     });
     return this._initializeRequest().then(this._checkResponse);
   }
 
-  getPokemonSpeciesInfo(url) {
-    this._parseUrlForId(url);
+  getPokemonSpeciesInfo(id) {
     this._generateRequestOptions({
-      endpoint: `pokemon-species/${this._id}`,
+      endpoint: `pokemon-species/${id}`,
       method: "GET",
     });
     return this._initializeRequest().then(this._checkResponse);
@@ -45,6 +43,14 @@ class PokeApi extends Api {
     return this._initializeRequest().then(this._checkResponse);
   }
 
+  getAllGrowthRates() {
+    this._generateRequestOptions({
+      endpoint: `growth-rate`,
+      method: "GET",
+    });
+    return this._initializeRequest().then(this._checkResponse);
+  }
+
   getGrowthRateInfo(url) {
     this._parseUrlForId(url);
     this._generateRequestOptions({
@@ -54,10 +60,18 @@ class PokeApi extends Api {
     return this._initializeRequest().then(this._checkResponse);
   }
 
-  getTypesInfo(url) {
+  getAllTypes(count) {
+    this._generateRequestOptions({
+      endpoint: `type/?count=${count}&limit=${count}`,
+      method: "GET",
+    });
+    return this._initializeRequest().then(this._checkResponse);
+  }
+
+  getOneType(url) {
     this._parseUrlForId(url);
     this._generateRequestOptions({
-      endpoint: `type/${this.id}`,
+      endpoint: `type/${this._id}`,
       method: "GET",
     });
     return this._initializeRequest().then(this._checkResponse);

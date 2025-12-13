@@ -1,17 +1,15 @@
 import { createContext } from "react";
-import usePokeFetchWithCache from "../../hooks/usePokeFetchWithCache";
+import useIndex from "../../hooks/useIndex";
 
 const PokemonContext = createContext({});
 
 export const PokemonProvider = ({ children }) => {
-  const { data, isLoading, error, updatePokemonInformation } =
-    usePokeFetchWithCache();
+  const { index, isLoading, error } = useIndex(151, "pokemon");
 
   const value = {
-    data,
+    index,
     isLoading,
     error,
-    updatePokemonInformation,
   };
 
   return (

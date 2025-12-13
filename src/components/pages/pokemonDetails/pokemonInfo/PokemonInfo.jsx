@@ -1,27 +1,15 @@
 //Container to hold sprite gallery, cry button, flavor text rotator
 import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useData } from "../../../../hooks/useData";
 import { playBattleCry } from "../../../../utils/utils";
-import Preloader from "../../../universal/Preloader";
-
 import SpriteSectionWrapper from "./SpriteSectionWrapper";
 import Button from "../../../universal/Button";
 import FlavorText from "./FlavorText";
 import "../../../../blocks/PokemonInfo.css";
 
-const PokemonInfo = () => {
+const PokemonInfo = ({ pokemon }) => {
   const [currentAudio, setCurrentAudio] = useState(null);
-  const { id } = useParams();
-  const { data, isLoading } = useData();
 
-  if (isLoading || !data) return <Preloader />;
-
-  const pokemon = data.find((item) => {
-    return item.id === Number(id);
-  });
-
-  const battleCries = pokemon.cries;
+  const battleCries = Object.values(pokemon.cries);
 
   return (
     <section className="pokemon-details__pokemon-info pokemon-info">
@@ -36,7 +24,7 @@ const PokemonInfo = () => {
           }
         />
       </div>
-      {/* <FlavorText pokemon={pokemon} /> */}
+      <FlavorText pokemon={pokemon} />
     </section>
   );
 };

@@ -1,3 +1,5 @@
+import { CACHE_KEYS } from "./constants";
+
 export const capitalize = (text) => {
   return text.charAt(0).toUpperCase() + text.slice(1);
 };
@@ -49,27 +51,22 @@ export const buildSpriteGallery = (sprites) => {
 
 export const convertStat = (stat, reductionFactor) => {
   if (typeof stat !== "number") {
-    return stat;
+    return capitalize(stat);
   }
-  return stat * reductionFactor;
+  const returnStat = stat * reductionFactor;
+  return returnStat.toFixed(1);
 };
 
 export const rotateArrayLeft = (arr, shifts) => {
-  // Ensure shifts is within the bounds of the array length
   const actualShifts = shifts % arr.length;
 
-  // If shifts is 0 or the array is empty, return a copy of the original array
   if (actualShifts === 0 || arr.length === 0) {
     return [...arr];
   }
 
-  // Slice the array into two parts:
-  // 1. Elements from the shift point to the end
-  // 2. Elements from the beginning to the shift point
   const firstPart = arr.slice(actualShifts);
   const secondPart = arr.slice(0, actualShifts);
 
-  // Combine the two parts to form the rotated array
   return [...firstPart, ...secondPart];
 };
 
@@ -81,13 +78,57 @@ export const formatNameOwnership = (name) => {
 };
 
 export const playBattleCry = (currentAudio, audioArray, setterFunction) => {
-  // Stop the current audio if it exists and is playing
   if (currentAudio) {
     currentAudio.pause();
-    currentAudio.currentTime = 0; // Reset playback to the beginning
+    currentAudio.currentTime = 0;
   }
   const randomIndex = Math.floor(Math.random() * audioArray.length);
   const newAudio = new Audio(audioArray[randomIndex]);
-  setterFunction(newAudio); // Update the state with the new Audio object
+  setterFunction(newAudio);
   newAudio.play();
+};
+
+export const setItemToLocalStorage = (cacheKey, item) => {
+  localStorage.setItem(cacheKey, JSON.stringify(item));
+};
+
+export const getItemFromLocalStorage = (cachekey) => {
+  localStorage.getItem(cachekey);
+};
+
+export const formatKeyTitle = (key) => {
+  if (!key) {
+    return "";
+  }
+  const spacedString = key.replace(/(?<!^)([A-Z])/g, " $1");
+  const titleCaseString = spacedString.replace(/^./, function (match) {
+    return match.toUpperCase();
+  });
+
+  return titleCaseString;
+};
+export const parseUrlForId = (url) => {
+  const splitUrl = url.split("/");
+  return splitUrl.at(-2);
+};
+
+export const resolveCacheKey = (key) => {
+  let cacheKey;
+  switch (key) {
+    case "pokemon-list":
+      cacheKey = CACHE_KEYS.POKE_LIST;
+      break;
+    case "pokemon-index":
+      cacheKey = CACHE_KEYS.POKEDEX_INDEX;
+      break;
+    case "type-list":
+      cacheKey = CACHE_KEYS.TYPE_LIST;
+      break;
+    case "type-index":
+      cacheKey = CACHE_KEYS.TYPE_INDEX;
+      break;
+    default:
+      break;
+  }
+  return cacheKey;
 };

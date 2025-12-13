@@ -1,10 +1,20 @@
 import { iconConfig } from "../../../utils/imageUtils";
+import { useNavigate } from "react-router-dom";
 
 const DetailsHeader = ({ pokemon }) => {
+  const navigate = useNavigate();
+
+  const handleBackButtonClicked = () => {
+    navigate(-1);
+  };
+
   const { backIcon, favoriteIcon } = iconConfig;
   return (
     <header className="pokemon-details__header">
-      <button className="pokemon-details__header-button">
+      <button
+        className="pokemon-details__header-button"
+        onClick={handleBackButtonClicked}
+      >
         <img
           src={backIcon}
           alt="back button"

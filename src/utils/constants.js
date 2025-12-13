@@ -41,21 +41,15 @@ export const statusFilterOptions = [
   },
 ];
 
+export const CACHE_KEYS = {
+  POKE_LIST: "poke:list:kanto151",
+  POKEDEX_INDEX: "poke:index:kanto151",
+  TYPE_LIST: "type:list",
+  TYPE_INDEX: "type:index",
+};
+
 const pokemonModel = {
-  id: "",
-  name: "",
-
-  types: [],
   sprites: [],
-
-  stats: {
-    hp: "",
-    attack: "",
-    defense: "",
-    specialAttack: "",
-    specialDefense: "",
-    speed: "",
-  },
 
   attributes: {
     height: "",
@@ -63,8 +57,6 @@ const pokemonModel = {
     color: "",
     habitat: "",
   },
-
-  eggGroups: [],
 
   flavorText: [],
 

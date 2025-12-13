@@ -7,6 +7,7 @@ import TeamBuilderPage from "./pages/teamBuilder/TeamBuilderPage";
 import PokemonDetailsPage from "./pages/pokemonDetails/PokemonDetailsPage";
 import "../blocks/App.css";
 import { PokemonProvider } from "./context/PokemonProvider";
+import { TypesProvider } from "./context/TypesProvider";
 
 function App() {
   return (
@@ -18,8 +19,10 @@ function App() {
           <Route path="edit/:id" element={<TeamBuilderPage />} />
           <Route path="mew" element={<TeamBuilderPage />} />
         </Route>
-        <Route path="pokemon">
-          <Route path=":id" element={<PokemonDetailsPage />} />
+        <Route element={<TypesProvider />}>
+          <Route path="pokemon">
+            <Route path=":id" element={<PokemonDetailsPage />} />
+          </Route>
         </Route>
       </Routes>
     </PokemonProvider>

@@ -1,15 +1,17 @@
+import { formatKeyTitle } from "../../../../utils/utils";
 import TypeChip from "../../../universal/TypeChip";
 
 const CardRow = ({ stat }) => {
+  console.log(stat);
   let types;
-  if (!stat.types.length) {
+  if (!stat[1].length) {
     types = (
       <li className="types-tab__list-item">
         <TypeChip type="none" size="small" isActive="false" />
       </li>
     );
   } else {
-    types = stat.types.map((type, index) => {
+    types = stat[1].map((type, index) => {
       return (
         <li key={index} className="types-tab__list-item">
           <TypeChip type={type} size="small" isActive={false} />
@@ -19,7 +21,7 @@ const CardRow = ({ stat }) => {
   }
   return (
     <>
-      <p className="types-tab__stat-title">{stat.name}</p>
+      <p className="types-tab__stat-title">{formatKeyTitle(stat[0])}</p>
       <ul className="types-tab__stat-chips-wrapper">{types}</ul>
     </>
   );
