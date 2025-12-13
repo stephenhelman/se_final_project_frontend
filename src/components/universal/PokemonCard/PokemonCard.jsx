@@ -18,6 +18,22 @@ const PokemonCard = ({ pokemon, cardType, size }) => {
     setMousePosition((prev) => !prev);
   };
 
+  const hoverButtonContainer = (
+    <div className="pokemon-card__hover-buttons">
+      <Button
+        buttonType="button"
+        buttonCategory="icon"
+        buttonIcon={iconConfig.infoIcon}
+        clickFunction={handleInfoClick}
+      />
+      <Button
+        buttonType="button"
+        buttonCategory="icon"
+        buttonIcon={iconConfig.favoriteIcon}
+      />
+    </div>
+  );
+
   return (
     <article
       className={`pokemon-card  pokemon-card_type_${cardType}`}
@@ -25,14 +41,7 @@ const PokemonCard = ({ pokemon, cardType, size }) => {
       onMouseEnter={handleMouseMove}
       onMouseLeave={handleMouseMove}
     >
-      {mousePosition && (
-        <Button
-          buttonType="button"
-          buttonCategory="icon"
-          buttonIcon={iconConfig.infoIcon}
-          clickFunction={handleInfoClick}
-        />
-      )}
+      {mousePosition && hoverButtonContainer}
       <PokemonSprite
         source={pokemon.sprite}
         pokemonName={pokemon.name}

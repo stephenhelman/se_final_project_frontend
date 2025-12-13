@@ -33,6 +33,11 @@
   border: none;
 }
 
+.pokemon-info__sprite-nav-button:hover,
+.pokemon-info__sprite-button:hover {
+  cursor: pointer;
+}
+
 .pokemon-info__sprite-nav {
   height: 20px;
   width: 20px;

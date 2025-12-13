@@ -5,6 +5,7 @@
   align-items: center;
   border-radius: 12px;
   border: 1px solid rgb(var(--gray-300));
+  position: relative;
 }
 
 .pokemon-card__sprite {
@@ -45,6 +46,14 @@
   flex-direction: row;
   gap: 4px;
   padding: 0 8px;
+}
+.pokemon-card__hover-buttons {
+  width: calc(100% - 10px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: absolute;
+  top: 5px;
 }
 
 .pokemon-card_type_normal {

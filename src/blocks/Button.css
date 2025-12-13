@@ -34,3 +34,8 @@
   height: 20px;
   width: 20px;
 }
+
+.button__image:hover,
+.button_type_primary {
+  cursor: pointer;
+}
