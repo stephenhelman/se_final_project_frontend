@@ -1,6 +1,5 @@
 //universal search bar component. THe only change is the placeholder text
 import ButtonRow from "./ButtonRow";
-import useForm from "../../hooks/useForm";
 import "../../blocks/Searchbar.css";
 
 const SearchBar = ({ placeholder, page, values, handleChange }) => {

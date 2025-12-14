@@ -1,14 +1,36 @@
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { useTeamsContext } from "../../../hooks/useTeamsContext";
+import { matchData } from "../../../utils/utils";
+
 import TeamPlayers from "../../universal/TeamPlayers";
 import Button from "../../universal/Button";
 
-const TeamBuilderForm = () => {
-  const team = [
-    { id: 1, name: "Bulbasaur" },
-    { id: 4, name: "Charmander" },
-    { id: 7, name: "Squirtle" },
-  ];
+const TeamBuilderForm = ({ values, handleChange, setValues }) => {
+  const { id } = useParams();
+  const { teams, isLoading } = useTeamsContext();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoading) return;
+    if (id) {
+      const match = matchData(id, teams);
+      setValues({
+        name: match?.name,
+        description: match?.description,
+        players: match?.players,
+      });
+    }
+  }, [id, setValues, isLoading, teams]);
+
+  const handleCancelClicked = () => {
+    navigate(-1);
+  };
+
   return (
-    <form className="team-builder__form form">
+    <form className="team-builder__form form" onReset={handleCancelClicked}>
       <h2 className="form__title">Team Builder</h2>
       <fieldset className="form__fieldset">
         <label htmlFor="team-name" className="form__label">
@@ -17,6 +39,9 @@ const TeamBuilderForm = () => {
             type="text"
             placeholder="Enter your team's name..."
             className="form__input"
+            value={values.name}
+            onChange={handleChange}
+            required
           />
         </label>
         <label htmlFor="team-description" className="form__label">
@@ -25,11 +50,13 @@ const TeamBuilderForm = () => {
             type="text"
             placeholder="Enter your team's description"
             className="form__input"
+            value={values.description}
+            onChange={handleChange}
+            required
           />
         </label>
-        <div className="form__team-wrapper">
-          <TeamPlayers team={team} page="team-builder" />
-        </div>
+
+        <TeamPlayers team={values.players} page="team-builder" />
       </fieldset>
       <div className="form__submit-buttons">
         <Button
@@ -37,11 +64,7 @@ const TeamBuilderForm = () => {
           buttonText="Save Team"
           buttonType="submit"
         />
-        <Button
-          buttonCategory="ghost"
-          buttonText="Cancel"
-          buttonType="button"
-        />
+        <Button buttonCategory="ghost" buttonText="Cancel" buttonType="reset" />
       </div>
     </form>
   );

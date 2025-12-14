@@ -6,12 +6,12 @@ import Preloader from "../../universal/Preloader";
 
 import "../../../blocks/PokemonDetailsPage.css";
 import { useParams } from "react-router-dom";
-import { useData } from "../../../hooks/useData";
+import { useDataContext } from "../../../hooks/useDataContext";
 import usePokemonDetails from "../../../hooks/usePokemonDetails";
 
 const PokemonDetailsPage = () => {
   const { id } = useParams();
-  const { index, isLoading } = useData();
+  const { index, isLoading } = useDataContext();
 
   const lightPokemon = index?.find((item) => item.id === Number(id));
   const { pokemon, isLoading: sessionLoading } = usePokemonDetails(

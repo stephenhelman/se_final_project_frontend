@@ -11,7 +11,7 @@ const PokemonCard = ({ pokemon, cardType, size }) => {
   const navigate = useNavigate();
 
   const handleInfoClick = () => {
-    navigate(`pokemon/${pokemon.id}`);
+    navigate(`/pokemon/${pokemon.id}`);
   };
 
   const handleMouseMove = () => {
@@ -43,8 +43,8 @@ const PokemonCard = ({ pokemon, cardType, size }) => {
     >
       {mousePosition && hoverButtonContainer}
       <PokemonSprite
-        source={pokemon.sprite}
-        pokemonName={pokemon.name}
+        source={pokemon?.sprite}
+        pokemonName={pokemon?.name}
         cardType={cardType}
       />
       {size !== "small" && (

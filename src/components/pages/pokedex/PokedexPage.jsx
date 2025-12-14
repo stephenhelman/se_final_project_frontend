@@ -1,10 +1,11 @@
-import Sidebar from "../../layout/Sidebar";
-import ContentWrapper from "../../layout/ContentWrapper";
+import { useState } from "react";
+
+import { useDataContext } from "../../../hooks/useDataContext";
+import useForm from "../../../hooks/useForm";
+
+import PageLayout from "../../layout/Layout";
 import Preloader from "../../universal/Preloader";
 import PokedexGrid from "./PokedexGrid";
-import { useData } from "../../../hooks/useData";
-import { useState } from "react";
-import useForm from "../../../hooks/useForm";
 
 import "../../../blocks/Pokedex.css";
 
@@ -26,7 +27,7 @@ const PokedexPage = () => {
     setFilterTypes((prev) => [...prev, filter]);
   };
 
-  const { index, isLoading } = useData();
+  const { index, isLoading } = useDataContext();
 
   if (isLoading || !index) return <Preloader />;
 
@@ -39,18 +40,17 @@ const PokedexPage = () => {
     );
 
   return (
-    <main className="pokedex">
-      <Sidebar handleFilterTypes={handleFilterTypes} />
-      <ContentWrapper
-        title="Pokédex"
-        page="pokedex"
-        searchPlaceholder="Search Pokemon"
-        values={values}
-        handleChange={handleChange}
-      >
-        <PokedexGrid cardType="pokedex" size="large" pokemon={pokemon} />
-      </ContentWrapper>
-    </main>
+    <PageLayout
+      mainClass="pokedex"
+      filterFunction={handleFilterTypes}
+      title="Pokedex"
+      page="pokedex"
+      searchPlaceholder="Search Pokemon"
+      values={values}
+      handleChange={handleChange}
+    >
+      <PokedexGrid cardType="pokedex" size="large" pokemon={pokemon} />
+    </PageLayout>
   );
 };
 

@@ -1,4 +1,4 @@
-import { formatPokemonId, capitalize } from "./utils";
+import { formatPokemonId, capitalize, matchData } from "./utils";
 
 const buildTypesArray = (typesData) => {
   const typesArray = [];
@@ -6,6 +6,18 @@ const buildTypesArray = (typesData) => {
     typesArray[type.slot - 1] = type.type.name;
   });
   return typesArray;
+};
+
+export const hydratePokemonData = (pokemonIdArray, indexedInformation) => {
+  return pokemonIdArray.map((id) => {
+    const match = matchData(id, indexedInformation);
+    return {
+      id: id,
+      name: match.name,
+      sprite: match.sprite,
+      types: match.types,
+    };
+  });
 };
 
 export const buildTypeMatchupModel = (typeResponse) => {

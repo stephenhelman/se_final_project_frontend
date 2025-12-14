@@ -2,7 +2,7 @@ import PokemonSprite from "./PokemonCard/PokemonSprite";
 import BlankSprite from "../pages/teams/BlankSprite";
 import BlankCard from "../pages/teamBuilder/BlankCard";
 import { mockPokemon } from "../../utils/constants";
-import { matchPokemon } from "../../utils/utils";
+import { matchData } from "../../utils/utils";
 import PokemonCard from "./PokemonCard/PokemonCard";
 
 const TeamPlayers = ({ team = null, page }) => {
@@ -11,12 +11,11 @@ const TeamPlayers = ({ team = null, page }) => {
   if (page === "teams") {
     if (team.length !== 6) {
       content = team.map((pokemon, i) => {
-        const match = matchPokemon(pokemon, mockPokemon);
         return (
           <li key={i} className="teams__list-item">
             <PokemonSprite
               pokemonName={pokemon.name}
-              source={match.sprite}
+              source={pokemon.sprite}
               cardType="teams"
             />
           </li>
@@ -33,12 +32,11 @@ const TeamPlayers = ({ team = null, page }) => {
       return <ul className="teams__team-players">{content}</ul>;
     }
     content = team.map((pokemon, i) => {
-      const match = matchPokemon(pokemon, mockPokemon);
       return (
         <li key={i} className="teams__list-item">
           <PokemonSprite
             pokemonName={pokemon.name}
-            source={match.sprite}
+            source={pokemon.sprite}
             cardType="teams"
           />
         </li>
@@ -51,11 +49,10 @@ const TeamPlayers = ({ team = null, page }) => {
   if (page === "team-builder") {
     if (team.length !== 6) {
       content = team.map((pokemon, i) => {
-        const match = matchPokemon(pokemon, mockPokemon);
         return (
           <li key={i} className="form__list-item">
             <PokemonCard
-              pokemon={match}
+              pokemon={pokemon}
               cardType="team-builder"
               size="medium"
             />
@@ -72,11 +69,14 @@ const TeamPlayers = ({ team = null, page }) => {
       }
       return <ul className="form__team">{content}</ul>;
     }
-    content = team.map((pokemon) => {
-      const match = matchPokemon(pokemon, mockPokemon);
+    content = team.map((pokemon, i) => {
       return (
-        <li key={match.id} className="form__list-item">
-          <PokemonCard pokemon={match} cardType="team-builder" size="medium" />
+        <li key={i} className="form__list-item">
+          <PokemonCard
+            pokemon={pokemon}
+            cardType="team-builder"
+            size="medium"
+          />
         </li>
       );
     });

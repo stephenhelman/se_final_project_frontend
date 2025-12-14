@@ -9,7 +9,21 @@ const useForm = (inputValues) => {
     // set the value into the object using the name
     setValues({ ...values, [name]: value });
   };
-  return { values, handleChange, setValues };
+
+  const addToArray = (name, item) => {
+    setValues((prev) => ({
+      ...prev,
+      [name]: [...prev[name], item],
+    }));
+  };
+
+  const removeFromArray = (name, itemToRemove) => {
+    setValues((prev) => ({
+      ...prev,
+      [name]: prev[name].filter((item) => item.id !== itemToRemove),
+    }));
+  };
+  return { values, handleChange, setValues, addToArray, removeFromArray };
 };
 
 export default useForm;

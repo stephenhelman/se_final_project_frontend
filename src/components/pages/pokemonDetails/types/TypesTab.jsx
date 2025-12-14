@@ -1,7 +1,7 @@
 //wrapper for types card
 import { useState } from "react";
 
-import { useTypes } from "../../../../hooks/useTypes";
+import { useTypesContext } from "../../../../hooks/useTypesContext";
 
 import TypesHeader from "./TypesHeader";
 import CardWrapper from "./CardWrapper";
@@ -10,7 +10,7 @@ import "../../../../blocks/TypesTab.css";
 
 const TypesTab = ({ pokemon }) => {
   const [activeType, setActiveType] = useState(pokemon.types[0]);
-  const { index } = useTypes();
+  const { index } = useTypesContext();
 
   const toggleActiveType = (target) => {
     setActiveType(target);

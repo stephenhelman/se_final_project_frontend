@@ -2,7 +2,6 @@ import { formatKeyTitle } from "../../../../utils/utils";
 import TypeChip from "../../../universal/TypeChip";
 
 const CardRow = ({ stat }) => {
-  console.log(stat);
   let types;
   if (!stat[1].length) {
     types = (
