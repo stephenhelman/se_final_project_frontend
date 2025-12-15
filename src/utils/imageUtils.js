@@ -13,6 +13,7 @@ import passwordIcon from "../images/password.svg";
 import prevIcon from "../images/prev.svg";
 import removeIcon from "../images/remove.svg";
 import userIcon from "../images/user.svg";
+import favoriteIconActive from "../images/favoriteActive.svg";
 
 export const iconConfig = {
   addIcon,
@@ -30,4 +31,5 @@ export const iconConfig = {
   prevIcon,
   removeIcon,
   userIcon,
+  favoriteIconActive,
 };

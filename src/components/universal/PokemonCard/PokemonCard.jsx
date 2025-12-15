@@ -1,13 +1,25 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { iconConfig } from "../../../utils/imageUtils";
+import { useDataContext } from "../../../hooks/useDataContext";
 
 import PokemonSprite from "./PokemonSprite";
 import PokemonCardDescription from "./PokemonCardDescription";
-import "../../../blocks/PokemonCard.css";
+import HoverButtons from "./HoverButtons";
 import Button from "../Button";
-const PokemonCard = ({ pokemon, cardType, size }) => {
+
+import "../../../blocks/PokemonCard.css";
+const PokemonCard = ({
+  pokemon,
+  cardType,
+  size,
+  lengthOfTeam,
+  addToArray,
+  removeFromArray,
+}) => {
   const [mousePosition, setMousePosition] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(pokemon.isFavorite);
+
+  const { toggleFavorite, iconConfig } = useDataContext();
   const navigate = useNavigate();
 
   const handleInfoClick = () => {
@@ -18,30 +30,74 @@ const PokemonCard = ({ pokemon, cardType, size }) => {
     setMousePosition((prev) => !prev);
   };
 
-  const hoverButtonContainer = (
-    <div className="pokemon-card__hover-buttons">
+  const handleToggleFavoritePokemon = () => {
+    setIsFavorite((prev) => !prev);
+    toggleFavorite(pokemon.id, !isFavorite);
+  };
+
+  const addToTeam = () => {
+    addToArray("players", pokemon);
+  };
+
+  const removeFromTeam = () => {
+    removeFromArray("players", pokemon);
+  };
+
+  const favoriteButton = (
+    <div className="pokemon-card__favorite-button">
       <Button
-        buttonType="button"
         buttonCategory="icon"
-        buttonIcon={iconConfig.infoIcon}
-        clickFunction={handleInfoClick}
-      />
-      <Button
         buttonType="button"
-        buttonCategory="icon"
-        buttonIcon={iconConfig.favoriteIcon}
+        buttonIcon={
+          isFavorite ? iconConfig.favoriteIconActive : iconConfig.favoriteIcon
+        }
+        clickFunction={handleToggleFavoritePokemon}
       />
     </div>
   );
 
+  if (cardType === "team-builder") {
+    return (
+      <article
+        className={`pokemon-card  pokemon-card_type_${cardType}`}
+        onMouseEnter={handleMouseMove}
+        onMouseLeave={handleMouseMove}
+      >
+        {mousePosition && (
+          <HoverButtons
+            cardType={cardType}
+            navigate={handleInfoClick}
+            remove={removeFromTeam}
+            increment={addToTeam}
+            pokemonCount={pokemon.count}
+            lengthOfTeam={lengthOfTeam}
+          />
+        )}
+        <PokemonSprite
+          source={pokemon?.sprite}
+          pokemonName={pokemon?.name}
+          cardType={cardType}
+        />
+        {size !== "small" && (
+          <PokemonCardDescription
+            pokemon={pokemon}
+            cardType={cardType}
+            size={size}
+          />
+        )}
+      </article>
+    );
+  }
+
   return (
     <article
       className={`pokemon-card  pokemon-card_type_${cardType}`}
-      onClick={cardType === "team-selector" ? "" : undefined}
       onMouseEnter={handleMouseMove}
       onMouseLeave={handleMouseMove}
     >
-      {mousePosition && hoverButtonContainer}
+      {mousePosition && (
+        <HoverButtons navigate={handleInfoClick} cardType={cardType} />
+      )}
       <PokemonSprite
         source={pokemon?.sprite}
         pokemonName={pokemon?.name}
@@ -54,6 +110,7 @@ const PokemonCard = ({ pokemon, cardType, size }) => {
           size={size}
         />
       )}
+      {favoriteButton}
     </article>
   );
 };

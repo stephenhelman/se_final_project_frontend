@@ -1,11 +1,9 @@
 import PokemonSprite from "./PokemonCard/PokemonSprite";
 import BlankSprite from "../pages/teams/BlankSprite";
 import BlankCard from "../pages/teamBuilder/BlankCard";
-import { mockPokemon } from "../../utils/constants";
-import { matchData } from "../../utils/utils";
 import PokemonCard from "./PokemonCard/PokemonCard";
 
-const TeamPlayers = ({ team = null, page }) => {
+const TeamPlayers = ({ team = [], page }) => {
   let content;
   //If the page is teams => this will build a row of 6 pokemon sprites
   if (page === "teams") {

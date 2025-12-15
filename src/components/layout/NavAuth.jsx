@@ -1,13 +1,13 @@
-import { iconConfig } from "../../utils/imageUtils";
+import { useDataContext } from "../../hooks/useDataContext";
 
 const NavAuth = () => {
-  const { logoIcon, logoutIcon } = iconConfig;
+  const { iconConfig } = useDataContext();
   return (
     <>
       <p className="navbar__user-name">Stephen H</p>
-      <img src={logoIcon} alt="avatar" className="navbar__avatar" />
+      <img src={iconConfig.logoIcon} alt="avatar" className="navbar__avatar" />
       <button className="navbar__logout">
-        <img src={logoutIcon} alt="logout" />
+        <img src={iconConfig.logoutIcon} alt="logout" />
       </button>
     </>
   );

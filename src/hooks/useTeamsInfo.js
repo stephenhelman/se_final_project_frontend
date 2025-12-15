@@ -8,7 +8,11 @@ export const useTeamsInfo = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const { index, isLoading: dataLoading, error: dataError } = useDataContext();
+  const {
+    pokemonList,
+    isLoading: dataLoading,
+    error: dataError,
+  } = useDataContext();
 
   useEffect(() => {
     if (dataLoading) return;
@@ -18,7 +22,7 @@ export const useTeamsInfo = () => {
       return;
     }
 
-    if (!index || !index.length) {
+    if (!pokemonList || !pokemonList.length) {
       setTeams([]);
       setIsLoading(false);
     }
@@ -29,13 +33,13 @@ export const useTeamsInfo = () => {
     const formatted = mockTeams.map((team) => {
       return {
         ...team,
-        players: hydratePokemonData(team.players, index),
+        players: hydratePokemonData(team.players, pokemonList),
       };
     });
     setTeams(formatted);
     setIsLoading(false);
     setError(null);
-  }, [dataLoading, dataError, index]);
+  }, [dataLoading, dataError, pokemonList]);
 
   return { teams, isLoading, error };
 };

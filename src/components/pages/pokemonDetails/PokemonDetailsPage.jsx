@@ -11,9 +11,9 @@ import usePokemonDetails from "../../../hooks/usePokemonDetails";
 
 const PokemonDetailsPage = () => {
   const { id } = useParams();
-  const { index, isLoading } = useDataContext();
+  const { pokemonList, isLoading } = useDataContext();
 
-  const lightPokemon = index?.find((item) => item.id === Number(id));
+  const lightPokemon = pokemonList?.find((item) => item.id === Number(id));
   const { pokemon, isLoading: sessionLoading } = usePokemonDetails(
     id,
     lightPokemon

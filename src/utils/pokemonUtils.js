@@ -61,6 +61,7 @@ const buildAttributesObjectOne = (data) => {
 };
 
 const buildAttributesObjectTwo = (data, attributesObject) => {
+  console.log(attributesObject);
   return {
     ...attributesObject,
     color: data?.color?.name,
@@ -166,12 +167,11 @@ const getSpeciesData = (pokemonObject, api) => {
 
 export const buildDetailPokemon = (data, api) => {
   const pokemonObject = { ...data };
-  return Promise.all([
-    getPokemonData(pokemonObject, api),
-    getSpeciesData(pokemonObject, api),
-  ]).then(() => {
-    return pokemonObject;
-  });
+  return getPokemonData(pokemonObject, api)
+    .then((pokemonObject) => {
+      return getSpeciesData(pokemonObject, api);
+    })
+    .then((finalObject) => finalObject);
 };
 
 export const buildLightweightPokemon = (pokemonData) => {
@@ -181,5 +181,6 @@ export const buildLightweightPokemon = (pokemonData) => {
     name: capitalize(pokemonData?.name),
     sprite: pokemonData?.sprites?.front_default,
     types: buildTypesArray(pokemonData?.types),
+    isFavorite: false,
   };
 };

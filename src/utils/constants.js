@@ -306,7 +306,7 @@ export const mockTeams = [
     description: "Map mobility and flexible matchups.",
     lastUpdated: "2025-12-02T08:40:00Z",
     isFavorite: false,
-    players: [21, 22, 83, 84, 85, 142],
+    players: [21, 22, 83, 84],
   },
   {
     id: "team-010",

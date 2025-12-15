@@ -1,10 +1,10 @@
 import { parseGenderAndShiny } from "../../../../utils/utils";
-import { iconConfig } from "../../../../utils/imageUtils";
+import { useDataContext } from "../../../../hooks/useDataContext";
 import HeroSprite from "./HeroSprite";
 
 const HeroSpriteWrapper = ({ heroSprite, onPrevClick, onNextClick }) => {
   const spriteDescription = parseGenderAndShiny(heroSprite.spriteName);
-  const { prevIcon, nextIcon } = iconConfig;
+  const { iconConfig } = useDataContext();
 
   return (
     <div className="pokemon-info__hero-sprite-wrapper">
@@ -14,7 +14,7 @@ const HeroSpriteWrapper = ({ heroSprite, onPrevClick, onNextClick }) => {
           onClick={onPrevClick}
         >
           <img
-            src={prevIcon}
+            src={iconConfig.prevIcon}
             alt="previous sprite"
             className="pokemon-info__sprite-nav"
           />
@@ -25,7 +25,7 @@ const HeroSpriteWrapper = ({ heroSprite, onPrevClick, onNextClick }) => {
           onClick={onNextClick}
         >
           <img
-            src={nextIcon}
+            src={iconConfig.nextIcon}
             alt="previous sprite"
             className="pokemon-info__sprite-nav"
           />

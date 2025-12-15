@@ -8,6 +8,16 @@
   position: relative;
 }
 
+.pokemon-card__favorite-button {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.pokemon-card__favorite-button_type_active {
+  background-color: rgb(var(--highlight-color));
+}
+
 .pokemon-card__sprite {
   width: 100%;
   height: 100%;

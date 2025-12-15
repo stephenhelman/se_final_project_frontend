@@ -1,19 +1,32 @@
 import PokemonCard from "../../universal/PokemonCard/PokemonCard";
 
-const PokedexGrid = ({ size, cardType, pokemon }) => {
+const PokedexGrid = ({
+  size,
+  cardType,
+  pokemon,
+  lengthOfTeam,
+  addToArray,
+  removeFromArray,
+}) => {
   const content = pokemon.map((pokemon) => {
     return (
-      <PokemonCard
-        pokemon={pokemon}
-        key={pokemon.id}
-        cardType={cardType}
-        size={size}
-      />
+      <li className="pokedex__list-item" key={pokemon.id}>
+        <PokemonCard
+          pokemon={pokemon}
+          cardType={cardType}
+          size={size}
+          lengthOfTeam={lengthOfTeam}
+          addToArray={addToArray}
+          removeFromArray={removeFromArray}
+        />
+      </li>
     );
   });
   return (
     <div className="pokedex__wrapper">
-      <section className="pokedex__grid">{content}</section>
+      <ul className={`pokedex__grid pokedex__grid_type_${cardType}`}>
+        {content}
+      </ul>
     </div>
   );
 };

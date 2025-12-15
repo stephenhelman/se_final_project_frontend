@@ -1,5 +1,5 @@
-import { iconConfig } from "../../../utils/imageUtils";
 import { useNavigate } from "react-router-dom";
+import { useDataContext } from "../../../hooks/useDataContext";
 
 const DetailsHeader = ({ pokemon }) => {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ const DetailsHeader = ({ pokemon }) => {
     navigate(-1);
   };
 
-  const { backIcon, favoriteIcon } = iconConfig;
+  const { iconConfig } = useDataContext();
   return (
     <header className="pokemon-details__header">
       <button
@@ -16,7 +16,7 @@ const DetailsHeader = ({ pokemon }) => {
         onClick={handleBackButtonClicked}
       >
         <img
-          src={backIcon}
+          src={iconConfig.backIcon}
           alt="back button"
           className="pokemon-details__header-icon"
         />
@@ -27,7 +27,7 @@ const DetailsHeader = ({ pokemon }) => {
       </div>
       <button className="pokemon-details__header-button">
         <img
-          src={favoriteIcon}
+          src={iconConfig.favoriteIcon}
           alt="favorite button"
           className="pokemon-details__header-icon"
         />

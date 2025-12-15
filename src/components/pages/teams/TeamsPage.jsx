@@ -27,11 +27,11 @@ const TeamsPage = () => {
     setFilterTypes((prev) => [...prev, filter]);
   };
 
-  const { teams, isLoading } = useTeamsContext();
+  const { teamList, isLoading } = useTeamsContext();
 
-  if (isLoading || !teams) return <Preloader />;
+  if (isLoading || !teamList) return <Preloader />;
 
-  const filteredTeams = teams.filter((team) =>
+  const filteredTeams = teamList.filter((team) =>
     team.name.toLowerCase().includes(values.search.toLowerCase())
   );
 

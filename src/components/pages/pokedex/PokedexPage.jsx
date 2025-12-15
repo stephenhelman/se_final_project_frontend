@@ -27,11 +27,11 @@ const PokedexPage = () => {
     setFilterTypes((prev) => [...prev, filter]);
   };
 
-  const { index, isLoading } = useDataContext();
+  const { pokemonList, isLoading } = useDataContext();
 
-  if (isLoading || !index) return <Preloader />;
+  if (isLoading || !pokemonList) return <Preloader />;
 
-  const pokemon = index
+  const pokemon = pokemonList
     .filter((pokemon) =>
       pokemon.name.toLowerCase().includes(values.search.toLowerCase())
     )

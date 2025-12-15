@@ -39,11 +39,25 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-auto-rows: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.pokedex__grid_type_pokedex {
   row-gap: 29px;
   column-gap: 31.6px;
+}
+
+.pokedex__grid_type_team-builder {
+  row-gap: 32.6px;
+  column-gap: 48.8px;
 }
 
 .pokedex__wrapper::-webkit-scrollbar,
 .pokedex__grid::-webkit-scrollbar {
   display: none;
+}
+
+.pokedex__list-item {
+  list-style: none;
 }

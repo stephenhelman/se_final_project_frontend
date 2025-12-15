@@ -18,9 +18,10 @@ const useForm = (inputValues) => {
   };
 
   const removeFromArray = (name, itemToRemove) => {
+    console.log(name, itemToRemove);
     setValues((prev) => ({
       ...prev,
-      [name]: prev[name].filter((item) => item.id !== itemToRemove),
+      [name]: prev[name].filter((item) => item.id !== itemToRemove.id),
     }));
   };
   return { values, handleChange, setValues, addToArray, removeFromArray };

@@ -1,11 +1,11 @@
-import { iconConfig } from "../../utils/imageUtils";
+import { useDataContext } from "../../hooks/useDataContext";
 
 const BrandInfo = () => {
-  const { logoIcon } = iconConfig;
+  const { iconConfig } = useDataContext();
   return (
     <>
       <img
-        src={logoIcon}
+        src={iconConfig.logoIcon}
         alt="Pokemon Trainer Hub Logo"
         className="navbar__logo"
       />

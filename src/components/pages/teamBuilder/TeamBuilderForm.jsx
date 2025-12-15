@@ -1,29 +1,10 @@
-import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-
-import { useTeamsContext } from "../../../hooks/useTeamsContext";
-import { matchData } from "../../../utils/utils";
+import { useNavigate } from "react-router-dom";
 
 import TeamPlayers from "../../universal/TeamPlayers";
 import Button from "../../universal/Button";
 
-const TeamBuilderForm = ({ values, handleChange, setValues }) => {
-  const { id } = useParams();
-  const { teams, isLoading } = useTeamsContext();
-
+const TeamBuilderForm = ({ values, handleChange }) => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isLoading) return;
-    if (id) {
-      const match = matchData(id, teams);
-      setValues({
-        name: match?.name,
-        description: match?.description,
-        players: match?.players,
-      });
-    }
-  }, [id, setValues, isLoading, teams]);
 
   const handleCancelClicked = () => {
     navigate(-1);

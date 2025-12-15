@@ -1,6 +1,8 @@
-import { iconConfig } from "../../../utils/imageUtils";
+import { useDataContext } from "../../../hooks/useDataContext";
 
 const BlankCard = () => {
+  const { iconConfig } = useDataContext();
+
   return (
     <div className="form__blank-card">
       <img
