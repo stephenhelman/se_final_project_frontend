@@ -20,7 +20,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 24px;
 }
 
 .form__title {
@@ -49,6 +49,7 @@
   font-size: 14px;
   line-height: 1.5;
   color: rgb(var(--gray-700));
+  margin-bottom: 24px;
 }
 
 .form__input {

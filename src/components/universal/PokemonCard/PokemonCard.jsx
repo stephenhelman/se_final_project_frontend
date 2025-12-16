@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDataContext } from "../../../hooks/useDataContext";
 
 import PokemonSprite from "./PokemonSprite";
@@ -16,6 +16,7 @@ const PokemonCard = ({
   addToArray,
   removeFromArray,
 }) => {
+  const location = useLocation();
   const [mousePosition, setMousePosition] = useState(false);
   const [isFavorite, setIsFavorite] = useState(pokemon.isFavorite);
 
@@ -23,7 +24,7 @@ const PokemonCard = ({
   const navigate = useNavigate();
 
   const handleInfoClick = () => {
-    navigate(`/pokemon/${pokemon.id}`);
+    navigate(`/pokemon/${pokemon.id}`, { state: { from: location.pathname } });
   };
 
   const handleMouseMove = () => {
@@ -56,19 +57,20 @@ const PokemonCard = ({
     </div>
   );
 
-  if (cardType === "team-builder") {
+  if (cardType === "team-builder" || cardType === "team-builder-form") {
     return (
       <article
         className={`pokemon-card  pokemon-card_type_${cardType}`}
         onMouseEnter={handleMouseMove}
         onMouseLeave={handleMouseMove}
       >
-        {mousePosition && (
+        {cardType === "team-builder" && mousePosition && (
           <HoverButtons
             cardType={cardType}
             navigate={handleInfoClick}
             remove={removeFromTeam}
             increment={addToTeam}
+            decrement={removeFromTeam}
             pokemonCount={pokemon.count}
             lengthOfTeam={lengthOfTeam}
           />
@@ -81,7 +83,7 @@ const PokemonCard = ({
         {size !== "small" && (
           <PokemonCardDescription
             pokemon={pokemon}
-            cardType={cardType}
+            cardType="team-builder"
             size={size}
           />
         )}

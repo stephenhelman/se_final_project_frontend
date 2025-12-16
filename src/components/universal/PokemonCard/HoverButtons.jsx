@@ -53,13 +53,18 @@ const HoverButtons = ({
       />
     </div>
   );
-  const pokemonCountExists = pokemonCount < 0;
   const pokemonCountOne = pokemonCount === 1;
-  const pokemonCountMultiple = pokemonCount < 1;
+  const pokemonCountMultiple = pokemonCount > 1;
+  const pokemonNotOnTeam = pokemonCount === 0 || !pokemonCount;
 
   const maxTeam = lengthOfTeam === 6;
 
   let content;
+
+  if (cardType !== "team-builder") {
+    content = infoButton;
+    return <div className="hover-buttons">{content}</div>;
+  }
 
   if (maxTeam) {
     if (pokemonCountMultiple) {
@@ -79,8 +84,8 @@ const HoverButtons = ({
     } else {
       content = infoButton;
     }
-  } else if (!maxTeam) {
-    if (pokemonCountExists) {
+  } else {
+    if (pokemonNotOnTeam) {
       content = (
         <>
           {infoButton}

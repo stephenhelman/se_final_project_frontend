@@ -9,6 +9,7 @@ const TeamBuilderSelector = ({
   selectedPokemon,
   addToArray,
   removeFromArray,
+  clearArray,
 }) => {
   const { values, handleChange } = useForm({
     search: "",
@@ -23,10 +24,24 @@ const TeamBuilderSelector = ({
         count: teamCount[pokemon.name],
       };
     }
-    return pokemon;
+    return {
+      ...pokemon,
+      isOnTeam: false,
+      count: 0,
+    };
   };
 
-  const pokemon = data
+  let pokemon;
+
+  const clearPokemonTeam = () => {
+    pokemon = data.map((item) => {
+      return { ...item, isOnTeam: false, count: 0 };
+    });
+
+    clearArray("players");
+  };
+
+  pokemon = data
     .map((item) => {
       return selectedPokemon.length
         ? updatePokemonObjectIfOnTeam(selectedPokemon, item)
@@ -35,8 +50,6 @@ const TeamBuilderSelector = ({
     .filter((item) => {
       return item.name.toLowerCase().includes(values.search.toLowerCase());
     });
-
-  console.log(selectedPokemon);
 
   return (
     <section className="team-builder__selector">
@@ -49,7 +62,12 @@ const TeamBuilderSelector = ({
         <h3 className="team-builder__selector-title">
           {selectedPokemon.length} / 6 Pokemon Selected
         </h3>
-        <Button buttonCategory="ghost" buttonType="button" buttonText="Clear" />
+        <Button
+          buttonCategory="ghost"
+          buttonType="button"
+          buttonText="Clear"
+          clickFunction={clearPokemonTeam}
+        />
       </header>
       <PokedexGrid
         pokemon={pokemon}

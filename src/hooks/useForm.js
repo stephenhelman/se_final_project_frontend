@@ -18,13 +18,44 @@ const useForm = (inputValues) => {
   };
 
   const removeFromArray = (name, itemToRemove) => {
-    console.log(name, itemToRemove);
-    setValues((prev) => ({
-      ...prev,
-      [name]: prev[name].filter((item) => item.id !== itemToRemove.id),
-    }));
+    setValues((prev) => {
+      const array = prev[name];
+      // Find the INDEX of the first matching pokemon
+      const indexToRemove = array.findIndex(
+        (item) => item.id === itemToRemove.id
+      );
+
+      if (indexToRemove !== -1) {
+        return {
+          ...prev,
+          [name]: [
+            ...array.slice(0, indexToRemove),
+            ...array.slice(indexToRemove + 1),
+          ],
+        };
+      }
+
+      // If not found, return unchanged
+      return prev;
+    });
   };
-  return { values, handleChange, setValues, addToArray, removeFromArray };
+
+  const clearArray = (name) => {
+    setValues((prev) => {
+      return {
+        ...prev,
+        [name]: [],
+      };
+    });
+  };
+  return {
+    values,
+    handleChange,
+    setValues,
+    addToArray,
+    removeFromArray,
+    clearArray,
+  };
 };
 
 export default useForm;

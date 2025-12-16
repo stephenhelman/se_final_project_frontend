@@ -15,7 +15,6 @@ const usePokemonDetails = (pokemonKey, originalPokemonData) => {
 
     const cacheKey = `pokemon:details:${pokemonKey}`;
     const cachedPokemon = get(cacheKey);
-    console.log(cachedPokemon);
 
     if (cachedPokemon) {
       setPokemon(cachedPokemon);

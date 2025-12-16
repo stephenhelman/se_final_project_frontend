@@ -51,7 +51,7 @@ const TeamPlayers = ({ team = [], page }) => {
           <li key={i} className="form__list-item">
             <PokemonCard
               pokemon={pokemon}
-              cardType="team-builder"
+              cardType="team-builder-form"
               size="medium"
             />
           </li>
@@ -72,7 +72,7 @@ const TeamPlayers = ({ team = [], page }) => {
         <li key={i} className="form__list-item">
           <PokemonCard
             pokemon={pokemon}
-            cardType="team-builder"
+            cardType="team-builder-form"
             size="medium"
           />
         </li>

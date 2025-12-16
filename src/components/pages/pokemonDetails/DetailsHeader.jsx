@@ -1,11 +1,16 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDataContext } from "../../../hooks/useDataContext";
 
 const DetailsHeader = ({ pokemon }) => {
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const handleBackButtonClicked = () => {
-    navigate(-1);
+    if (state?.from) {
+      navigate(state.from);
+    } else {
+      navigate("/");
+    }
   };
 
   const { iconConfig } = useDataContext();

@@ -2,11 +2,11 @@
 import TypeFiltersContent from "./filters/TypeFiltersContent";
 import "../../blocks/Sidebar.css";
 
-const Sidebar = ({ handleFilterTypes }) => {
+const Sidebar = ({ filterFunction }) => {
   return (
     <section className="sidebar">
       <h4 className="sidebar__title">Filters</h4>
-      <TypeFiltersContent handleFilterTypes={handleFilterTypes} />
+      <TypeFiltersContent filterFunction={filterFunction} />
     </section>
   );
 };
