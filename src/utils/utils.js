@@ -10,7 +10,7 @@ export const formatPokemonId = (id) => {
 };
 
 export const matchData = (id, allDataArray) => {
-  const match = allDataArray.find((p) => p.id === id);
+  const match = allDataArray.find((p) => Number(p.id) === Number(id));
   return match;
 };
 
@@ -131,4 +131,9 @@ export const resolveCacheKey = (key) => {
       break;
   }
   return cacheKey;
+};
+
+export const normalizeMachineName = (machine) => {
+  if (typeof machine !== "string") return machine;
+  return machine.toUpperCase();
 };

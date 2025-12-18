@@ -5,7 +5,7 @@ const TypesHeader = ({ pokemon, typeToggleFunction, activeType }) => {
   const types = pokemon.types.map((type, index) => {
     if (activeType === type) {
       return (
-        <li key={index} className="types-tab__list-item">
+        <li key={index} className="types__list-item">
           <TypeChip
             type={type}
             size="large"
@@ -16,7 +16,7 @@ const TypesHeader = ({ pokemon, typeToggleFunction, activeType }) => {
       );
     }
     return (
-      <li key={index} className="types-tab__list-item">
+      <li key={index} className="types__list-item">
         <TypeChip
           type={type}
           size="large"
@@ -27,11 +27,9 @@ const TypesHeader = ({ pokemon, typeToggleFunction, activeType }) => {
     );
   });
   return (
-    <div className="types-tab__header">
-      <p className="types-tab__title">
-        {formatNameOwnership(pokemon.name)} types
-      </p>
-      <ul className="types-tab__types">{types}</ul>
+    <div className="types__header">
+      <p className="types__title">{formatNameOwnership(pokemon.name)} types</p>
+      <ul className="types__types">{types}</ul>
     </div>
   );
 };

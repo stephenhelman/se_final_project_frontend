@@ -14,6 +14,8 @@ import prevIcon from "../images/prev.svg";
 import removeIcon from "../images/remove.svg";
 import userIcon from "../images/user.svg";
 import favoriteIconActive from "../images/favoriteActive.svg";
+import showIcon from "../images/show.svg";
+import hideIcon from "../images/hide.svg";
 
 export const iconConfig = {
   addIcon,
@@ -32,4 +34,6 @@ export const iconConfig = {
   removeIcon,
   userIcon,
   favoriteIconActive,
+  showIcon,
+  hideIcon,
 };

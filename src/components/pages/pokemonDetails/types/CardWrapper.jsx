@@ -10,7 +10,7 @@ const CardWrapper = ({ type }) => {
   };
 
   return (
-    <section className="types-tab__card">
+    <section className="types__card">
       <Toggle toggleFunction={handleToggle} activeCard={activeCard} />
       {activeCard === "attack" && <TypeCard stats={type.attack} />}
       {activeCard === "defense" && <TypeCard stats={type.defense} />}

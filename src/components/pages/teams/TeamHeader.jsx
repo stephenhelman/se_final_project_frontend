@@ -1,5 +1,3 @@
-import { useDataContext } from "../../../hooks/useDataContext";
-
 import TeamUtilityButtons from "./TeamUtilityButtons";
 import Button from "../../universal/Button";
 
@@ -10,17 +8,13 @@ const TeamHeader = ({
   editFunction,
   toggleFavorite,
 }) => {
-  const { iconConfig } = useDataContext();
-
   return (
     <div className="teams__header">
       <div className="teams__team-info-container">
         <Button
           buttonCategory="icon"
           buttonType="button"
-          buttonIcon={
-            isFavorite ? iconConfig.favoriteIconActive : iconConfig.favoriteIcon
-          }
+          buttonIcon={isFavorite ? "favoriteIconActive" : "favoriteIcon"}
           clickFunction={toggleFavorite}
         />
         <h4 className="teams__team-name">{name}</h4>

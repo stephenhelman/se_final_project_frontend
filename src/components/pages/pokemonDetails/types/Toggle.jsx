@@ -1,17 +1,17 @@
 const Toggle = ({ toggleFunction, activeCard }) => {
   return (
-    <div className="types-tab__toggle-wrapper">
+    <div className="types__toggle-wrapper">
       <button
-        className={`types-tab__toggle-switch ${
-          activeCard === "attack" ? "types-tab__toggle-switch_active" : ""
+        className={`types__toggle-switch ${
+          activeCard === "attack" ? "types__toggle-switch_active" : ""
         }`}
         onClick={() => toggleFunction("attack")}
       >
         Attack
       </button>
       <button
-        className={`types-tab__toggle-switch ${
-          activeCard === "defense" ? "types-tab__toggle-switch_active" : ""
+        className={`types__toggle-switch ${
+          activeCard === "defense" ? "types__toggle-switch_active" : ""
         }`}
         onClick={() => toggleFunction("defense")}
       >

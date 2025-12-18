@@ -43,14 +43,6 @@ class PokeApi extends Api {
     return this._initializeRequest().then(this._checkResponse);
   }
 
-  getAllGrowthRates() {
-    this._generateRequestOptions({
-      endpoint: `growth-rate`,
-      method: "GET",
-    });
-    return this._initializeRequest().then(this._checkResponse);
-  }
-
   getGrowthRateInfo(url) {
     this._parseUrlForId(url);
     this._generateRequestOptions({
@@ -72,6 +64,24 @@ class PokeApi extends Api {
     this._parseUrlForId(url);
     this._generateRequestOptions({
       endpoint: `type/${this._id}`,
+      method: "GET",
+    });
+    return this._initializeRequest().then(this._checkResponse);
+  }
+
+  getOneMove(url) {
+    this._parseUrlForId(url);
+    this._generateRequestOptions({
+      endpoint: `move/${this._id}`,
+      method: "GET",
+    });
+    return this._initializeRequest().then(this._checkResponse);
+  }
+
+  getOneMachine(url) {
+    this._parseUrlForId(url);
+    this._generateRequestOptions({
+      endpoint: `machine/${this._id}`,
       method: "GET",
     });
     return this._initializeRequest().then(this._checkResponse);

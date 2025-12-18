@@ -19,14 +19,14 @@ const TypesTab = ({ pokemon }) => {
   const typeToUse = index.find((type) => type.typeName === activeType);
 
   return (
-    <section className="pokemon-details__types-tab types-tab">
+    <section className="tabs__types types">
       <TypesHeader
         pokemon={pokemon}
         typeToggleFunction={toggleActiveType}
         activeType={activeType}
       />
       {!activeType && (
-        <p className="types-tab__select-message types-tab__card">
+        <p className="types__select-message types__card">
           Select a type to see their strength and weaknesses!
         </p>
       )}

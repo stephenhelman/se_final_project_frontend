@@ -5,14 +5,14 @@ const CardRow = ({ stat }) => {
   let types;
   if (!stat[1].length) {
     types = (
-      <li className="types-tab__list-item">
+      <li className="types__list-item">
         <TypeChip type="none" size="small" isActive="false" />
       </li>
     );
   } else {
     types = stat[1].map((type, index) => {
       return (
-        <li key={index} className="types-tab__list-item">
+        <li key={index} className="types__list-item">
           <TypeChip type={type} size="small" isActive={false} />
         </li>
       );
@@ -20,8 +20,8 @@ const CardRow = ({ stat }) => {
   }
   return (
     <>
-      <p className="types-tab__stat-title">{formatKeyTitle(stat[0])}</p>
-      <ul className="types-tab__stat-chips-wrapper">{types}</ul>
+      <p className="types__stat-title">{formatKeyTitle(stat[0])}</p>
+      <ul className="types__stat-chips-wrapper">{types}</ul>
     </>
   );
 };

@@ -11,6 +11,7 @@
   padding: 0 24px;
   margin: 0;
   width: 100%;
+  flex: 0 0 auto;
 }
 
 .tabs__list-item {
@@ -35,10 +36,26 @@
   color: rgb(var(--primary-color));
 }
 
+.tabs__types,
+.tabs__stats,
+.tabs__evolution,
+.tabs__moves {
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
 .tabs__stats {
   display: grid;
   grid-template-columns: 3fr 2fr;
   gap: 24px;
-  width: 100%;
-  height: 100%;
+}
+
+.tabs__moves {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
 }

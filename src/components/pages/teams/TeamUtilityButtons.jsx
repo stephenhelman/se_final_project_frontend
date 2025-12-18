@@ -3,13 +3,13 @@ import Button from "../../universal/Button";
 const TeamUtilityButtons = ({ editFunction }) => {
   return (
     <div className="teams__utility-buttons">
-      <Button buttonCategory="icon" buttonIcon="src/images/info.svg" />
+      <Button buttonCategory="icon" buttonIcon="infoIcon" />
       <Button
         buttonCategory="icon"
-        buttonIcon="src/images/edit.svg"
+        buttonIcon="editIcon"
         clickFunction={editFunction}
       />
-      <Button buttonCategory="icon" buttonIcon="src/images/delete.svg" />
+      <Button buttonCategory="icon" buttonIcon="deleteIcon" />
     </div>
   );
 };

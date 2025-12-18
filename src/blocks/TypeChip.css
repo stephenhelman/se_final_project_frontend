@@ -6,7 +6,8 @@
   padding: 4px 10px;
 }
 
-.type-chip_size_large {
+.type-chip_size_large,
+.type-chip_size_medium {
   font-size: 14px;
   line-height: 1.5;
 }

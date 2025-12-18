@@ -8,6 +8,7 @@ import "../../../blocks/PokemonDetailsPage.css";
 import { useParams } from "react-router-dom";
 import { useDataContext } from "../../../hooks/useDataContext";
 import usePokemonDetails from "../../../hooks/usePokemonDetails";
+import { updateEvolutionNodes } from "../../../utils/pokemonUtils";
 
 const PokemonDetailsPage = () => {
   const { id } = useParams();
@@ -22,12 +23,21 @@ const PokemonDetailsPage = () => {
   if (isLoading || sessionLoading || !pokemon || !Object.keys(pokemon).length)
     return <Preloader />;
 
+  const evolutionData = pokemon.evolution;
+  const newPokemon = {
+    ...pokemon,
+    evolution: {
+      ...evolutionData,
+      nodes: updateEvolutionNodes(evolutionData, pokemonList),
+    },
+  };
+
   return (
     <main className="pokemon-details">
       <DetailsHeader pokemon={pokemon} />
       <section className="pokemon-details__wrapper">
         <PokemonInfo pokemon={pokemon} />
-        <TabsPage pokemon={pokemon} />
+        <TabsPage pokemon={newPokemon} />
       </section>
     </main>
   );

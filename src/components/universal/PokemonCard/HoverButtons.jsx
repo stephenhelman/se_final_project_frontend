@@ -1,6 +1,4 @@
 import Button from "../Button";
-
-import { useDataContext } from "../../../hooks/useDataContext";
 import "../../../blocks/HoverButtons.css";
 
 const HoverButtons = ({
@@ -12,14 +10,13 @@ const HoverButtons = ({
   navigate,
   lengthOfTeam,
 }) => {
-  const { iconConfig } = useDataContext();
   const infoButton = (
     <div className="hover-button hover-button_type_info">
       <Button
         buttonType="button"
         buttonCategory="icon"
         clickFunction={navigate}
-        buttonIcon={iconConfig.infoIcon}
+        buttonIcon="infoIcon"
       />
     </div>
   );
@@ -29,7 +26,7 @@ const HoverButtons = ({
         buttonType="button"
         buttonCategory="icon"
         clickFunction={increment}
-        buttonIcon={iconConfig.addIcon}
+        buttonIcon="addIcon"
       />
     </div>
   );
@@ -39,7 +36,7 @@ const HoverButtons = ({
         buttonType="button"
         buttonCategory="icon"
         clickFunction={remove}
-        buttonIcon={iconConfig.deleteIcon}
+        buttonIcon="deleteIcon"
       />
     </div>
   );
@@ -49,7 +46,7 @@ const HoverButtons = ({
         buttonType="button"
         buttonCategory="icon"
         clickFunction={decrement}
-        buttonIcon={iconConfig.removeIcon}
+        buttonIcon="removeIcon"
       />
     </div>
   );

@@ -20,7 +20,7 @@ const PokemonCard = ({
   const [mousePosition, setMousePosition] = useState(false);
   const [isFavorite, setIsFavorite] = useState(pokemon.isFavorite);
 
-  const { toggleFavorite, iconConfig } = useDataContext();
+  const { toggleFavorite } = useDataContext();
   const navigate = useNavigate();
 
   const handleInfoClick = () => {
@@ -49,9 +49,7 @@ const PokemonCard = ({
       <Button
         buttonCategory="icon"
         buttonType="button"
-        buttonIcon={
-          isFavorite ? iconConfig.favoriteIconActive : iconConfig.favoriteIcon
-        }
+        buttonIcon={isFavorite ? "favoriteIconActive" : "favoriteIcon"}
         clickFunction={handleToggleFavoritePokemon}
       />
     </div>
