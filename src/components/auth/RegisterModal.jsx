@@ -1,8 +1,8 @@
-import Modal from "./Modal";
+import AuthModal from "./AuthModal";
 
-const RegisterModal = () => {
+const RegisterAuthModal = () => {
   return (
-    <Modal
+    <AuthModal
       title="Register"
       description="It only takes a moment"
       submitText="Register"
@@ -26,8 +26,8 @@ const RegisterModal = () => {
         <input type="password" required placeholder="Confirm Password" />
       </div>
       <p>Forgot password?</p>
-    </Modal>
+    </AuthModal>
   );
 };
 
-export default RegisterModal;
+export default RegisterAuthModal;

@@ -1,25 +1,19 @@
-import { useNavigate } from "react-router-dom";
-
 import TeamPlayers from "../../universal/TeamPlayers";
 import Button from "../../universal/Button";
 
 const TeamBuilderForm = ({
   values,
   handleChange,
-  clearDraft,
+  handleCancel,
+  handleSubmit,
   removeFromArrayUsingId,
 }) => {
-  const navigate = useNavigate();
-
-  const handleCancelClicked = () => {
-    if (clearDraft) {
-      clearDraft();
-    }
-    navigate("/teams");
-  };
-
   return (
-    <form className="team-builder__form form" onReset={handleCancelClicked}>
+    <form
+      className="team-builder__form form"
+      onReset={handleCancel}
+      onSubmit={handleSubmit}
+    >
       <h2 className="form__title">Team Builder</h2>
       <fieldset className="form__fieldset">
         <label htmlFor="name" className="form__label">

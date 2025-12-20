@@ -3,7 +3,7 @@ import { useState } from "react";
 import Button from "../../universal/Button";
 import InfoModal from "../../universal/InfoModal";
 
-const TeamUtilityButtons = ({ editFunction, description }) => {
+const TeamUtilityButtons = ({ editFunction, description, deleteFunction }) => {
   const [showInfo, setShowInfo] = useState(false);
 
   const handleShowInfoClicked = () => {
@@ -22,7 +22,11 @@ const TeamUtilityButtons = ({ editFunction, description }) => {
         buttonIcon="editIcon"
         clickFunction={editFunction}
       />
-      <Button buttonCategory="icon" buttonIcon="deleteIcon" />
+      <Button
+        buttonCategory="icon"
+        buttonIcon="deleteIcon"
+        clickFunction={deleteFunction}
+      />
     </div>
   );
 };

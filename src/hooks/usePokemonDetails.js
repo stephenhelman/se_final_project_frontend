@@ -35,7 +35,16 @@ const usePokemonDetails = (pokemonKey, originalPokemonData) => {
       });
   }, [pokemonKey, get, set, originalPokemonData]);
 
-  return { pokemon, isLoading, error };
+  const toggleFavoriteSession = (value) => {
+    const newPokemon = {
+      ...pokemon,
+      isFavorite: value,
+    };
+    setPokemon(newPokemon);
+    set(`pokemon:details:${pokemonKey}`, newPokemon);
+  };
+
+  return { pokemon, isLoading, error, toggleFavoriteSession };
 };
 
 export default usePokemonDetails;

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import TeamBuilderForm from "./TeamBuilderForm";
 import TeamBuilderSelector from "./TeamBuilderSelector";
@@ -16,6 +16,7 @@ import "../../../blocks/TeamBuilderPage.css";
 
 const TeamBuilderPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const { pokemonList, isLoading } = useDataContext();
   const { teamList, isLoading: isTeamsLoading } = useTeamsContext();
@@ -69,6 +70,18 @@ const TeamBuilderPage = () => {
     set(DRAFT_KEY, null);
   };
 
+  const handleCancel = () => {
+    clearDraft();
+    navigate("/teams");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //API Call here
+    clearDraft();
+    navigate("/teams");
+  };
+
   if (isLoading || !pokemonList.length || isTeamsLoading) return <Preloader />;
 
   return (
@@ -76,7 +89,8 @@ const TeamBuilderPage = () => {
       <TeamBuilderForm
         values={values}
         handleChange={handleChange}
-        clearDraft={clearDraft}
+        handleCancel={handleCancel}
+        handleSubmit={handleSubmit}
         removeFromArrayUsingId={removeFromArrayUsingId}
       />
       <TeamBuilderSelector

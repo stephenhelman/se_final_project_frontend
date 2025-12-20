@@ -1,8 +1,8 @@
-import Modal from "./Modal";
+import AuthModal from "./AuthModal";
 
-const LoginModal = () => {
+const LoginAuthModal = () => {
   return (
-    <Modal
+    <AuthModal
       title="Login"
       description="Welcome back!"
       submitText="Login"
@@ -18,8 +18,8 @@ const LoginModal = () => {
         <input type="password" required placeholder="Password" />
       </div>
       <p>Forgot password?</p>
-    </Modal>
+    </AuthModal>
   );
 };
 
-export default LoginModal;
+export default LoginAuthModal;

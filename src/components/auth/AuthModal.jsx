@@ -1,5 +1,5 @@
 import RedirectText from "./RedirectText";
-const Modal = ({
+const AuthModal = ({
   children,
   title,
   description,
@@ -24,4 +24,4 @@ const Modal = ({
   );
 };
 
-export default Modal;
+export default AuthModal;

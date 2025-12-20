@@ -7,6 +7,7 @@ const TeamHeader = ({
   description,
   editFunction,
   toggleFavorite,
+  deleteFunction,
 }) => {
   return (
     <div className="teams__header">
@@ -22,6 +23,7 @@ const TeamHeader = ({
       <TeamUtilityButtons
         description={description}
         editFunction={editFunction}
+        deleteFunction={deleteFunction}
       />
     </div>
   );

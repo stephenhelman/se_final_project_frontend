@@ -16,7 +16,7 @@ export const PokemonProvider = ({ children }) => {
     setPokemonList(index);
   }, [isLoading, index]);
 
-  const toggleFavorite = (id, value) => {
+  const toggleFavoriteLocal = (id, value) => {
     const match = matchData(id, index);
     //replace match in array
     const newList = pokemonList.map((item) => {
@@ -33,7 +33,7 @@ export const PokemonProvider = ({ children }) => {
     isLoading,
     error,
     iconConfig,
-    toggleFavorite,
+    toggleFavoriteLocal,
   };
 
   return (

@@ -23,7 +23,7 @@ const PokemonCard = ({
 
   const mainPokemonType = pokemon?.types[0];
 
-  const { toggleFavorite } = useDataContext();
+  const { toggleFavoriteLocal } = useDataContext();
   const navigate = useNavigate();
 
   const handleInfoClick = () => {
@@ -34,9 +34,9 @@ const PokemonCard = ({
     setMousePosition((prev) => !prev);
   };
 
-  const handleToggleFavoritePokemon = () => {
+  const handleToggleFavoriteLocalPokemon = () => {
     setIsFavorite((prev) => !prev);
-    toggleFavorite(pokemon.id, !isFavorite);
+    toggleFavoriteLocal(pokemon.id, !isFavorite);
   };
 
   const addToTeam = () => {
@@ -53,7 +53,7 @@ const PokemonCard = ({
         buttonCategory="icon"
         buttonType="button"
         buttonIcon={isFavorite ? "favoriteIconActive" : "favoriteIcon"}
-        clickFunction={handleToggleFavoritePokemon}
+        clickFunction={handleToggleFavoriteLocalPokemon}
       />
     </div>
   );

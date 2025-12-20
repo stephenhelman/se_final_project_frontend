@@ -6,13 +6,18 @@ import { useNavigate } from "react-router-dom";
 import { useTeamsContext } from "../../../hooks/useTeamsContext";
 import { useState } from "react";
 
-const TeamRow = ({ team }) => {
+const TeamRow = ({ team, handleDeleteTeam }) => {
   const [isFavorite, setIsFavorite] = useState(team.isFavorite);
   const navigate = useNavigate();
   const { toggleFavorite } = useTeamsContext();
 
-  const handleEditTeam = () => {
+  const handleEditButton = () => {
     navigate(`edit/${team.id}`);
+  };
+
+  const handleDeleteButton = () => {
+    handleDeleteTeam(team);
+    //TODO - delete function in API
   };
 
   const handleToggleFavorite = () => {
@@ -26,8 +31,9 @@ const TeamRow = ({ team }) => {
         isFavorite={isFavorite}
         name={team.name}
         description={team.description}
-        editFunction={handleEditTeam}
+        editFunction={handleEditButton}
         toggleFavorite={handleToggleFavorite}
+        deleteFunction={handleDeleteButton}
       />
       <TeamPlayers team={team.players} page="teams" />
       <TeamMeta updated={team.lastUpdated} numPokemon={team.players.length} />

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { useTeamsContext } from "../../../hooks/useTeamsContext";
 import useForm from "../../../hooks/useForm";
 import useSort from "../../../hooks/useSort";
@@ -8,8 +10,30 @@ import Preloader from "../../universal/Preloader";
 import TeamRowsContainer from "./TeamRowsContainer";
 
 import "../../../blocks/TeamsPage.css";
+import ConfirmDeleteModal from "./ConfirmDeleteModal";
 
 const TeamsPage = () => {
+  const [showDelete, setShowDelete] = useState(false);
+  const [teamToDelete, setTeamToDelete] = useState(null);
+
+  const handleModalClose = () => setShowDelete(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //API Call here
+    setTeamToDelete(null);
+    handleModalClose();
+  };
+
+  const handleCancel = () => {
+    setTeamToDelete(null);
+    handleModalClose();
+  };
+
+  const handleDeleteTeam = (team) => {
+    setTeamToDelete(team);
+    setShowDelete(true);
+  };
+
   const {
     values,
     handleChange,
@@ -44,7 +68,19 @@ const TeamsPage = () => {
       handleSelect={handleSelect}
       clearArray={clearArray}
     >
-      <TeamRowsContainer teams={visibleTeams} />
+      <TeamRowsContainer
+        teams={visibleTeams}
+        handleDeleteTeam={handleDeleteTeam}
+      />
+      {showDelete && (
+        <ConfirmDeleteModal
+          team={teamToDelete}
+          isOpen={showDelete}
+          onClose={handleModalClose}
+          handleSubmit={handleSubmit}
+          handleCancel={handleCancel}
+        />
+      )}
     </PageLayout>
   );
 };

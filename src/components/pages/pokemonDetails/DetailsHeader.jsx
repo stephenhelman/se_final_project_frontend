@@ -1,24 +1,18 @@
-import { useNavigate, useLocation } from "react-router-dom";
 import { useDataContext } from "../../../hooks/useDataContext";
 
-const DetailsHeader = ({ pokemon }) => {
-  const navigate = useNavigate();
-  const { state } = useLocation();
-
-  const handleBackButtonClicked = () => {
-    if (state?.from) {
-      navigate(state.from);
-    } else {
-      navigate("/");
-    }
-  };
-
+const DetailsHeader = ({
+  pokemon,
+  handleToggleFavorite,
+  handleNavigateBack,
+  isFavorite,
+}) => {
   const { iconConfig } = useDataContext();
+
   return (
     <header className="pokemon-details__header">
       <button
         className="pokemon-details__header-button"
-        onClick={handleBackButtonClicked}
+        onClick={handleNavigateBack}
       >
         <img
           src={iconConfig.backIcon}
@@ -30,9 +24,14 @@ const DetailsHeader = ({ pokemon }) => {
         <p className="pokemon-details__id">{pokemon.formattedId}</p>
         <h3 className="pokemon-details__name">{pokemon.name}</h3>
       </div>
-      <button className="pokemon-details__header-button">
+      <button
+        className="pokemon-details__header-button"
+        onClick={handleToggleFavorite}
+      >
         <img
-          src={iconConfig.favoriteIcon}
+          src={
+            isFavorite ? iconConfig.favoriteIconActive : iconConfig.favoriteIcon
+          }
           alt="favorite button"
           className="pokemon-details__header-icon"
         />

@@ -21,10 +21,11 @@ const ButtonRow = ({
 
   const favoritesButton = (
     <Button
-      buttonCategory="ghost"
+      buttonCategory={values.favoritesOnly ? "primary" : "ghost"}
       buttonText="Favorites"
       buttonType="button"
       clickFunction={toggleFavorites}
+      isActive={values.favoritesOnly}
     />
   );
   const newTeamButton = (
