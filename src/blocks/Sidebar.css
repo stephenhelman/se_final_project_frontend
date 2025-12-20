@@ -8,6 +8,13 @@
   flex-shrink: 0;
 }
 
+.sidebar__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .sidebar__title {
   font-size: 20px;
   line-height: 1.3;

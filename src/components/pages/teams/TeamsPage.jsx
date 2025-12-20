@@ -10,13 +10,19 @@ import TeamRowsContainer from "./TeamRowsContainer";
 import "../../../blocks/TeamsPage.css";
 
 const TeamsPage = () => {
-  const { values, handleChange, toggleInArray, toggleState, handleSelect } =
-    useForm({
-      selectedTypes: [],
-      searchTerm: "",
-      sortBy: "id",
-      favoritesOnly: false,
-    });
+  const {
+    values,
+    handleChange,
+    toggleInArray,
+    toggleState,
+    handleSelect,
+    clearArray,
+  } = useForm({
+    selectedTypes: [],
+    searchTerm: "",
+    sortBy: "id",
+    favoritesOnly: false,
+  });
 
   const { teamList, isLoading } = useTeamsContext();
 
@@ -36,6 +42,7 @@ const TeamsPage = () => {
       toggleState={toggleState}
       sortOptions={teamSortOptions}
       handleSelect={handleSelect}
+      clearArray={clearArray}
     >
       <TeamRowsContainer teams={visibleTeams} />
     </PageLayout>

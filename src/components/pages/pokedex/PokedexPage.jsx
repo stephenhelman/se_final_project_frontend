@@ -10,13 +10,19 @@ import PokedexGrid from "./PokedexGrid";
 import "../../../blocks/Pokedex.css";
 
 const PokedexPage = () => {
-  const { values, handleChange, toggleInArray, toggleState, handleSelect } =
-    useForm({
-      selectedTypes: [],
-      searchTerm: "",
-      sortBy: "id",
-      favoritesOnly: false,
-    });
+  const {
+    values,
+    handleChange,
+    toggleInArray,
+    toggleState,
+    handleSelect,
+    clearArray,
+  } = useForm({
+    selectedTypes: [],
+    searchTerm: "",
+    sortBy: "id",
+    favoritesOnly: false,
+  });
 
   const { pokemonList, isLoading } = useDataContext();
 
@@ -36,6 +42,7 @@ const PokedexPage = () => {
       toggleState={toggleState}
       sortOptions={pokemonSortOptions}
       handleSelect={handleSelect}
+      clearArray={clearArray}
     >
       <PokedexGrid cardType="pokedex" size="large" pokemon={visiblePokemon} />
     </PageLayout>

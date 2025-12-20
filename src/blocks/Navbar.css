@@ -28,11 +28,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-
   gap: 8px;
 }
 
-.navbar__brand-info,
+.navbar__brand-info-wrapper,
 .navbar__auth {
   flex-basis: 0;
   flex-grow: 1;
@@ -59,10 +58,14 @@
 
 .navbar__link {
   text-decoration: none;
+}
+
+.navbar__link-text {
   font-size: 16px;
   line-height: 1.5;
   font-weight: 400;
   color: rgb(var(--gray-700));
+  margin: 0;
 }
 
 .navbar__auth {
@@ -83,6 +86,11 @@
 .navbar__avatar {
   height: 20px;
   width: 20px;
+}
+
+.navbar__avatar-image {
+  width: 100%;
+  height: 100%;
 }
 
 .navbar__logout {

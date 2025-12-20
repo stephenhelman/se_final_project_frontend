@@ -13,10 +13,15 @@ const PageLayout = ({
   toggleState,
   sortOptions,
   handleSelect,
+  clearArray,
 }) => {
   return (
     <main className={mainClass}>
-      <Sidebar filterFunction={filterFunction} />
+      <Sidebar
+        filterFunction={filterFunction}
+        clearArray={clearArray}
+        selectedTypes={values.selectedTypes}
+      />
       <ContentWrapper
         title={title}
         page={page}

@@ -45,6 +45,23 @@
 }
 
 .button__image:hover,
-.button_type_primary {
+.button_type_primary:hover,
+.button_type_ghost:hover {
   cursor: pointer;
+}
+
+.button_type_primary:hover {
+  background: rgb(var(--primary-light));
+}
+
+.button_type_ghost:hover {
+  background-color: rgb(var(--gray-100));
+}
+
+.button_type_primary:active {
+  background-color: rgb(var(--primary-dark));
+}
+
+.button_type_ghost:active {
+  background-color: rgb(var(--gray-300));
 }

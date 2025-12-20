@@ -1,7 +1,7 @@
 import TypeFiltersRow from "./TypeFiltersRow";
 import { pokemonGroupTypes } from "../../../utils/constants";
 
-const TypeFiltersContent = ({ filterFunction }) => {
+const TypeFiltersContent = ({ filterFunction, selectedTypes }) => {
   const content = pokemonGroupTypes.map((groupType) => {
     return (
       <TypeFiltersRow
@@ -9,6 +9,7 @@ const TypeFiltersContent = ({ filterFunction }) => {
         label={groupType.label}
         types={groupType.types}
         filterFunction={filterFunction}
+        selectedTypes={selectedTypes}
       />
     );
   });

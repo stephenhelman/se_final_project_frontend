@@ -7,15 +7,16 @@ const Navbar = () => {
   return (
     <header className="navbar">
       <ul className="navbar__content">
-        <li className="navbar__list-item navbar__brand-info">
+        <li className="navbar__list-item navbar__brand-info-wrapper">
           <BrandInfo />
         </li>
         <li className="navbar__list-item navbar__links">
           <Link to="/" className="navbar__link">
-            Pokédex
+            <p className="navbar__link-text">Pokédex</p>
           </Link>
+
           <Link to="teams" className="navbar__link">
-            Teams
+            <p className="navbar__link-text">Teams</p>
           </Link>
         </li>
         <li className="navbar__list-item navbar__auth">

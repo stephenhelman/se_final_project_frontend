@@ -1,10 +1,16 @@
 import TypeChip from "../../universal/TypeChip";
 
-const TypeFiltersRow = ({ label, types, filterFunction }) => {
+const TypeFiltersRow = ({ label, types, filterFunction, selectedTypes }) => {
   const content = types.map((type) => {
+    const isSelected = selectedTypes.includes(type);
     return (
       <li key={type} className="sidebar__type-chip">
-        <TypeChip type={type} size="large" clickFunction={filterFunction} />
+        <TypeChip
+          type={type}
+          size="large"
+          clickFunction={filterFunction}
+          isActive={isSelected}
+        />
       </li>
     );
   });
