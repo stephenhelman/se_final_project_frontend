@@ -3,7 +3,7 @@ import BlankSprite from "../pages/teams/BlankSprite";
 import BlankCard from "../pages/teamBuilder/BlankCard";
 import PokemonCard from "./PokemonCard/PokemonCard";
 
-const TeamPlayers = ({ team = [], page }) => {
+const TeamPlayers = ({ team = [], page, removeFromArrayUsingId }) => {
   let content;
   //If the page is teams => this will build a row of 6 pokemon sprites
   if (page === "teams") {
@@ -53,6 +53,7 @@ const TeamPlayers = ({ team = [], page }) => {
               pokemon={pokemon}
               cardType="team-builder-form"
               size="medium"
+              removeFromArrayUsingId={removeFromArrayUsingId}
             />
           </li>
         );
@@ -74,6 +75,7 @@ const TeamPlayers = ({ team = [], page }) => {
             pokemon={pokemon}
             cardType="team-builder-form"
             size="medium"
+            removeFromArrayUsingId={removeFromArrayUsingId}
           />
         </li>
       );

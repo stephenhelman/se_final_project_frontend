@@ -7,6 +7,9 @@ const ContentWrapper = ({
   searchPlaceholder,
   values,
   handleChange,
+  toggleState,
+  sortOptions,
+  handleSelect,
 }) => {
   return (
     <section className={`${page}__content`}>
@@ -16,6 +19,9 @@ const ContentWrapper = ({
         page={page}
         values={values}
         handleChange={handleChange}
+        toggleState={toggleState}
+        sortOptions={sortOptions}
+        handleSelect={handleSelect}
       />
       {children}
     </section>

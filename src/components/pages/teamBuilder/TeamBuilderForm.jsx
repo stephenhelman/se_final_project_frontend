@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import TeamPlayers from "../../universal/TeamPlayers";
 import Button from "../../universal/Button";
 
-const TeamBuilderForm = ({ values, handleChange, clearDraft }) => {
+const TeamBuilderForm = ({
+  values,
+  handleChange,
+  clearDraft,
+  removeFromArrayUsingId,
+}) => {
   const navigate = useNavigate();
 
   const handleCancelClicked = () => {
@@ -44,7 +49,11 @@ const TeamBuilderForm = ({ values, handleChange, clearDraft }) => {
           />
         </label>
 
-        <TeamPlayers team={values.players} page="team-builder" />
+        <TeamPlayers
+          team={values.players}
+          page="team-builder"
+          removeFromArrayUsingId={removeFromArrayUsingId}
+        />
       </fieldset>
       <div className="form__submit-buttons">
         <Button

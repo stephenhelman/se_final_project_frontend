@@ -138,3 +138,25 @@ export const sizes = {
   ROW_GAP: 50,
   LEVEL_GAP: 50,
 };
+
+export const teamSortOptions = [
+  { id: "id-asc", label: "ID [0 - 9]" },
+  { id: "id-dec", label: "ID [9 - 0]" },
+  { id: "name-asc", label: "Name [A - Z]" },
+  { id: "name-dec", label: "Name [Z - A]" },
+  { id: "length-asc", label: "Length [0 - 9]" },
+  { id: "length-dec", label: "Length [9 - 0]" },
+  { id: "updated-asc", label: "Updated [0 - 9]" },
+  { id: "updated-dec", label: "Updated [9 - 0]" },
+];
+
+export const pokemonSortOptions = [
+  { id: "id-asc", label: "ID [0 - 9]" },
+  { id: "id-dec", label: "ID [9 - 0]" },
+  { id: "name-asc", label: "Name [A - Z]" },
+  { id: "name-dec", label: "Name [Z - A]" },
+  { id: "height-asc", label: "Height [0 - 9]" },
+  { id: "height-dec", label: "Height [9 - 0]" },
+  { id: "weight-asc", label: "Weight [0 - 9]" },
+  { id: "weight-dec", label: "Weight [9 - 0]" },
+];

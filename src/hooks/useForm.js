@@ -17,10 +17,19 @@ const useForm = (inputValues) => {
     }));
   };
 
-  const removeFromArray = (name, itemToRemove) => {
+  const handleSelect = (name, item) => {
+    setValues((prev) => {
+      return {
+        ...prev,
+        [name]: item,
+      };
+    });
+  };
+
+  const removeFromArrayUsingId = (name, itemToRemove) => {
     setValues((prev) => {
       const array = prev[name];
-      // Find the INDEX of the first matching pokemon
+      // Find the INDEX of the first matching item
       const indexToRemove = array.findIndex(
         (item) => item.id === itemToRemove.id
       );
@@ -40,6 +49,27 @@ const useForm = (inputValues) => {
     });
   };
 
+  const removeFromArrayUsingString = (name, itemToRemove) => {
+    setValues((prev) => {
+      const array = prev[name];
+
+      const indexToRemove = array.findIndex((item) => {
+        return item.toLowerCase() === itemToRemove.toLowerCase();
+      });
+
+      if (indexToRemove !== -1) {
+        return {
+          ...prev,
+          [name]: [
+            ...array.slice(0, indexToRemove),
+            ...array.slice(indexToRemove + 1),
+          ],
+        };
+      }
+      return prev;
+    });
+  };
+
   const clearArray = (name) => {
     setValues((prev) => {
       return {
@@ -48,13 +78,34 @@ const useForm = (inputValues) => {
       };
     });
   };
+
+  const toggleInArray = (name, item) => {
+    if (values[name].includes(item)) {
+      return removeFromArrayUsingString(name, item);
+    }
+
+    return addToArray(name, item);
+  };
+
+  const toggleState = (name) => {
+    setValues((prev) => {
+      return {
+        ...prev,
+        [name]: !prev[name],
+      };
+    });
+  };
+
   return {
     values,
     handleChange,
     setValues,
     addToArray,
-    removeFromArray,
+    removeFromArrayUsingId,
     clearArray,
+    toggleInArray,
+    toggleState,
+    handleSelect,
   };
 };
 

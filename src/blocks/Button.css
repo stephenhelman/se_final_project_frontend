@@ -1,4 +1,5 @@
 .button {
+  box-sizing: border-box;
   border: 1px solid;
   border-radius: 12px;
 }
@@ -20,6 +21,12 @@
   padding: 0 12px;
   height: 40px;
   white-space: nowrap;
+}
+
+.button_type_ghost_active {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom: none;
 }
 
 .button_type_icon {

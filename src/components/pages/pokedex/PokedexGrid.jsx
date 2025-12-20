@@ -6,7 +6,7 @@ const PokedexGrid = ({
   pokemon,
   lengthOfTeam,
   addToArray,
-  removeFromArray,
+  removeFromArrayUsingId,
 }) => {
   const content = pokemon.map((pokemon) => {
     return (
@@ -17,7 +17,7 @@ const PokedexGrid = ({
           size={size}
           lengthOfTeam={lengthOfTeam}
           addToArray={addToArray}
-          removeFromArray={removeFromArray}
+          removeFromArrayUsingId={removeFromArrayUsingId}
         />
       </li>
     );

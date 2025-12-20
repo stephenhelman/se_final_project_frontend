@@ -286,3 +286,19 @@ export const chooseEdge = (currentPokemon, pokemonData) => {
     },
   };
 };
+
+export const buildTeamTypes = (team) => {
+  if (!team?.players) {
+    return { ...team, types: [] };
+  }
+
+  const allTypes = team.players.flatMap((pokemon) => {
+    return pokemon.types;
+  });
+
+  const uniqueTypes = Array.from(new Set(allTypes));
+  return {
+    ...team,
+    types: uniqueTypes,
+  };
+};

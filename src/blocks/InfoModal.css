@@ -1,0 +1,23 @@
+.info-modal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-modal__text-wrapper {
+  position: absolute;
+  background-color: rgb(var(--primary-color));
+  z-index: 10;
+  border-radius: 12px;
+  white-space: nowrap;
+  right: 25px;
+  padding: 4px 6px;
+  color: rgb(var(--gray-50));
+}
+
+.info-modal__text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}

@@ -1,7 +1,7 @@
-import { useState } from "react";
-
 import { useTeamsContext } from "../../../hooks/useTeamsContext";
 import useForm from "../../../hooks/useForm";
+import useSort from "../../../hooks/useSort";
+import { teamSortOptions } from "../../../utils/constants";
 
 import PageLayout from "../../layout/Layout";
 import Preloader from "../../universal/Preloader";
@@ -10,42 +10,34 @@ import TeamRowsContainer from "./TeamRowsContainer";
 import "../../../blocks/TeamsPage.css";
 
 const TeamsPage = () => {
-  const [filterTypes, setFilterTypes] = useState([]);
-  const { values, handleChange } = useForm({
-    search: "",
-  });
-
-  const handleFilterTypes = (filter) => {
-    if (filterTypes.includes(filter)) {
-      return setFilterTypes((prev) =>
-        prev.filter((type) => {
-          return type.toLowerCase() !== filter.toLowerCase();
-        })
-      );
-    }
-
-    setFilterTypes((prev) => [...prev, filter]);
-  };
+  const { values, handleChange, toggleInArray, toggleState, handleSelect } =
+    useForm({
+      selectedTypes: [],
+      searchTerm: "",
+      sortBy: "id",
+      favoritesOnly: false,
+    });
 
   const { teamList, isLoading } = useTeamsContext();
 
-  if (isLoading || !teamList) return <Preloader />;
+  const visibleTeams = useSort(teamList, values);
 
-  const filteredTeams = teamList.filter((team) =>
-    team.name.toLowerCase().includes(values.search.toLowerCase())
-  );
+  if (isLoading || !teamList) return <Preloader />;
 
   return (
     <PageLayout
       mainClass="teams"
-      filterFunction={handleFilterTypes}
+      filterFunction={toggleInArray}
       title="Teams"
       page="teams"
       searchPlaceholder="Search Pokemon"
       values={values}
       handleChange={handleChange}
+      toggleState={toggleState}
+      sortOptions={teamSortOptions}
+      handleSelect={handleSelect}
     >
-      <TeamRowsContainer teams={filteredTeams} />
+      <TeamRowsContainer teams={visibleTeams} />
     </PageLayout>
   );
 };

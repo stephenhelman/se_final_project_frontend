@@ -10,6 +10,9 @@ const PageLayout = ({
   searchPlaceholder,
   values,
   handleChange,
+  toggleState,
+  sortOptions,
+  handleSelect,
 }) => {
   return (
     <main className={mainClass}>
@@ -20,6 +23,9 @@ const PageLayout = ({
         searchPlaceholder={searchPlaceholder}
         values={values}
         handleChange={handleChange}
+        toggleState={toggleState}
+        sortOptions={sortOptions}
+        handleSelect={handleSelect}
       >
         {children}
       </ContentWrapper>

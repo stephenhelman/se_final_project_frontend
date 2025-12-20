@@ -1,10 +1,14 @@
-//a single move
+import { useState } from "react";
 import TypeChip from "../../../universal/TypeChip";
-import Button from "../../../universal/Button";
+import InfoModal from "../../../universal/InfoModal";
 
 import { normalizeMachineName, capitalize } from "../../../../utils/utils";
 
 const MovesRow = ({ move }) => {
+  const [showInfo, setShowInfo] = useState(false);
+  const handleShowInfoClicked = () => {
+    setShowInfo((prev) => !prev);
+  };
   const level = normalizeMachineName(move.level);
   return (
     <tr className="table__row table__row_body">
@@ -26,7 +30,12 @@ const MovesRow = ({ move }) => {
         {move.pp ? move.pp : "-"}
       </td>
       <td className="table__cell table__cell_body">
-        <Button buttonCategory="icon" buttonIcon="infoIcon" />
+        <InfoModal
+          clickFunction={handleShowInfoClicked}
+          showInfo={showInfo}
+          text={move.info}
+          page="moves"
+        />
       </td>
     </tr>
   );

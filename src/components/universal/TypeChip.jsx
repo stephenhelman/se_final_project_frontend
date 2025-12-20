@@ -8,7 +8,7 @@ const TypeChip = ({ type, size, clickFunction = null, isActive }) => {
   const toggleActive = (target) => {
     if (!clickFunction) return;
     setActive((prev) => !prev);
-    clickFunction(target);
+    clickFunction("selectedTypes", target);
   };
 
   const style = {

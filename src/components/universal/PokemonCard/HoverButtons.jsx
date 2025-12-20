@@ -58,6 +58,16 @@ const HoverButtons = ({
 
   let content;
 
+  if (cardType === "team-builder-form") {
+    content = (
+      <>
+        {infoButton}
+        {deleteFromTeamButton}
+      </>
+    );
+    return <div className="hover-buttons">{content}</div>;
+  }
+
   if (cardType !== "team-builder") {
     content = infoButton;
     return <div className="hover-buttons">{content}</div>;

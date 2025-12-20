@@ -7,6 +7,7 @@ const Button = ({
   buttonText,
   buttonType,
   buttonIcon,
+  isActive,
   clickFunction = null,
 }) => {
   if (buttonCategory === "icon") {
@@ -29,7 +30,9 @@ const Button = ({
   return (
     <button
       type={buttonType}
-      className={`button button_type_${buttonCategory}`}
+      className={`button button_type_${buttonCategory} ${
+        isActive ? `button_type_${buttonCategory}_active` : ""
+      }`}
       onClick={clickFunction ? clickFunction : null}
     >
       {buttonText}

@@ -40,8 +40,6 @@ export const buildTypeMatchupModel = (typeResponse) => {
     },
   };
 
-  console.log(object);
-
   return object;
 };
 
@@ -138,7 +136,6 @@ const buildSpritesArray = (spritesData) => {
   return spritesArray.filter((sprite) => sprite.id !== null);
 };
 
-// Helpers to extract ids from PokéAPI URLs
 const getIdFromUrl = (url = "") => {
   const match = url.match(/\/(\d+)\/$/);
   return match ? Number(match[1]) : null;
@@ -289,8 +286,7 @@ const updateMoveObject = (moveObject, api) => {
           accuracy: moveJson.accuracy,
           power: moveJson.power,
           pp: moveJson.pp,
-          info: filterFlavorText(moveJson.effect_entries, "short_effect")[0]
-            .short_effect,
+          info: filterFlavorText(moveJson.effect_entries, "short_effect")[0],
         };
       })
       .catch((err) =>
@@ -313,8 +309,7 @@ const updateMoveObject = (moveObject, api) => {
           accuracy: moveJson.accuracy,
           power: moveJson.power,
           pp: moveJson.pp,
-          info: filterFlavorText(moveJson.effect_entries, "short_effect")[0]
-            .short_effect,
+          info: filterFlavorText(moveJson.effect_entries, "short_effect")[0],
         };
       })
       .then((moveObject) => {
@@ -359,7 +354,6 @@ const getPokemonData = (pokemonObject, api) => {
       pokemonObject.cries = results.cries;
       pokemonObject.stats = buildStatsObject(results.stats);
       pokemonObject.moves = filterMoves(results.moves);
-      pokemonObject.attributes = buildAttributesObjectOne(results);
       return pokemonObject;
     })
     .catch((err) => console.log("Error retrieving pokemon data", err));
@@ -433,6 +427,7 @@ export const buildLightweightPokemon = (pokemonData) => {
     name: capitalize(pokemonData?.name),
     sprite: pokemonData?.sprites?.front_default,
     types: buildTypesArray(pokemonData?.types),
+    attributes: buildAttributesObjectOne(pokemonData),
     isFavorite: false,
     growthRate: pokemonData.growth_rate,
   };

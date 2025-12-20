@@ -2,17 +2,22 @@ import Searchbar from "../../universal/SearchBar";
 import PokedexGrid from "../pokedex/PokedexGrid";
 import Button from "../../universal/Button";
 import useForm from "../../../hooks/useForm";
+import useSort from "../../../hooks/useSort";
 import { countOccurrences } from "../../../utils/test";
 
 const TeamBuilderSelector = ({
   data,
   selectedPokemon,
   addToArray,
-  removeFromArray,
+  removeFromArrayUsingId,
   clearArray,
+  sortOptions,
 }) => {
-  const { values, handleChange } = useForm({
-    search: "",
+  const { values, handleChange, toggleState, handleSelect } = useForm({
+    selectedTypes: [],
+    searchTerm: "",
+    sortBy: "id",
+    favoritesOnly: false,
   });
 
   const updatePokemonObjectIfOnTeam = (team, pokemon) => {
@@ -41,15 +46,13 @@ const TeamBuilderSelector = ({
     clearArray("players");
   };
 
-  pokemon = data
-    .map((item) => {
-      return selectedPokemon.length
-        ? updatePokemonObjectIfOnTeam(selectedPokemon, item)
-        : item;
-    })
-    .filter((item) => {
-      return item.name.toLowerCase().includes(values.search.toLowerCase());
-    });
+  pokemon = data.map((item) => {
+    return selectedPokemon.length
+      ? updatePokemonObjectIfOnTeam(selectedPokemon, item)
+      : item;
+  });
+
+  const visiblePokemon = useSort(pokemon, values);
 
   return (
     <section className="team-builder__selector">
@@ -57,6 +60,9 @@ const TeamBuilderSelector = ({
         placeholder="Search Pokemon for your team..."
         values={values}
         handleChange={handleChange}
+        sortOptions={sortOptions}
+        handleSelect={handleSelect}
+        toggleState={toggleState}
       />
       <header className="team-builder__selector-header">
         <h3 className="team-builder__selector-title">
@@ -70,9 +76,9 @@ const TeamBuilderSelector = ({
         />
       </header>
       <PokedexGrid
-        pokemon={pokemon}
+        pokemon={visiblePokemon}
         addToArray={addToArray}
-        removeFromArray={removeFromArray}
+        removeFromArrayUsingId={removeFromArrayUsingId}
         lengthOfTeam={selectedPokemon.length}
         cardType="team-builder"
         size="medium"

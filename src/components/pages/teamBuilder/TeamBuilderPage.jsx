@@ -10,6 +10,7 @@ import useSessionCache from "../../../hooks/useSessionCache";
 import { useDataContext } from "../../../hooks/useDataContext";
 import { useTeamsContext } from "../../../hooks/useTeamsContext";
 import { matchData } from "../../../utils/utils";
+import { pokemonSortOptions } from "../../../utils/constants";
 
 import "../../../blocks/TeamBuilderPage.css";
 
@@ -27,7 +28,7 @@ const TeamBuilderPage = () => {
     setValues,
     handleChange,
     addToArray,
-    removeFromArray,
+    removeFromArrayUsingId,
     clearArray,
   } = useForm({
     name: "",
@@ -76,13 +77,15 @@ const TeamBuilderPage = () => {
         values={values}
         handleChange={handleChange}
         clearDraft={clearDraft}
+        removeFromArrayUsingId={removeFromArrayUsingId}
       />
       <TeamBuilderSelector
         data={pokemonList}
         selectedPokemon={values.players}
         addToArray={addToArray}
-        removeFromArray={removeFromArray}
+        removeFromArrayUsingId={removeFromArrayUsingId}
         clearArray={clearArray}
+        sortOptions={pokemonSortOptions}
       />
     </main>
   );

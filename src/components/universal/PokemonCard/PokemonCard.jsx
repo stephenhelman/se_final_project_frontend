@@ -14,7 +14,7 @@ const PokemonCard = ({
   size,
   lengthOfTeam,
   addToArray,
-  removeFromArray,
+  removeFromArrayUsingId,
   isSelected = false,
 }) => {
   const location = useLocation();
@@ -44,7 +44,7 @@ const PokemonCard = ({
   };
 
   const removeFromTeam = () => {
-    removeFromArray("players", pokemon);
+    removeFromArrayUsingId("players", pokemon);
   };
 
   const favoriteButton = (
@@ -74,6 +74,17 @@ const PokemonCard = ({
         onMouseLeave={handleMouseMove}
       >
         {cardType === "team-builder" && mousePosition && (
+          <HoverButtons
+            cardType={cardType}
+            navigate={handleInfoClick}
+            remove={removeFromTeam}
+            increment={addToTeam}
+            decrement={removeFromTeam}
+            pokemonCount={pokemon.count}
+            lengthOfTeam={lengthOfTeam}
+          />
+        )}
+        {cardType === "team-builder-form" && mousePosition && (
           <HoverButtons
             cardType={cardType}
             navigate={handleInfoClick}
