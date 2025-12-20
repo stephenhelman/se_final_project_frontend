@@ -7,11 +7,11 @@ const PokemonCardDescription = ({ pokemon, cardType, size }) => {
   const pokemonId = formatPokemonId(pokemon?.id);
   const pokemonNameElement =
     size === "large" ? (
-      <h4 className={`pokemon-card__name pokemon-card__name_type_${cardType}`}>
+      <h4 className={`pokemon-card__name pokemon-card__name_type_large`}>
         {pokemon?.name}
       </h4>
     ) : (
-      <p className={`pokemon-card__name pokemon-card__name_type_${cardType}`}>
+      <p className={`pokemon-card__name pokemon-card__name_type_small`}>
         {pokemon?.name}
       </p>
     );

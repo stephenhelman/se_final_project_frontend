@@ -15,6 +15,7 @@ const PokemonCard = ({
   lengthOfTeam,
   addToArray,
   removeFromArray,
+  isSelected = false,
 }) => {
   const location = useLocation();
   const [mousePosition, setMousePosition] = useState(false);
@@ -55,10 +56,18 @@ const PokemonCard = ({
     </div>
   );
 
-  if (cardType === "team-builder" || cardType === "team-builder-form") {
+  if (
+    cardType === "team-builder" ||
+    cardType === "team-builder-form" ||
+    cardType === "evolution"
+  ) {
     return (
       <article
-        className={`pokemon-card  pokemon-card_type_${cardType}`}
+        className={`pokemon-card  pokemon-card_type_small ${
+          cardType === "evolution" && isSelected
+            ? "pokemon-card_type_small-selected"
+            : ""
+        }`}
         onMouseEnter={handleMouseMove}
         onMouseLeave={handleMouseMove}
       >
@@ -81,7 +90,7 @@ const PokemonCard = ({
         {size !== "small" && (
           <PokemonCardDescription
             pokemon={pokemon}
-            cardType="team-builder"
+            cardType="small"
             size={size}
           />
         )}
@@ -91,7 +100,7 @@ const PokemonCard = ({
 
   return (
     <article
-      className={`pokemon-card  pokemon-card_type_${cardType}`}
+      className="pokemon-card  pokemon-card_type_large"
       onMouseEnter={handleMouseMove}
       onMouseLeave={handleMouseMove}
     >
@@ -106,7 +115,7 @@ const PokemonCard = ({
       {size !== "small" && (
         <PokemonCardDescription
           pokemon={pokemon}
-          cardType={cardType}
+          cardType="large"
           size={size}
         />
       )}

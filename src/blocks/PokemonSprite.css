@@ -26,7 +26,12 @@
   background-color: rgb(var(--gray-200));
 }
 
-.sprite_type_team-builder {
+.sprite_type_team-builder,
+.sprite_type_evolution {
   max-width: 125px;
   max-height: 125px;
+}
+
+.sprite_type_evolution {
+  background-color: #fff;
 }

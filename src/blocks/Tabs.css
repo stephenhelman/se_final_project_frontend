@@ -46,6 +46,13 @@
   overflow: hidden;
 }
 
+.tabs__types {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
 .tabs__stats {
   display: grid;
   grid-template-columns: 3fr 2fr;
@@ -58,4 +65,11 @@
   justify-content: flex-start;
   align-items: flex-start;
   gap: 16px;
+}
+
+.tabs__evolution {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
 }

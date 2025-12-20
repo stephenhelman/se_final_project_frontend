@@ -97,11 +97,15 @@ const buildPreMoveObject = (move) => {
 };
 
 const filterMoves = (movesList) => {
-  const filterGroup = ["red-blue", "yellow"];
+  const versionFilterGroup = ["red-blue", "yellow"];
+  const typeFilterGroup = ["level-up", "machine"];
   return movesList
     .filter((move) => {
       return move.version_group_details.some((version) => {
-        return filterGroup.includes(version.version_group.name);
+        return (
+          typeFilterGroup.includes(version.move_learn_method.name) &&
+          versionFilterGroup.includes(version.version_group.name)
+        );
       });
     })
     .map((move) => buildPreMoveObject(move));
@@ -182,13 +186,13 @@ const toEdge = (fromSpecies, toSpecies, evoDetail) => {
     trigger,
     method,
     item,
-    timeOfDay: evoDetail?.time_of_day ?? "",
-    minLevel: evoDetail?.min_level ?? null,
-    minHappiness: evoDetail?.min_happiness ?? null,
+    timeOfDay: evoDetail?.time_of_day ? evoDetail?.time_of_day : null,
+    minLevel: evoDetail?.min_level ? evoDetail?.min_level : null,
+    minHappiness: evoDetail?.min_happiness ? evoDetail?.min_happiness : null,
     location,
     knownMove,
     knownMoveType,
-    notes: "",
+    expRequired: method === "level-up" ? "" : null,
   };
 };
 
@@ -196,9 +200,27 @@ const parseEvolutionChain = (evoChainJson) => {
   const nodesMap = new Map();
   const edges = [];
 
+  const findValidRoot = (chainNode) => {
+    const id = getIdFromUrl(chainNode.species.url);
+    if (id <= 151) return chainNode; // valid Gen1 root
+    // otherwise search children
+    for (const child of chainNode.evolves_to) {
+      const valid = findValidRoot(child);
+      if (valid) return valid;
+    }
+    return null;
+  };
+
+  const startNode = findValidRoot(evoChainJson.chain);
+
+  if (!startNode) {
+    return { path: "none", rootId: null, rootName: "", nodes: [], edges: [] };
+  }
+
   const visit = (chainNode) => {
     const species = chainNode.species;
     const id = getIdFromUrl(species.url);
+    if (id > 151) return;
     nodesMap.set(id, { id, name: species.name });
 
     const genOneFilter = chainNode.evolves_to.filter((child) => {
@@ -215,20 +237,15 @@ const parseEvolutionChain = (evoChainJson) => {
         edges.push(toEdge(species, childSpecies, detail));
       });
 
-      // Recurse
       visit(child);
     });
   };
 
-  const root = evoChainJson.chain?.species;
-  if (!root) {
-    return { path: "none", rootId: null, rootName: "", nodes: [], edges: [] };
-  }
+  visit(startNode);
 
-  visit(evoChainJson.chain);
+  const rootId = getIdFromUrl(startNode.species.url);
+  const rootName = startNode.species.name;
 
-  // Determine path type
-  const rootId = getIdFromUrl(root.url);
   const outFromRoot = edges.filter((e) => e.fromId === rootId);
   let path = "none";
   if (edges.length === 0) path = "none";
@@ -238,7 +255,7 @@ const parseEvolutionChain = (evoChainJson) => {
   return {
     path,
     rootId,
-    rootName: root.name,
+    rootName,
     nodes: Array.from(nodesMap.values()).sort((a, b) => a.id - b.id),
     edges,
   };
@@ -417,5 +434,6 @@ export const buildLightweightPokemon = (pokemonData) => {
     sprite: pokemonData?.sprites?.front_default,
     types: buildTypesArray(pokemonData?.types),
     isFavorite: false,
+    growthRate: pokemonData.growth_rate,
   };
 };
