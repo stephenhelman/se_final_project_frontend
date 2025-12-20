@@ -21,6 +21,8 @@ const PokemonCard = ({
   const [mousePosition, setMousePosition] = useState(false);
   const [isFavorite, setIsFavorite] = useState(pokemon.isFavorite);
 
+  const mainPokemonType = pokemon?.types[0];
+
   const { toggleFavorite } = useDataContext();
   const navigate = useNavigate();
 
@@ -92,6 +94,7 @@ const PokemonCard = ({
             pokemon={pokemon}
             cardType="small"
             size={size}
+            mainPokemonType={mainPokemonType}
           />
         )}
       </article>
@@ -100,7 +103,7 @@ const PokemonCard = ({
 
   return (
     <article
-      className="pokemon-card  pokemon-card_type_large"
+      className={`pokemon-card  pokemon-card_type_large`}
       onMouseEnter={handleMouseMove}
       onMouseLeave={handleMouseMove}
     >
@@ -117,6 +120,7 @@ const PokemonCard = ({
           pokemon={pokemon}
           cardType="large"
           size={size}
+          mainPokemonType={mainPokemonType}
         />
       )}
       {favoriteButton}

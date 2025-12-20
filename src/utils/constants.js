@@ -50,7 +50,7 @@ export const CACHE_KEYS = {
 
 export const mockTeams = [
   {
-    id: "team-001",
+    id: "1",
     name: "Kanto Starters Core",
     description:
       "Solid early-game squad built around starter lines and utility.",
@@ -59,7 +59,7 @@ export const mockTeams = [
     players: [1, 4, 7, 25, 39, 52],
   },
   {
-    id: "team-002",
+    id: "2",
     name: "Gym Runner",
     description: "Fast coverage picks for sweeping early gyms.",
     lastUpdated: "2025-12-10T18:30:00Z",
@@ -67,7 +67,7 @@ export const mockTeams = [
     players: [16, 18, 27, 58, 63, 74],
   },
   {
-    id: "team-003",
+    id: "3",
     name: "Rock & Ground Breakers",
     description: "Built to handle Electric, Fire, and normal threats.",
     lastUpdated: "2025-12-09T21:05:00Z",
@@ -75,7 +75,7 @@ export const mockTeams = [
     players: [50, 51, 66, 95, 111, 112],
   },
   {
-    id: "team-004",
+    id: "4",
     name: "Water Control",
     description: "Water-heavy team with status and bulk.",
     lastUpdated: "2025-12-08T14:44:00Z",
@@ -83,7 +83,7 @@ export const mockTeams = [
     players: [54, 55, 60, 61, 72, 73],
   },
   {
-    id: "team-005",
+    id: "5",
     name: "Psychic Pressure",
     description: "High special power and control tools.",
     lastUpdated: "2025-12-06T16:10:00Z",
@@ -91,7 +91,7 @@ export const mockTeams = [
     players: [64, 65, 96, 97, 122, 124],
   },
   {
-    id: "team-006",
+    id: "6",
     name: "Poison & Sleep",
     description: "Status-heavy team focused on poison/sleep setups.",
     lastUpdated: "2025-12-05T09:20:00Z",
@@ -99,7 +99,7 @@ export const mockTeams = [
     players: [23, 24, 43, 44, 69, 70],
   },
   {
-    id: "team-007",
+    id: "7",
     name: "Electric & Speed",
     description: "Speedy picks and electric coverage for momentum.",
     lastUpdated: "2025-12-04T19:55:00Z",
@@ -107,7 +107,7 @@ export const mockTeams = [
     players: [26, 81, 82, 100, 101, 125],
   },
   {
-    id: "team-008",
+    id: "8",
     name: "Late-Game Heavy Hitters",
     description: "High power options for endgame battles.",
     lastUpdated: "2025-12-03T12:01:00Z",
@@ -115,7 +115,7 @@ export const mockTeams = [
     players: [130, 131, 134, 143, 149, 150],
   },
   {
-    id: "team-009",
+    id: "9",
     name: "Flying Utility",
     description: "Map mobility and flexible matchups.",
     lastUpdated: "2025-12-02T08:40:00Z",
@@ -123,7 +123,7 @@ export const mockTeams = [
     players: [21, 22, 83, 84],
   },
   {
-    id: "team-010",
+    id: "10",
     name: "Fire & Ice Coverage",
     description: "Balanced offense with strong coverage options.",
     lastUpdated: "2025-12-01T23:18:00Z",
@@ -136,5 +136,5 @@ export const sizes = {
   NODE_WIDTH: 125,
   NODE_HEIGHT: 150,
   ROW_GAP: 50,
-  LEVEL_GAP: 25,
+  LEVEL_GAP: 50,
 };

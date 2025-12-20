@@ -2,8 +2,12 @@
 import TypeChip from "../TypeChip";
 import { formatPokemonId } from "../../../utils/utils";
 
-const PokemonCardDescription = ({ pokemon, cardType, size }) => {
-  const mainPokemonType = pokemon?.types[0];
+const PokemonCardDescription = ({
+  pokemon,
+  cardType,
+  size,
+  mainPokemonType,
+}) => {
   const pokemonId = formatPokemonId(pokemon?.id);
   const pokemonNameElement =
     size === "large" ? (

@@ -23,12 +23,13 @@
   height: 100%;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  overflow: hidden;
 }
 
 .pokemon-card__description {
   box-sizing: border-box;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 11px;
+  border-bottom-right-radius: 11px;
   width: 100%;
 }
 
