@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useDataContext } from "../../hooks/useDataContext";
+import useDataContext from "../../hooks/useDataContext";
 
 const BrandInfo = () => {
   const { iconConfig } = useDataContext();

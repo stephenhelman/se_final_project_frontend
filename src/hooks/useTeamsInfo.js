@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { useDataContext } from "./useDataContext";
+import useDataContext from "./useDataContext";
 import { mockTeams } from "../utils/constants";
 import { hydratePokemonData } from "../utils/pokemonUtils";
 import { buildTeamTypes } from "../utils/utils";
 
-export const useTeamsInfo = () => {
+const useTeamsInfo = () => {
   const [teams, setTeams] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -48,3 +48,5 @@ export const useTeamsInfo = () => {
 
   return { teams, isLoading, error };
 };
+
+export default useTeamsInfo;

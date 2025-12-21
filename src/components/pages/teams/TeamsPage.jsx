@@ -1,8 +1,9 @@
 import { useState } from "react";
 
-import { useTeamsContext } from "../../../hooks/useTeamsContext";
+import useTeamsContext from "../../../hooks/useTeamsContext";
 import useForm from "../../../hooks/useForm";
 import useSort from "../../../hooks/useSort";
+import useScrollSaver from "../../../hooks/useScrollSaver";
 import { teamSortOptions } from "../../../utils/constants";
 
 import PageLayout from "../../layout/Layout";
@@ -33,6 +34,7 @@ const TeamsPage = () => {
   });
 
   const { teamList, isLoading, deleteTeam } = useTeamsContext();
+  const { scrollRef, saveScrollPosition } = useScrollSaver("teams");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,6 +74,8 @@ const TeamsPage = () => {
       <TeamRowsContainer
         teams={visibleTeams}
         handleDeleteTeam={handleDeleteTeam}
+        scrollRef={scrollRef}
+        saveScrollPosition={saveScrollPosition}
       />
       {showDelete && (
         <ConfirmDeleteModal

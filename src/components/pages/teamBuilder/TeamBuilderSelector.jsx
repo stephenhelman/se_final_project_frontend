@@ -12,6 +12,8 @@ const TeamBuilderSelector = ({
   removeFromArrayUsingId,
   clearArray,
   sortOptions,
+  scrollRef,
+  saveScrollPosition,
 }) => {
   const { values, handleChange, toggleState, handleSelect } = useForm({
     selectedTypes: [],
@@ -82,6 +84,8 @@ const TeamBuilderSelector = ({
         lengthOfTeam={selectedPokemon.length}
         cardType="team-builder"
         size="medium"
+        scrollRef={scrollRef}
+        saveScrollPosition={saveScrollPosition}
       />
     </section>
   );

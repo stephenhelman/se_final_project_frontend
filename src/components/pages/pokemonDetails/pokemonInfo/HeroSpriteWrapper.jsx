@@ -1,5 +1,5 @@
 import { parseGenderAndShiny } from "../../../../utils/utils";
-import { useDataContext } from "../../../../hooks/useDataContext";
+import useDataContext from "../../../../hooks/useDataContext";
 import HeroSprite from "./HeroSprite";
 
 const HeroSpriteWrapper = ({ heroSprite, onPrevClick, onNextClick }) => {

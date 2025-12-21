@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import TypesContext from "../components/context/TypesProvider";
 
-export const useTypesContext = () => {
+const useTypesContext = () => {
   return useContext(TypesContext);
 };
+
+export default useTypesContext;

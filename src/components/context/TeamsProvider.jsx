@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { useTeamsInfo } from "../../hooks/useTeamsInfo";
+import useTeamsInfo from "../../hooks/useTeamsInfo";
 import { matchData } from "../../utils/utils";
 import { buildTeamTypes } from "../../utils/utils";
 

@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useDataContext } from "../../../hooks/useDataContext";
+import useDataContext from "../../../hooks/useDataContext";
 
 import PokemonSprite from "./PokemonSprite";
 import PokemonCardDescription from "./PokemonCardDescription";
@@ -16,19 +15,14 @@ const PokemonCard = ({
   addToArray,
   removeFromArrayUsingId,
   isSelected = false,
+  handleInfoClick,
 }) => {
-  const location = useLocation();
   const [mousePosition, setMousePosition] = useState(false);
   const [isFavorite, setIsFavorite] = useState(pokemon.isFavorite);
 
   const mainPokemonType = pokemon?.types[0];
 
   const { toggleFavoriteLocal } = useDataContext();
-  const navigate = useNavigate();
-
-  const handleInfoClick = () => {
-    navigate(`/pokemon/${pokemon.id}`, { state: { from: location.pathname } });
-  };
 
   const handleMouseMove = () => {
     setMousePosition((prev) => !prev);

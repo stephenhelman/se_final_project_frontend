@@ -1,6 +1,7 @@
-import { useDataContext } from "../../../hooks/useDataContext";
+import useDataContext from "../../../hooks/useDataContext";
 import useForm from "../../../hooks/useForm";
 import useSort from "../../../hooks/useSort";
+import useScrollSaver from "../../../hooks/useScrollSaver";
 import { pokemonSortOptions } from "../../../utils/constants";
 
 import PageLayout from "../../layout/Layout";
@@ -24,6 +25,8 @@ const PokedexPage = () => {
     favoritesOnly: false,
   });
 
+  const { scrollRef, saveScrollPosition } = useScrollSaver("pokedex");
+
   const { pokemonList, isLoading } = useDataContext();
 
   const visiblePokemon = useSort(pokemonList, values);
@@ -44,7 +47,13 @@ const PokedexPage = () => {
       handleSelect={handleSelect}
       clearArray={clearArray}
     >
-      <PokedexGrid cardType="pokedex" size="large" pokemon={visiblePokemon} />
+      <PokedexGrid
+        cardType="pokedex"
+        size="large"
+        pokemon={visiblePokemon}
+        scrollRef={scrollRef}
+        saveScrollPosition={saveScrollPosition}
+      />
     </PageLayout>
   );
 };

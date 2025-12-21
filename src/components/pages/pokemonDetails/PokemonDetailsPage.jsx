@@ -7,7 +7,7 @@ import Preloader from "../../universal/Preloader";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import { useDataContext } from "../../../hooks/useDataContext";
+import useDataContext from "../../../hooks/useDataContext";
 import usePokemonDetails from "../../../hooks/usePokemonDetails";
 import { updateEvolutionNodes } from "../../../utils/pokemonUtils";
 

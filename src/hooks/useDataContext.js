@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import PokemonContext from "../components/context/PokemonProvider";
 
-export const useDataContext = () => {
+const useDataContext = () => {
   return useContext(PokemonContext);
 };
+
+export default useDataContext;

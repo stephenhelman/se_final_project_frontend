@@ -1,4 +1,4 @@
-import { useDataContext } from "../../../hooks/useDataContext";
+import useDataContext from "../../../hooks/useDataContext";
 
 const BlankCard = () => {
   const { iconConfig } = useDataContext();

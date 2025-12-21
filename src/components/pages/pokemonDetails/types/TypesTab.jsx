@@ -1,7 +1,7 @@
 //wrapper for types card
 import { useState } from "react";
 
-import { useTypesContext } from "../../../../hooks/useTypesContext";
+import useTypesContext from "../../../../hooks/useTypesContext";
 
 import TypesHeader from "./TypesHeader";
 import CardWrapper from "./CardWrapper";

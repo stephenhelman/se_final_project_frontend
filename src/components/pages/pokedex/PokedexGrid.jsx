@@ -1,3 +1,5 @@
+import { useNavigate, useLocation } from "react-router-dom";
+
 import PokemonCard from "../../universal/PokemonCard/PokemonCard";
 
 const PokedexGrid = ({
@@ -7,8 +9,18 @@ const PokedexGrid = ({
   lengthOfTeam,
   addToArray,
   removeFromArrayUsingId,
+  scrollRef,
+  saveScrollPosition,
 }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const content = pokemon.map((pokemon) => {
+    const handleInfoClick = () => {
+      saveScrollPosition();
+      navigate(`/pokemon/${pokemon.id}`, {
+        state: { from: location.pathname },
+      });
+    };
     return (
       <li className="pokedex__list-item" key={pokemon.id}>
         <PokemonCard
@@ -18,12 +30,13 @@ const PokedexGrid = ({
           lengthOfTeam={lengthOfTeam}
           addToArray={addToArray}
           removeFromArrayUsingId={removeFromArrayUsingId}
+          handleInfoClick={handleInfoClick}
         />
       </li>
     );
   });
   return (
-    <div className="pokedex__wrapper">
+    <div className="pokedex__wrapper" ref={scrollRef}>
       <ul className={`pokedex__grid pokedex__grid_type_${cardType}`}>
         {content}
       </ul>

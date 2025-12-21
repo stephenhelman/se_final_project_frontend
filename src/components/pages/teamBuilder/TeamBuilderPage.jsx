@@ -7,8 +7,9 @@ import Preloader from "../../universal/Preloader";
 
 import useForm from "../../../hooks/useForm";
 import useSessionCache from "../../../hooks/useSessionCache";
-import { useDataContext } from "../../../hooks/useDataContext";
-import { useTeamsContext } from "../../../hooks/useTeamsContext";
+import useDataContext from "../../../hooks/useDataContext";
+import useTeamsContext from "../../../hooks/useTeamsContext";
+import useScrollSaver from "../../../hooks/useScrollSaver";
 import { matchData } from "../../../utils/utils";
 import { pokemonSortOptions } from "../../../utils/constants";
 
@@ -48,6 +49,8 @@ const TeamBuilderPage = () => {
     description: "",
     players: [],
   });
+
+  const { scrollRef, saveScrollPosition } = useScrollSaver("team-builder");
 
   useEffect(() => {
     if (isLoading || isTeamsLoading) return;
@@ -117,6 +120,8 @@ const TeamBuilderPage = () => {
         removeFromArrayUsingId={removeFromArrayUsingId}
         clearArray={clearArray}
         sortOptions={pokemonSortOptions}
+        scrollRef={scrollRef}
+        saveScrollPosition={saveScrollPosition}
       />
       {teamError && (
         <ErrorModal

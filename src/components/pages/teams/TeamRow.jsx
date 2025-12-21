@@ -2,18 +2,12 @@ import TeamPlayers from "../../universal/TeamPlayers";
 import TeamHeader from "./TeamHeader";
 import TeamMeta from "./TeamMeta";
 
-import { useNavigate } from "react-router-dom";
-import { useTeamsContext } from "../../../hooks/useTeamsContext";
+import useTeamsContext from "../../../hooks/useTeamsContext";
 import { useState } from "react";
 
-const TeamRow = ({ team, handleDeleteTeam }) => {
+const TeamRow = ({ team, handleDeleteTeam, handleEditButton }) => {
   const [isFavorite, setIsFavorite] = useState(team.isFavorite);
-  const navigate = useNavigate();
   const { toggleFavorite } = useTeamsContext();
-
-  const handleEditButton = () => {
-    navigate(`edit/${team.id}`);
-  };
 
   const handleDeleteButton = () => {
     handleDeleteTeam(team);
