@@ -17,9 +17,26 @@ const TeamsPage = () => {
   const [teamToDelete, setTeamToDelete] = useState(null);
 
   const handleModalClose = () => setShowDelete(false);
+
+  const {
+    values,
+    handleChange,
+    toggleInArray,
+    toggleState,
+    handleSelect,
+    clearArray,
+  } = useForm({
+    selectedTypes: [],
+    searchTerm: "",
+    sortBy: "updated-dec",
+    favoritesOnly: false,
+  });
+
+  const { teamList, isLoading, deleteTeam } = useTeamsContext();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    //API Call here
+    deleteTeam(teamToDelete.id);
     setTeamToDelete(null);
     handleModalClose();
   };
@@ -33,22 +50,6 @@ const TeamsPage = () => {
     setTeamToDelete(team);
     setShowDelete(true);
   };
-
-  const {
-    values,
-    handleChange,
-    toggleInArray,
-    toggleState,
-    handleSelect,
-    clearArray,
-  } = useForm({
-    selectedTypes: [],
-    searchTerm: "",
-    sortBy: "id",
-    favoritesOnly: false,
-  });
-
-  const { teamList, isLoading } = useTeamsContext();
 
   const visibleTeams = useSort(teamList, values);
 

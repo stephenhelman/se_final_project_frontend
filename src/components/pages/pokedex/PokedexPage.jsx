@@ -20,7 +20,7 @@ const PokedexPage = () => {
   } = useForm({
     selectedTypes: [],
     searchTerm: "",
-    sortBy: "id",
+    sortBy: "id-asc",
     favoritesOnly: false,
   });
 

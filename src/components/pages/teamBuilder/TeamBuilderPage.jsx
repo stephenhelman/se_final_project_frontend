@@ -13,16 +13,28 @@ import { matchData } from "../../../utils/utils";
 import { pokemonSortOptions } from "../../../utils/constants";
 
 import "../../../blocks/TeamBuilderPage.css";
+import ErrorModal from "../../universal/ErrorModal";
 
 const TeamBuilderPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const { pokemonList, isLoading } = useDataContext();
-  const { teamList, isLoading: isTeamsLoading } = useTeamsContext();
+  const {
+    teamList,
+    isLoading: isTeamsLoading,
+    updateTeam,
+    createTeam,
+    teamError,
+    handleResetTeamError,
+  } = useTeamsContext();
 
-  const { get, set } = useSessionCache();
+  const { get, set, remove } = useSessionCache();
   const DRAFT_KEY = "team-builder:draft";
+
+  const handleCloseErrorModal = () => {
+    handleResetTeamError();
+  };
 
   const {
     values,
@@ -58,7 +70,10 @@ const TeamBuilderPage = () => {
         });
       }
     }
-  }, [id, isLoading, isTeamsLoading, teamList, get, set, setValues]);
+    return () => {
+      remove(DRAFT_KEY);
+    };
+  }, [id, isLoading, isTeamsLoading, teamList, get, set, setValues, remove]);
 
   useEffect(() => {
     if (!isLoading && !isTeamsLoading) {
@@ -66,19 +81,21 @@ const TeamBuilderPage = () => {
     }
   }, [values, isLoading, isTeamsLoading, set]);
 
-  const clearDraft = () => {
-    set(DRAFT_KEY, null);
-  };
-
   const handleCancel = () => {
-    clearDraft();
+    remove(DRAFT_KEY);
     navigate("/teams");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //API Call here
-    clearDraft();
+    if (!id) {
+      const createdTeam = createTeam(values);
+      if (!createdTeam.ok) return;
+      navigate("/teams");
+      return;
+    }
+    const updatedTeam = updateTeam(id, values);
+    if (!updatedTeam.ok) return;
     navigate("/teams");
   };
 
@@ -101,6 +118,13 @@ const TeamBuilderPage = () => {
         clearArray={clearArray}
         sortOptions={pokemonSortOptions}
       />
+      {teamError && (
+        <ErrorModal
+          error={teamError}
+          isOpen={teamError !== null}
+          onClose={handleCloseErrorModal}
+        />
+      )}
     </main>
   );
 };

@@ -1,5 +1,5 @@
 import Button from "../../universal/Button";
-import useModalClose from "../../../hooks/useModalClose";
+import Modal from "../../universal/Modal";
 import "../../../blocks/Modal.css";
 
 const ConfirmDeleteModal = ({
@@ -9,9 +9,8 @@ const ConfirmDeleteModal = ({
   onClose,
   handleCancel,
 }) => {
-  useModalClose(isOpen ? true : false, onClose);
   return (
-    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
+    <Modal isOpen={isOpen} onClose={onClose}>
       <form
         onSubmit={handleSubmit}
         onReset={handleCancel}
@@ -29,7 +28,7 @@ const ConfirmDeleteModal = ({
         />
         <Button buttonCategory="ghost" buttonText="Cancel" buttonType="reset" />
       </form>
-    </div>
+    </Modal>
   );
 };
 

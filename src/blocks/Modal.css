@@ -19,7 +19,8 @@
   opacity: 1;
 }
 
-.modal__form {
+.modal__form,
+.modal__error {
   padding: 36px;
   background-color: rgb(var(--gray-50));
   display: flex;
@@ -57,4 +58,8 @@
 .modal__warning-text {
   text-align: center;
   margin: 0;
+}
+
+.modal__error {
+  color: rgb(var(--semantic-error));
 }
