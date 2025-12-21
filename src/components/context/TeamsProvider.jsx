@@ -75,6 +75,7 @@ export const TeamsProvider = () => {
     };
     setTeamList((prev) => [...prev, newTeam]);
     setIsTeamLoading(false);
+    return { ok: true, data: newTeam };
   };
 
   const handleResetTeamError = () => {

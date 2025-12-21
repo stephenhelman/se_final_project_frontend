@@ -57,6 +57,16 @@ const EvolutionGraph = ({ evolutionChain, selectedId, onSelectNode }) => {
     return map;
   }, [edges]);
 
+  if (path === "none") {
+    return (
+      <div className="evolution__graph evolution__graph_type_none">
+        <p className="evolution__graph-empty-text">
+          This Pokemon Does Not Evolve
+        </p>
+      </div>
+    );
+  }
+
   const longestArray = isLinear
     ? linearNodes.length
     : findLongestArray(...levels.levels).length;

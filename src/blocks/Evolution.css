@@ -121,16 +121,23 @@
 }
 
 .evolution__info-row-title {
-  font-size: 14;
+  font-size: 14px;
   line-height: 1.5;
   font-weight: 600;
 }
 
 .evolution__info-row-value {
-  font-size: 16;
+  font-size: 16px;
   line-height: 1.5;
 }
 
 .evolution__info-row {
   margin-bottom: 4px;
+}
+
+.evolution__graph-empty-text {
+  font-size: 18px;
+  line-height: 1.5;
+  color: rgb(var(--gray-900));
+  font-weight: 600;
 }

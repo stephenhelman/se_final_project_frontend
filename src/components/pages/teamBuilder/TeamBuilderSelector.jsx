@@ -16,7 +16,7 @@ const TeamBuilderSelector = ({
   const { values, handleChange, toggleState, handleSelect } = useForm({
     selectedTypes: [],
     searchTerm: "",
-    sortBy: "id",
+    sortBy: "id-asc",
     favoritesOnly: false,
   });
 
