@@ -1,4 +1,4 @@
-import useDataContext from "../../../hooks/useDataContext";
+import icons from "../../../utils/imageUtils";
 
 const DetailsHeader = ({
   pokemon,
@@ -6,8 +6,6 @@ const DetailsHeader = ({
   handleNavigateBack,
   isFavorite,
 }) => {
-  const { iconConfig } = useDataContext();
-
   return (
     <header className="pokemon-details__header">
       <button
@@ -15,7 +13,7 @@ const DetailsHeader = ({
         onClick={handleNavigateBack}
       >
         <img
-          src={iconConfig.backIcon}
+          src={icons.backIcon}
           alt="back button"
           className="pokemon-details__header-icon"
         />
@@ -29,9 +27,7 @@ const DetailsHeader = ({
         onClick={handleToggleFavorite}
       >
         <img
-          src={
-            isFavorite ? iconConfig.favoriteIconActive : iconConfig.favoriteIcon
-          }
+          src={isFavorite ? icons.favoriteIconActive : icons.favoriteIcon}
           alt="favorite button"
           className="pokemon-details__header-icon"
         />

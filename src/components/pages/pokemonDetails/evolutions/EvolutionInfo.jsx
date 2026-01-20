@@ -13,16 +13,14 @@ const EvolutionInfo = ({ edge, currentPokemon }) => {
   content = activeKeys.map((key, i) => {
     if (i === 2) {
       return (
-        <>
-          <p className="evolution__info-sub-header" key={"additional-info"}>
-            Additional Info
-          </p>
+        <div key={i}>
+          <p className="evolution__info-sub-header">Additional Info</p>
           {typeof edge.edge[key] === "object" ? (
             <InfoRow title={key} key={i} value={edge.edge[key].name} />
           ) : (
             <InfoRow title={key} key={i} value={edge.edge[key]} />
           )}
-        </>
+        </div>
       );
     }
     if (typeof edge.edge[key] === "object") {

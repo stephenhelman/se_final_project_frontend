@@ -1,19 +1,15 @@
 import { useState, useEffect } from "react";
-import useDataContext from "./useDataContext";
 import { mockTeams } from "../utils/constants";
 import { hydratePokemonData } from "../utils/pokemonUtils";
 import { buildTeamTypes } from "../utils/utils";
+import useAppData from "./useAppData";
 
 const useTeamsInfo = () => {
   const [teams, setTeams] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const {
-    pokemonList,
-    isLoading: dataLoading,
-    error: dataError,
-  } = useDataContext();
+  const { pokemon, isLoading: dataLoading, error: dataError } = useAppData();
 
   useEffect(() => {
     if (dataLoading) return;
@@ -23,7 +19,7 @@ const useTeamsInfo = () => {
       return;
     }
 
-    if (!pokemonList || !pokemonList.length) {
+    if (!pokemon) {
       setTeams([]);
       setIsLoading(false);
     }
@@ -34,7 +30,7 @@ const useTeamsInfo = () => {
     const hydratedWithPokemonInfo = mockTeams.map((team) => {
       return {
         ...team,
-        players: hydratePokemonData(team.players, pokemonList),
+        players: hydratePokemonData(team.players, pokemon),
       };
     });
 
@@ -44,7 +40,7 @@ const useTeamsInfo = () => {
     setTeams(formatted);
     setIsLoading(false);
     setError(null);
-  }, [dataLoading, dataError, pokemonList]);
+  }, [dataLoading, dataError, pokemon]);
 
   return { teams, isLoading, error };
 };

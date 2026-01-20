@@ -1,4 +1,3 @@
-//wrapper for evolutions sectino
 import { useState } from "react";
 
 import EvolutionInfo from "./EvolutionInfo";
@@ -11,7 +10,7 @@ import "../../../../blocks/Evolution.css";
 const EvolutionsTab = ({ pokemon }) => {
   const [currentPokemon, setCurrentPokemon] = useState(() => {
     return pokemon.evolution.nodes.find(
-      (node) => Number(node.id) === Number(pokemon.id)
+      (node) => Number(node.id) === Number(pokemon.id),
     );
   });
 

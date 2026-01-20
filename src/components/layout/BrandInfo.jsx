@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import useDataContext from "../../hooks/useDataContext";
+
+import icons from "../../utils/imageUtils";
 
 const BrandInfo = () => {
-  const { iconConfig } = useDataContext();
   return (
     <Link to="/" className="navbar__link navbar__brand-info">
       <img
-        src={iconConfig.logoIcon}
+        src={icons.logoIcon}
         alt="Pokemon Trainer Hub Logo"
         className="navbar__logo"
       />

@@ -1,4 +1,3 @@
-import useDataContext from "../../../hooks/useDataContext";
 import useForm from "../../../hooks/useForm";
 import useSort from "../../../hooks/useSort";
 import useScrollSaver from "../../../hooks/useScrollSaver";
@@ -9,6 +8,7 @@ import Preloader from "../../universal/Preloader";
 import PokedexGrid from "./PokedexGrid";
 
 import "../../../blocks/Pokedex.css";
+import useAppData from "../../../hooks/useAppData";
 
 const PokedexPage = () => {
   const {
@@ -27,11 +27,11 @@ const PokedexPage = () => {
 
   const { scrollRef, saveScrollPosition } = useScrollSaver("pokedex");
 
-  const { pokemonList, isLoading } = useDataContext();
+  const { pokemon, isLoading, error } = useAppData();
 
-  const visiblePokemon = useSort(pokemonList, values);
+  const visiblePokemon = useSort(pokemon, values);
 
-  if (isLoading || !pokemonList) return <Preloader />;
+  if (isLoading || !pokemon) return <Preloader />;
 
   return (
     <PageLayout

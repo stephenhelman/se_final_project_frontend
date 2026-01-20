@@ -10,7 +10,7 @@
   padding: 12px 24px;
   height: 40px;
   white-space: nowrap;
-  font-size: 16;
+  font-size: 16px;
   line-height: 1;
 }
 
@@ -64,4 +64,10 @@
 
 .button_type_ghost:active {
   background-color: rgb(var(--gray-300));
+}
+
+.button_type_primary-auth {
+  flex: 1;
+  padding: 12px 24px;
+  height: 48px;
 }

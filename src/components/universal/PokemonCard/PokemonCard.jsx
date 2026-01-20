@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useDataContext from "../../../hooks/useDataContext";
+import useAppData from "../../../hooks/useAppData";
 
 import PokemonSprite from "./PokemonSprite";
 import PokemonCardDescription from "./PokemonCardDescription";
@@ -18,19 +18,17 @@ const PokemonCard = ({
   handleInfoClick,
 }) => {
   const [mousePosition, setMousePosition] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(pokemon.isFavorite);
 
   const mainPokemonType = pokemon?.types[0];
 
-  const { toggleFavoriteLocal } = useDataContext();
+  const { toggleFavorite } = useAppData();
 
   const handleMouseMove = () => {
     setMousePosition((prev) => !prev);
   };
 
   const handleToggleFavoriteLocalPokemon = () => {
-    setIsFavorite((prev) => !prev);
-    toggleFavoriteLocal(pokemon.id, !isFavorite);
+    toggleFavorite(pokemon.id);
   };
 
   const addToTeam = () => {
@@ -46,7 +44,7 @@ const PokemonCard = ({
       <Button
         buttonCategory="icon"
         buttonType="button"
-        buttonIcon={isFavorite ? "favoriteIconActive" : "favoriteIcon"}
+        buttonIcon={pokemon.isFavorite ? "favoriteIconActive" : "favoriteIcon"}
         clickFunction={handleToggleFavoriteLocalPokemon}
       />
     </div>

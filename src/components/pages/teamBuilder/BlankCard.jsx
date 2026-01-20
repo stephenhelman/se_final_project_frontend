@@ -1,12 +1,10 @@
-import useDataContext from "../../../hooks/useDataContext";
+import icons from "../../../utils/imageUtils";
 
 const BlankCard = () => {
-  const { iconConfig } = useDataContext();
-
   return (
     <div className="form__blank-card">
       <img
-        src={iconConfig.addIcon}
+        src={icons.addIcon}
         alt="Add Pokemon"
         className="form__blank-card-icon"
       />

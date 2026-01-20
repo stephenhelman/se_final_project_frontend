@@ -1,6 +1,6 @@
 //universal button component - primary, ghost, auth
 import "../../blocks/Button.css";
-import { iconConfig } from "../../utils/imageUtils";
+import icons from "../../utils/imageUtils";
 
 const Button = ({
   buttonCategory,
@@ -20,7 +20,7 @@ const Button = ({
         onClick={clickFunction ? clickFunction : null}
       >
         <img
-          src={iconConfig[buttonIcon]}
+          src={icons[buttonIcon]}
           alt={buttonName}
           className="button__image"
         />

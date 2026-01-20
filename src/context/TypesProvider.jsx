@@ -1,16 +1,19 @@
+// components/context/TypesProviderNew.jsx
 import { createContext } from "react";
-import useIndex from "../../hooks/useIndex";
 import { Outlet } from "react-router-dom";
+import useTypesData from "../hooks/useTypesData";
 
 const TypesContext = createContext({});
 
 export const TypesProvider = () => {
-  const { index, isLoading, error } = useIndex(18, "type");
+  const { types, isLoading, error } = useTypesData(18);
 
   const value = {
-    index,
+    types,
     isLoading,
     error,
+    // Legacy alias for backward compatibility
+    index: types,
   };
 
   return (
@@ -19,4 +22,5 @@ export const TypesProvider = () => {
     </TypesContext.Provider>
   );
 };
+
 export default TypesContext;

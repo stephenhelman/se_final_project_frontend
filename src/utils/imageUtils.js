@@ -17,7 +17,7 @@ import favoriteIconActive from "../images/favoriteActive.svg";
 import showIcon from "../images/show.svg";
 import hideIcon from "../images/hide.svg";
 
-export const iconConfig = {
+export default {
   addIcon,
   backIcon,
   deleteIcon,

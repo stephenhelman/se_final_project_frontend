@@ -7,7 +7,7 @@ import Preloader from "../../universal/Preloader";
 
 import useForm from "../../../hooks/useForm";
 import useSessionCache from "../../../hooks/useSessionCache";
-import useDataContext from "../../../hooks/useDataContext";
+import useAppData from "../../../hooks/useAppData";
 import useTeamsContext from "../../../hooks/useTeamsContext";
 import useScrollSaver from "../../../hooks/useScrollSaver";
 import { matchData } from "../../../utils/utils";
@@ -20,7 +20,7 @@ const TeamBuilderPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { pokemonList, isLoading } = useDataContext();
+  const { pokemon, isLoading } = useAppData();
   const {
     teamList,
     isLoading: isTeamsLoading,
@@ -102,7 +102,7 @@ const TeamBuilderPage = () => {
     navigate("/teams");
   };
 
-  if (isLoading || !pokemonList.length || isTeamsLoading) return <Preloader />;
+  if (isLoading || !pokemon || isTeamsLoading) return <Preloader />;
 
   return (
     <main className="team-builder">
@@ -114,7 +114,7 @@ const TeamBuilderPage = () => {
         removeFromArrayUsingId={removeFromArrayUsingId}
       />
       <TeamBuilderSelector
-        data={pokemonList}
+        data={pokemon}
         selectedPokemon={values.players}
         addToArray={addToArray}
         removeFromArrayUsingId={removeFromArrayUsingId}

@@ -160,3 +160,10 @@ export const pokemonSortOptions = [
   { id: "weight-asc", label: "Weight [0 - 9]" },
   { id: "weight-dec", label: "Weight [9 - 0]" },
 ];
+
+export const mockUser = {
+  name: "Stephen Helman",
+  email: "stephenhelman18@gmail.com",
+  password: "Pokemon123!",
+  favoritePokemon: [1, 2, 5, 7, 8, 10, 23, 25, 110, 150, 151],
+};
