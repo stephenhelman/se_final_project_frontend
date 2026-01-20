@@ -33,8 +33,8 @@ const TeamsPage = () => {
     favoritesOnly: false,
   });
 
-  const { teamList, isLoading, deleteTeam } = useTeamsContext();
-  const { scrollRef, saveScrollPosition } = useScrollSaver("teams");
+  const { teamList, isLoading, deleteTeam, toggleFavorite } = useTeamsContext();
+  const { scrollRef, saveScrollPosition } = useScrollSaver("teams-scroll");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -76,6 +76,7 @@ const TeamsPage = () => {
         handleDeleteTeam={handleDeleteTeam}
         scrollRef={scrollRef}
         saveScrollPosition={saveScrollPosition}
+        toggleFavorite={toggleFavorite}
       />
       {showDelete && (
         <ConfirmDeleteModal

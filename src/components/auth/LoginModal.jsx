@@ -1,24 +1,58 @@
 import { useState } from "react";
 
 import AuthModal from "./AuthModal";
+import ErrorMessage from "../universal/ErrorMessage";
+import Validator from "../../utils/Validator";
+import Button from "../universal/Button";
+
 import useForm from "../../hooks/useForm";
 import useAuth from "../../hooks/useAuth";
+import useGlobalError from "../../hooks/useGlobalError";
 
 import icons from "../../utils/imageUtils";
 
 const LoginModal = ({ onClose, onSwitch, isOpen, activeModal }) => {
-  const { login, error: authError } = useAuth();
-  const [error, setError] = useState(null);
+  const { login } = useAuth();
+  const { showError } = useGlobalError();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({});
+  const [generalError, setGeneralError] = useState(null);
+  const [passwordInput, setPasswordInput] = useState(true);
 
   const { values, handleChange } = useForm({
     email: "",
     password: "",
   });
 
+  const handleInputChange = (e) => {
+    setFieldErrors((prev) => {
+      return {
+        ...prev,
+        [name]: "",
+      };
+    });
+    handleChange(e);
+  };
+
+  const toggleShowPassword = () => {
+    setPasswordInput((prev) => !prev);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
+    setGeneralError(null);
+    setFieldErrors(null);
+
+    const validator = new Validator(values);
+
+    validator.field("email", "Email").required().email();
+    validator.field("password", "Password").required().minLength(6);
+
+    const validationErrors = validator.getErrors();
+    setFieldErrors(validationErrors);
+
+    if (!validator.isValid()) return;
+
     setIsSubmitting(true);
 
     try {
@@ -31,10 +65,10 @@ const LoginModal = ({ onClose, onSwitch, isOpen, activeModal }) => {
         // Successfully logged in
         onClose?.();
       } else {
-        setError(result.error || "Login failed");
+        setGeneralError(result.error);
       }
     } catch (err) {
-      setError(err.message || "An error occurred");
+      showError(err);
     } finally {
       setIsSubmitting(false);
     }
@@ -52,9 +86,12 @@ const LoginModal = ({ onClose, onSwitch, isOpen, activeModal }) => {
       onSubmit={handleSubmit}
       isOpen={isOpen}
       activeModal={activeModal}
+      error={generalError}
     >
       <fieldset className="auth-modal__form-content">
-        <div className="auth-modal__input-group">
+        <div
+          className={`auth-modal__input-group ${fieldErrors.email ? "auth-modal__input_error" : ""}`}
+        >
           <img
             src={icons.emailIcon}
             alt="Email Icon"
@@ -65,13 +102,18 @@ const LoginModal = ({ onClose, onSwitch, isOpen, activeModal }) => {
             type="email"
             name="email"
             value={values.email}
-            onChange={handleChange}
+            onChange={handleInputChange}
             placeholder="Email"
-            required
             disabled={isSubmitting}
           />
         </div>
-        <div className="auth-modal__input-group">
+        {fieldErrors.email && (
+          <ErrorMessage type="form" message={fieldErrors.email} />
+        )}
+
+        <div
+          className={`auth-modal__input-group ${fieldErrors.password ? "auth-modal__input_error" : ""}`}
+        >
           <img
             src={icons.passwordIcon}
             alt="Pasword lock icon"
@@ -79,19 +121,24 @@ const LoginModal = ({ onClose, onSwitch, isOpen, activeModal }) => {
           />
           <input
             className="auth-modal__input"
-            type="password"
+            type={passwordInput ? "password" : "text"}
             name="password"
             value={values.password}
-            onChange={handleChange}
+            onChange={handleInputChange}
             placeholder="Password"
-            required
             disabled={isSubmitting}
           />
+          <Button
+            buttonCategory="icon"
+            clickFunction={toggleShowPassword}
+            buttonIcon={passwordInput ? "hidePasswordIcon" : "showPasswordIcon"}
+            size="md"
+          />
         </div>
+        {fieldErrors.password && (
+          <ErrorMessage type="form" message={fieldErrors.password} />
+        )}
       </fieldset>
-      {(error || authError) && (
-        <div className="auth-modal__error">{error || authError}</div>
-      )}
     </AuthModal>
   );
 };

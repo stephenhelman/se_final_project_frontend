@@ -16,6 +16,8 @@ import userIcon from "../images/user.svg";
 import favoriteIconActive from "../images/favoriteActive.svg";
 import showIcon from "../images/show.svg";
 import hideIcon from "../images/hide.svg";
+import showPasswordIcon from "../images/showPassword.svg";
+import hidePasswordIcon from "../images/hidePassword.svg";
 
 export default {
   addIcon,
@@ -36,4 +38,6 @@ export default {
   favoriteIconActive,
   showIcon,
   hideIcon,
+  showPasswordIcon,
+  hidePasswordIcon,
 };

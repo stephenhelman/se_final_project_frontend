@@ -39,6 +39,11 @@
   width: 15px;
 }
 
+.button_type_icon-md {
+  height: 24px;
+  width: 24px;
+}
+
 .button__image {
   height: 100%;
   width: 100%;

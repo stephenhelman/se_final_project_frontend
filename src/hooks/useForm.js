@@ -10,7 +10,7 @@ const useForm = (inputValues) => {
     setValues({ ...values, [name]: value });
   };
 
-  const addToArray = (name, item) => {
+  const addToArray = ({ name, item }) => {
     setValues((prev) => ({
       ...prev,
       [name]: [...prev[name], item],
@@ -26,12 +26,12 @@ const useForm = (inputValues) => {
     });
   };
 
-  const removeFromArrayUsingId = (name, itemToRemove) => {
+  const removeFromArrayUsingId = ({ name, itemToRemove }) => {
     setValues((prev) => {
       const array = prev[name];
       // Find the INDEX of the first matching item
       const indexToRemove = array.findIndex(
-        (item) => item.id === itemToRemove.id
+        (item) => item.id === itemToRemove.id,
       );
 
       if (indexToRemove !== -1) {
@@ -70,7 +70,7 @@ const useForm = (inputValues) => {
     });
   };
 
-  const clearArray = (name) => {
+  const clearArray = ({ name }) => {
     setValues((prev) => {
       return {
         ...prev,
@@ -84,7 +84,7 @@ const useForm = (inputValues) => {
       return removeFromArrayUsingString(name, item);
     }
 
-    return addToArray(name, item);
+    return addToArray({ name, item });
   };
 
   const toggleState = (name) => {

@@ -9,7 +9,7 @@ import CardWrapper from "./CardWrapper";
 import "../../../../blocks/TypesTab.css";
 
 const TypesTab = ({ pokemon }) => {
-  const [activeType, setActiveType] = useState(pokemon.types[0]);
+  const [activeType, setActiveType] = useState("");
   const { index } = useTypesContext();
 
   const toggleActiveType = (target) => {

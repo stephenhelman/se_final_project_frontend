@@ -3,7 +3,7 @@ import BlankSprite from "../pages/teams/BlankSprite";
 import BlankCard from "../pages/teamBuilder/BlankCard";
 import PokemonCard from "./PokemonCard/PokemonCard";
 
-const TeamPlayers = ({ team = [], page, removeFromArrayUsingId }) => {
+const TeamPlayers = ({ team = [], page, onTeamChange }) => {
   let content;
   //If the page is teams => this will build a row of 6 pokemon sprites
   if (page === "teams") {
@@ -24,7 +24,7 @@ const TeamPlayers = ({ team = [], page, removeFromArrayUsingId }) => {
         content.push(
           <li key={i + team.length} className="teams__list-item">
             <BlankSprite />
-          </li>
+          </li>,
         );
       }
       return <ul className="teams__team-players">{content}</ul>;
@@ -53,7 +53,7 @@ const TeamPlayers = ({ team = [], page, removeFromArrayUsingId }) => {
               pokemon={pokemon}
               cardType="team-builder-form"
               size="medium"
-              removeFromArrayUsingId={removeFromArrayUsingId}
+              onTeamChange={onTeamChange}
             />
           </li>
         );
@@ -63,7 +63,7 @@ const TeamPlayers = ({ team = [], page, removeFromArrayUsingId }) => {
         content.push(
           <li key={i + team.length} className="form__list-item">
             <BlankCard />
-          </li>
+          </li>,
         );
       }
       return <ul className="form__team">{content}</ul>;
@@ -75,7 +75,7 @@ const TeamPlayers = ({ team = [], page, removeFromArrayUsingId }) => {
             pokemon={pokemon}
             cardType="team-builder-form"
             size="medium"
-            removeFromArrayUsingId={removeFromArrayUsingId}
+            onTeamChange={onTeamChange}
           />
         </li>
       );

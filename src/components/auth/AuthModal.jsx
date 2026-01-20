@@ -2,6 +2,7 @@ import RedirectText from "./RedirectText";
 import Modal from "../universal/Modal";
 
 import "../../blocks/Auth.css";
+import ErrorMessage from "../universal/ErrorMessage";
 
 const AuthModal = ({
   children,
@@ -15,6 +16,7 @@ const AuthModal = ({
   onSubmit,
   isOpen,
   activeModal,
+  error,
 }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -33,6 +35,7 @@ const AuthModal = ({
             Register
           </button>
         </div>
+        {error && <ErrorMessage type="message" message={error} />}
         <form className="auth-modal__form" onSubmit={onSubmit}>
           <div className="auth-modal__form-header">
             <h2 className="auth-modal__form-title">{title}</h2>

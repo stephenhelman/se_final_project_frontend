@@ -19,24 +19,24 @@ export const TeamsProvider = () => {
 
   const [teamError, setTeamError] = useState(null);
 
-  const handleCreateTeam = async (teamData) => {
-    const result = await createTeam(teamData);
+  const handleCreateTeam = (teamData) => {
+    const result = createTeam(teamData);
     if (!result.ok) {
       setTeamError(result.error);
     }
     return result;
   };
 
-  const handleUpdateTeam = async (teamId, teamData) => {
-    const result = await updateTeam(teamId, teamData);
+  const handleUpdateTeam = (teamId, teamData) => {
+    const result = updateTeam(teamId, teamData);
     if (!result.ok) {
       setTeamError(result.error);
     }
     return result;
   };
 
-  const handleDeleteTeam = async (teamId) => {
-    const result = await deleteTeam(teamId);
+  const handleDeleteTeam = (teamId) => {
+    const result = deleteTeam(teamId);
     if (!result.ok) {
       setTeamError(result.error);
     }

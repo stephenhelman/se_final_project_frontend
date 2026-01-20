@@ -9,13 +9,14 @@ const Button = ({
   buttonIcon,
   isActive,
   clickFunction = null,
+  size = "",
 }) => {
   if (buttonCategory === "icon") {
     const nameArray = buttonIcon.split("/");
     const buttonName = nameArray[nameArray.length - 1].replace(".svg", "");
     return (
       <button
-        className={`button button_type_${buttonCategory}`}
+        className={`button button_type_${buttonCategory} ${size ? `button_type_${buttonCategory}-${size}` : ""}`}
         type="button"
         onClick={clickFunction ? clickFunction : null}
       >

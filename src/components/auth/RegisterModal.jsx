@@ -1,36 +1,69 @@
 import { useState } from "react";
 
 import AuthModal from "./AuthModal";
+import ErrorMessage from "../universal/ErrorMessage";
+import Button from "../universal/Button";
+
 import useForm from "../../hooks/useForm";
 import useAuth from "../../hooks/useAuth";
 
+import useGlobalError from "../../hooks/useGlobalError";
+
 import icons from "../../utils/imageUtils";
+import Validator from "../../utils/Validator";
 
 const RegisterModal = ({ onClose, isOpen, onSwitch, activeModal }) => {
-  const { register, error: authError } = useAuth();
+  const { register } = useAuth();
+  const { showError } = useGlobalError(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(null);
+  const [generalError, setGeneralError] = useState(null);
+  const [fieldErrors, setFieldErrors] = useState({});
+  const [passwordInput, setPasswordInput] = useState(true);
+  const [confirmPasswordInput, setConfirmPasswordInput] = useState(true);
 
   const { values, handleChange } = useForm({
-    name: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
 
+  const handleInputChange = (e) => {
+    const { name } = e.target;
+    setFieldErrors((prev) => {
+      return {
+        ...prev,
+        [name]: "",
+      };
+    });
+    handleChange(e);
+  };
+
+  const toggleShowPassword = () => {
+    setPasswordInput((prev) => !prev);
+  };
+
+  const toggleShowConfirmPassword = () => {
+    setConfirmPasswordInput((prev) => !prev);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
+    setGeneralError(null);
 
-    // Validate passwords match
-    if (values.password !== values.confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
+    const validator = new Validator(values);
 
-    // Validate password strength (basic)
-    if (values.password.length < 8) {
-      setError("Password must be at least 8 characters");
+    validator.field("username", "Username").required().minLength(6);
+    validator.field("email", "Email").required().email();
+    validator.field("password", "Password").required().strongPassword();
+    validator
+      .field("confirmPassword", "Confirm Password")
+      .required()
+      .matches("password", "Password");
+
+    const errors = validator.getErrors();
+    setFieldErrors(errors);
+    if (!validator.isValid()) {
       return;
     }
 
@@ -47,10 +80,10 @@ const RegisterModal = ({ onClose, isOpen, onSwitch, activeModal }) => {
         // Successfully registered
         onClose?.();
       } else {
-        setError(result.error || "Registration failed");
+        setGeneralError(result.error || "Registration failed");
       }
     } catch (err) {
-      setError(err.message || "An error occurred");
+      showError(err);
     } finally {
       setIsSubmitting(false);
     }
@@ -69,80 +102,110 @@ const RegisterModal = ({ onClose, isOpen, onSwitch, activeModal }) => {
       isOpen={isOpen}
       isActive={activeModal === "login"}
       activeModal={activeModal}
+      error={generalError}
     >
       <fieldset className="auth-modal__form-content">
-        <div className="auth-modal__input-group">
-          <img
-            src={icons.userIcon}
-            alt="User Icon"
-            className="auth-modal__input-icon"
-          />
-          <input
-            className="auth-modal__input"
-            type="text"
-            name="username"
-            value={values.username}
-            onChange={handleChange}
-            placeholder="Username"
-            required
-            disabled={isSubmitting}
-          />
+        <div className="auth-modal__input-wrapper">
+          <div className="auth-modal__input-group">
+            <img
+              src={icons.userIcon}
+              alt="User Icon"
+              className="auth-modal__input-icon"
+            />
+            <input
+              className="auth-modal__input"
+              type="text"
+              name="username"
+              value={values.username}
+              onChange={handleInputChange}
+              placeholder="Username"
+              disabled={isSubmitting}
+            />
+          </div>
+          {fieldErrors.username && (
+            <ErrorMessage type="form" message={fieldErrors.username} />
+          )}
         </div>
-        <div className="auth-modal__input-group">
-          <img
-            src={icons.emailIcon}
-            alt="Email Icon"
-            className="auth-modal__input-icon"
-          />
-          <input
-            className="auth-modal__input"
-            type="email"
-            name="email"
-            value={values.email}
-            onChange={handleChange}
-            placeholder="Email"
-            required
-            disabled={isSubmitting}
-          />
+        <div className="auth-modal__input-wrapper">
+          <div className="auth-modal__input-group">
+            <img
+              src={icons.emailIcon}
+              alt="Email Icon"
+              className="auth-modal__input-icon"
+            />
+            <input
+              className="auth-modal__input"
+              type="email"
+              name="email"
+              value={values.email}
+              onChange={handleInputChange}
+              placeholder="Email"
+              disabled={isSubmitting}
+            />
+          </div>
+          {fieldErrors.email && (
+            <ErrorMessage type="form" message={fieldErrors.email} />
+          )}
         </div>
-        <div className="auth-modal__input-group">
-          <img
-            src={icons.passwordIcon}
-            alt="Password Lock Icon"
-            className="auth-modal__input-icon"
-          />
-          <input
-            className="auth-modal__input"
-            type="password"
-            name="password"
-            value={values.password}
-            onChange={handleChange}
-            placeholder="Password"
-            required
-            disabled={isSubmitting}
-          />
+        <div className="auth-modal__input-wrapper">
+          <div className="auth-modal__input-group">
+            <img
+              src={icons.passwordIcon}
+              alt="Password Lock Icon"
+              className="auth-modal__input-icon"
+            />
+            <input
+              className="auth-modal__input"
+              type={passwordInput ? "password" : "text"}
+              name="password"
+              value={values.password}
+              onChange={handleInputChange}
+              placeholder="Password"
+              disabled={isSubmitting}
+            />
+            <Button
+              buttonCategory="icon"
+              clickFunction={toggleShowPassword}
+              buttonIcon={
+                passwordInput ? "hidePasswordIcon" : "showPasswordIcon"
+              }
+              size="md"
+            />
+          </div>
+          {fieldErrors.password && (
+            <ErrorMessage type="form" message={fieldErrors.password} />
+          )}
         </div>
-        <div className="auth-modal__input-group">
-          <img
-            src={icons.passwordIcon}
-            alt="Password Lock  Icon"
-            className="auth-modal__input-icon"
-          />
-          <input
-            className="auth-modal__input"
-            type="password"
-            name="confirmPassword"
-            value={values.confirmPassword}
-            onChange={handleChange}
-            placeholder="Confirm Password"
-            required
-            disabled={isSubmitting}
-          />
+        <div className="auth-modal__input-wrapper">
+          <div className="auth-modal__input-group">
+            <img
+              src={icons.passwordIcon}
+              alt="Password Lock  Icon"
+              className="auth-modal__input-icon"
+            />
+            <input
+              className="auth-modal__input"
+              type={confirmPasswordInput ? "password" : "text"}
+              name="confirmPassword"
+              value={values.confirmPassword}
+              onChange={handleInputChange}
+              placeholder="Confirm Password"
+              disabled={isSubmitting}
+            />
+            <Button
+              buttonCategory="icon"
+              clickFunction={toggleShowConfirmPassword}
+              buttonIcon={
+                confirmPasswordInput ? "hidePasswordIcon" : "showPasswordIcon"
+              }
+              size="md"
+            />
+          </div>
+          {fieldErrors.confirmPassword && (
+            <ErrorMessage type="form" message={fieldErrors.confirmPassword} />
+          )}
         </div>
       </fieldset>
-      {(error || authError) && (
-        <div className="auth-modal__error">{error || authError}</div>
-      )}
     </AuthModal>
   );
 };

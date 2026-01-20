@@ -12,8 +12,7 @@ const PokemonCard = ({
   cardType,
   size,
   lengthOfTeam,
-  addToArray,
-  removeFromArrayUsingId,
+  onTeamChange,
   isSelected = false,
   handleInfoClick,
 }) => {
@@ -32,11 +31,11 @@ const PokemonCard = ({
   };
 
   const addToTeam = () => {
-    addToArray("players", pokemon);
+    onTeamChange("add", { name: "players", item: pokemon });
   };
 
   const removeFromTeam = () => {
-    removeFromArrayUsingId("players", pokemon);
+    onTeamChange("remove", { name: "players", itemToRemove: pokemon });
   };
 
   const favoriteButton = (

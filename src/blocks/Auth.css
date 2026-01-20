@@ -82,6 +82,7 @@
   background-color: #fff;
   border: 1px solid rgb(var(--gray-300));
   border-radius: 8px;
+  align-items: center;
 }
 
 .auth-modal__input-icon {
@@ -99,6 +100,10 @@
 
 .auth-modal__input::placeholder {
   color: rgb(var(--gray-400));
+}
+
+.auth-modal__input_error {
+  border-color: rgb(var(--semantic-error));
 }
 
 .auth-modal__redirect {

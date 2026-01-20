@@ -105,63 +105,17 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
 
 /* Tablet and below */
 @media (max-width: 1024px) {
-  .navbar {
-    padding: 0 16px;
-  }
-
-  .navbar__links {
-    gap: 16px;
-  }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-  .navbar {
-    height: 60px;
-    padding: 0 12px;
-  }
-
-  .navbar__logo {
-    height: 36px;
-    width: 36px;
-  }
-
-  .navbar__title {
-    font-size: 18px;
-  }
-
-  .navbar__links {
-    gap: 12px;
-  }
-
-  .navbar__link-text {
-    font-size: 14px;
-  }
-
-  .navbar__user-name {
-    font-size: 14px;
-  }
 }
 
 /* Small mobile */
 @media (max-width: 480px) {
-  .navbar {
-    height: 56px;
-  }
-
-  .navbar__title {
-    display: none; /* Hide title on very small screens */
-  }
-
-  .navbar__user-name {
-    display: none; /* Hide username on very small screens */
-  }
-
-  .navbar__link-text {
-    font-size: 12px;
-  }
 }

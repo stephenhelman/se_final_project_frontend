@@ -54,6 +54,7 @@ export const AuthProvider = ({ children }) => {
       } catch (err) {
         console.error("Registration error:", err);
         setError(err.message);
+
         return { ok: false, error: err.message };
       } finally {
         setIsLoading(false);
@@ -87,7 +88,6 @@ export const AuthProvider = ({ children }) => {
           throw new Error("Invalid email or password");
         }
       } catch (err) {
-        console.error("Login error:", err);
         setError(err.message);
         return { ok: false, error: err.message };
       } finally {

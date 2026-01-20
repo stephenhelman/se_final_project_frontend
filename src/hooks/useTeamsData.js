@@ -9,7 +9,7 @@ const useTeamsData = (pokemonList = []) => {
 
   useEffect(() => {
     if (!pokemonList.length) return;
-    const loadTeams = async () => {
+    const loadTeams = () => {
       setIsLoading(true);
       setError(null);
 
@@ -30,7 +30,7 @@ const useTeamsData = (pokemonList = []) => {
           return {
             ...team,
             players,
-            types: buildTeamTypes({ ...team, players }),
+            types: buildTeamTypes(players),
           };
         });
 
@@ -48,7 +48,7 @@ const useTeamsData = (pokemonList = []) => {
   }, [pokemonList]);
 
   const createTeam = useCallback(
-    async (teamData) => {
+    (teamData) => {
       try {
         if (!teamData.players || teamData.players.length === 0) {
           throw new Error("Cannot save a team with no Pokemon");
@@ -95,7 +95,7 @@ const useTeamsData = (pokemonList = []) => {
   );
 
   const updateTeam = useCallback(
-    async (teamId, teamData) => {
+    (teamId, teamData) => {
       try {
         if (!teamData.players || teamData.players.length === 0) {
           throw new Error("Cannot save a team with no Pokemon");
@@ -143,7 +143,7 @@ const useTeamsData = (pokemonList = []) => {
     [pokemonList],
   );
 
-  const deleteTeam = useCallback(async (teamId) => {
+  const deleteTeam = useCallback((teamId) => {
     try {
       //api call to delete specified team
       setTeams((prev) => prev.filter((team) => team.id !== teamId));
@@ -154,7 +154,7 @@ const useTeamsData = (pokemonList = []) => {
     }
   }, []);
 
-  const toggleFavorite = useCallback(async (teamId) => {
+  const toggleFavorite = useCallback((teamId) => {
     try {
       //api call to toggle favorite team
       setTeams((prev) =>

@@ -6,8 +6,8 @@ import {
   useCallback,
 } from "react";
 import usePokemonData from "../hooks/usePokemonData";
+import useAuth from "../hooks/useAuth";
 import useStorage from "../hooks/useStorage";
-import icons from "../utils/imageUtils";
 
 const AppDataContext = createContext({});
 
@@ -20,14 +20,32 @@ export const AppDataProvider = ({ children }) => {
     getPokemonById,
   } = usePokemonData(151);
   const { get, set } = useStorage(window.localStorage);
+  const { user, updateProfile } = useAuth();
 
   const [favorites, setFavorites] = useState(new Set());
 
-  // Load favorites from localStorage on mount
   useEffect(() => {
-    const storedFavorites = get("favorites", []);
-    setFavorites(new Set(storedFavorites));
-  }, [get]);
+    if (user && user.favoritePokemon) {
+      const guestFavorites = get("favorites", []);
+
+      if (guestFavorites.length > 0) {
+        const mergedFavorites = [
+          ...new Set([...user.favoritePokemon, ...guestFavorites]),
+        ];
+
+        updateProfile({ favoritePokemon: mergedFavorites });
+
+        set("favorites", []);
+
+        setFavorites(new Set(mergedFavorites));
+      } else {
+        setFavorites(new Set(user.favoritePokemon));
+      }
+    } else {
+      const storedFavorites = get("favorites", []);
+      setFavorites(new Set(storedFavorites));
+    }
+  }, [user, updateProfile, set, get]);
 
   // Merge favorites into Pokemon data
   const pokemonWithFavorites = useMemo(() => {
@@ -48,13 +66,22 @@ export const AppDataProvider = ({ children }) => {
           newFavorites.add(pokemonId);
         }
 
+        const favoritesArray = Array.from(newFavorites);
+
+        if (user) {
+          updateProfile({
+            favoritePokemon: favoritesArray,
+          });
+        } else {
+          set("favorites", Array.from(newFavorites));
+        }
+
         // Persist to localStorage
-        set("favorites", Array.from(newFavorites));
 
         return newFavorites;
       });
     },
-    [set],
+    [user, updateProfile, set],
   );
 
   const getFavorites = useCallback(() => {
@@ -80,11 +107,6 @@ export const AppDataProvider = ({ children }) => {
     getFavorites,
     isFavorite,
     toggleFavorite,
-
-    // Legacy (for gradual migration)
-    pokemonList: pokemonWithFavorites, // Alias for backward compatibility
-    icons,
-    toggleFavoriteLocal: toggleFavorite, // Alias for backward compatibility
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import TeamBuilderForm from "./TeamBuilderForm";
@@ -6,19 +6,23 @@ import TeamBuilderSelector from "./TeamBuilderSelector";
 import Preloader from "../../universal/Preloader";
 
 import useForm from "../../../hooks/useForm";
-import useSessionCache from "../../../hooks/useSessionCache";
 import useAppData from "../../../hooks/useAppData";
 import useTeamsContext from "../../../hooks/useTeamsContext";
 import useScrollSaver from "../../../hooks/useScrollSaver";
+import useGlobalError from "../../../hooks/useGlobalError";
 import { matchData } from "../../../utils/utils";
 import { pokemonSortOptions } from "../../../utils/constants";
 
+import Validator from "../../../utils/Validator";
+
 import "../../../blocks/TeamBuilderPage.css";
-import ErrorModal from "../../universal/ErrorModal";
 
 const TeamBuilderPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [fieldErrors, setFieldErrors] = useState({});
+  const [generalError, setGeneralError] = useState(null);
+  const { showError } = useGlobalError();
 
   const { pokemon, isLoading } = useAppData();
   const {
@@ -26,16 +30,7 @@ const TeamBuilderPage = () => {
     isLoading: isTeamsLoading,
     updateTeam,
     createTeam,
-    teamError,
-    handleResetTeamError,
   } = useTeamsContext();
-
-  const { get, set, remove } = useSessionCache();
-  const DRAFT_KEY = "team-builder:draft";
-
-  const handleCloseErrorModal = () => {
-    handleResetTeamError();
-  };
 
   const {
     values,
@@ -50,7 +45,9 @@ const TeamBuilderPage = () => {
     players: [],
   });
 
-  const { scrollRef, saveScrollPosition } = useScrollSaver("team-builder");
+  const { scrollRef, saveScrollPosition } = useScrollSaver(
+    "team-builder-scroll",
+  );
 
   useEffect(() => {
     if (isLoading || isTeamsLoading) return;
@@ -62,44 +59,74 @@ const TeamBuilderPage = () => {
         players: match?.players || [],
       };
       setValues(teamData);
-      set(DRAFT_KEY, teamData);
-    } else {
-      const draft = get(DRAFT_KEY);
-      if (draft) {
-        setValues({
-          name: draft.name || "",
-          description: draft.description || "",
-          players: draft.players || [],
-        });
-      }
     }
-    return () => {
-      remove(DRAFT_KEY);
-    };
-  }, [id, isLoading, isTeamsLoading, teamList, get, set, setValues, remove]);
-
-  useEffect(() => {
-    if (!isLoading && !isTeamsLoading) {
-      set(DRAFT_KEY, values);
-    }
-  }, [values, isLoading, isTeamsLoading, set]);
+  }, [id, isLoading, isTeamsLoading, teamList, setValues]);
 
   const handleCancel = () => {
-    remove(DRAFT_KEY);
     navigate("/teams");
+  };
+
+  const handleInputChange = (e) => {
+    const { name } = e.target;
+    setFieldErrors((prev) => {
+      return {
+        ...prev,
+        [name]: "",
+      };
+    });
+    handleChange(e);
+  };
+
+  const handleArrayChange = (type, options) => {
+    setFieldErrors((prev) => {
+      return {
+        ...prev,
+        players: "",
+      };
+    });
+    if (type === "remove") {
+      return removeFromArrayUsingId(options);
+    }
+    if (type === "add") {
+      return addToArray(options);
+    }
+    if (type === "clear") {
+      return clearArray(options);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!id) {
-      const createdTeam = createTeam(values);
-      if (!createdTeam.ok) return;
-      navigate("/teams");
-      return;
+    setGeneralError(null);
+
+    const validator = new Validator(values);
+
+    validator.field("name", "Name").required().minLength(3).maxLength(50);
+    validator.field("description", "Description").required().maxLength(200);
+    validator.field("players", "Players").required().arrayLength(1, 6);
+
+    const validationErrors = validator.getErrors();
+    setFieldErrors(validationErrors);
+
+    if (!validator.isValid()) return;
+
+    try {
+      let result;
+      if (!id) {
+        result = createTeam(values);
+      } else {
+        result = updateTeam(id, values);
+      }
+
+      if (result.ok) {
+        navigate("/teams");
+        return;
+      } else {
+        setGeneralError(result.error || "Error saving team");
+      }
+    } catch (err) {
+      showError(err);
     }
-    const updatedTeam = updateTeam(id, values);
-    if (!updatedTeam.ok) return;
-    navigate("/teams");
   };
 
   if (isLoading || !pokemon || isTeamsLoading) return <Preloader />;
@@ -108,28 +135,21 @@ const TeamBuilderPage = () => {
     <main className="team-builder">
       <TeamBuilderForm
         values={values}
-        handleChange={handleChange}
+        handleChange={handleInputChange}
         handleCancel={handleCancel}
         handleSubmit={handleSubmit}
-        removeFromArrayUsingId={removeFromArrayUsingId}
+        onTeamChange={handleArrayChange}
+        formErrors={fieldErrors}
+        generalError={generalError}
       />
       <TeamBuilderSelector
         data={pokemon}
         selectedPokemon={values.players}
-        addToArray={addToArray}
-        removeFromArrayUsingId={removeFromArrayUsingId}
-        clearArray={clearArray}
+        onTeamChange={handleArrayChange}
         sortOptions={pokemonSortOptions}
         scrollRef={scrollRef}
         saveScrollPosition={saveScrollPosition}
       />
-      {teamError && (
-        <ErrorModal
-          error={teamError}
-          isOpen={teamError !== null}
-          onClose={handleCloseErrorModal}
-        />
-      )}
     </main>
   );
 };

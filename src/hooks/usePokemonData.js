@@ -8,10 +8,13 @@ import {
 } from "../utils/pokemonUtils";
 import useApiCache from "./useApiCache";
 
+import useGlobalError from "../hooks/useGlobalError";
+
 const usePokemonData = (limit = 151) => {
   const [pokemon, setPokemon] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [globalError, setGlobalError] = useState(null);
+  const { showError } = useGlobalError();
   const cache = useApiCache();
 
   // Fetch all Pokemon on mount
@@ -28,7 +31,7 @@ const usePokemonData = (limit = 151) => {
       }
 
       setIsLoading(true);
-      setError(null);
+      setGlobalError(null);
 
       try {
         const api = new PokeApi(POKE_BASE_URL);
@@ -47,17 +50,18 @@ const usePokemonData = (limit = 151) => {
         // 3. Cache and store
         cache.set(cacheKey, allPokemon);
         setPokemon(allPokemon);
-        setError(null);
+        setGlobalError(null);
       } catch (err) {
         console.error("Error fetching Pokemon:", err);
-        setError(err.message || "Failed to fetch Pokemon");
+        setGlobalError(err.message || "Failed to fetch Pokemon");
+        showError(err);
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchPokemon();
-  }, [limit, cache]);
+  }, [limit, cache, showError]);
 
   const getPokemonDetails = useCallback(
     async (pokemonId) => {
@@ -101,7 +105,7 @@ const usePokemonData = (limit = 151) => {
   return {
     pokemon,
     isLoading,
-    error,
+    globalError,
     getPokemonDetails,
     getPokemonById,
   };

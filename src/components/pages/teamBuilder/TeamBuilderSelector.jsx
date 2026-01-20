@@ -8,9 +8,7 @@ import { countOccurrences } from "../../../utils/test";
 const TeamBuilderSelector = ({
   data,
   selectedPokemon,
-  addToArray,
-  removeFromArrayUsingId,
-  clearArray,
+  onTeamChange,
   sortOptions,
   scrollRef,
   saveScrollPosition,
@@ -45,7 +43,7 @@ const TeamBuilderSelector = ({
       return { ...item, isOnTeam: false, count: 0 };
     });
 
-    clearArray("players");
+    onTeamChange("clear", { name: "players" });
   };
 
   pokemon = data.map((item) => {
@@ -79,8 +77,7 @@ const TeamBuilderSelector = ({
       </header>
       <PokedexGrid
         pokemon={visiblePokemon}
-        addToArray={addToArray}
-        removeFromArrayUsingId={removeFromArrayUsingId}
+        onTeamChange={onTeamChange}
         lengthOfTeam={selectedPokemon.length}
         cardType="team-builder"
         size="medium"

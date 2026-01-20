@@ -6,7 +6,7 @@ import "../../blocks/Sidebar.css";
 
 const Sidebar = ({ filterFunction, clearArray, selectedTypes }) => {
   const handleClearFilters = () => {
-    clearArray("selectedTypes");
+    clearArray({ name: "selectedTypes" });
   };
   return (
     <section className="sidebar">

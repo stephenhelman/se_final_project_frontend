@@ -58,14 +58,8 @@
 
 /* Tablet and below */
 @media (max-width: 1024px) {
-  .app {
-    max-width: 100%;
-  }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-  .app {
-    overflow-x: hidden;
-  }
 }

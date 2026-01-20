@@ -7,6 +7,7 @@ const TeamRowsContainer = ({
   handleDeleteTeam,
   scrollRef,
   saveScrollPosition,
+  toggleFavorite,
 }) => {
   const navigate = useNavigate();
 
@@ -21,6 +22,7 @@ const TeamRowsContainer = ({
         team={team}
         handleDeleteTeam={handleDeleteTeam}
         handleEditButton={handleEditButton}
+        toggleFavorite={toggleFavorite}
       />
     );
   });

@@ -48,11 +48,11 @@ export const buildSpriteGallery = (sprites) => {
   }
 
   const heroSprite = sprites.find(
-    (sprite) => sprite.spriteName === "front_default"
+    (sprite) => sprite.spriteName === "front_default",
   );
 
   const gallerySprites = sprites.filter(
-    (sprite) => sprite.id !== heroSprite.id
+    (sprite) => sprite.id !== heroSprite.id,
   );
 
   return { heroSprite, gallerySprites };
@@ -276,7 +276,7 @@ export const chooseEdge = (currentPokemon, pokemonData) => {
     };
   }
   const edgeToUse = evolutionData.edges.find(
-    (edge) => edge.toId === currentPokemon.id
+    (edge) => edge.toId === currentPokemon.id,
   );
   return {
     root: false,
@@ -287,18 +287,15 @@ export const chooseEdge = (currentPokemon, pokemonData) => {
   };
 };
 
-export const buildTeamTypes = (team) => {
-  if (!team?.players) {
-    return { ...team, types: [] };
+export const buildTeamTypes = (players) => {
+  if (!players) {
+    return [];
   }
 
-  const allTypes = team.players.flatMap((pokemon) => {
+  const allTypes = players.flatMap((pokemon) => {
     return pokemon.types;
   });
 
   const uniqueTypes = Array.from(new Set(allTypes));
-  return {
-    ...team,
-    types: uniqueTypes,
-  };
+  return uniqueTypes;
 };

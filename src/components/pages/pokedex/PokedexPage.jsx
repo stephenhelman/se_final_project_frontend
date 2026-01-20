@@ -25,36 +25,38 @@ const PokedexPage = () => {
     favoritesOnly: false,
   });
 
-  const { scrollRef, saveScrollPosition } = useScrollSaver("pokedex");
+  const { scrollRef, saveScrollPosition } = useScrollSaver("pokedex-scroll");
 
-  const { pokemon, isLoading, error } = useAppData();
+  const { pokemon, isLoading } = useAppData();
 
   const visiblePokemon = useSort(pokemon, values);
 
   if (isLoading || !pokemon) return <Preloader />;
 
   return (
-    <PageLayout
-      mainClass="pokedex"
-      filterFunction={toggleInArray}
-      title="Pokedex"
-      page="pokedex"
-      searchPlaceholder="Search Pokemon by name or ID"
-      values={values}
-      handleChange={handleChange}
-      toggleState={toggleState}
-      sortOptions={pokemonSortOptions}
-      handleSelect={handleSelect}
-      clearArray={clearArray}
-    >
-      <PokedexGrid
-        cardType="pokedex"
-        size="large"
-        pokemon={visiblePokemon}
-        scrollRef={scrollRef}
-        saveScrollPosition={saveScrollPosition}
-      />
-    </PageLayout>
+    <>
+      <PageLayout
+        mainClass="pokedex"
+        filterFunction={toggleInArray}
+        title="Pokedex"
+        page="pokedex"
+        searchPlaceholder="Search Pokemon by name or ID"
+        values={values}
+        handleChange={handleChange}
+        toggleState={toggleState}
+        sortOptions={pokemonSortOptions}
+        handleSelect={handleSelect}
+        clearArray={clearArray}
+      >
+        <PokedexGrid
+          cardType="pokedex"
+          size="large"
+          pokemon={visiblePokemon}
+          scrollRef={scrollRef}
+          saveScrollPosition={saveScrollPosition}
+        />
+      </PageLayout>
+    </>
   );
 };
 

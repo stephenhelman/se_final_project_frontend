@@ -2,16 +2,18 @@ import TeamPlayers from "../../universal/TeamPlayers";
 import TeamHeader from "./TeamHeader";
 import TeamMeta from "./TeamMeta";
 
-import useTeamsContext from "../../../hooks/useTeamsContext";
 import { useState } from "react";
 
-const TeamRow = ({ team, handleDeleteTeam, handleEditButton }) => {
+const TeamRow = ({
+  team,
+  handleDeleteTeam,
+  handleEditButton,
+  toggleFavorite,
+}) => {
   const [isFavorite, setIsFavorite] = useState(team.isFavorite);
-  const { toggleFavorite } = useTeamsContext();
 
   const handleDeleteButton = () => {
     handleDeleteTeam(team);
-    //TODO - delete function in API
   };
 
   const handleToggleFavorite = () => {

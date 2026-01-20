@@ -7,8 +7,7 @@ const PokedexGrid = ({
   cardType,
   pokemon,
   lengthOfTeam,
-  addToArray,
-  removeFromArrayUsingId,
+  onTeamChange,
   scrollRef,
   saveScrollPosition,
 }) => {
@@ -28,8 +27,7 @@ const PokedexGrid = ({
           cardType={cardType}
           size={size}
           lengthOfTeam={lengthOfTeam}
-          addToArray={addToArray}
-          removeFromArrayUsingId={removeFromArrayUsingId}
+          onTeamChange={onTeamChange}
           handleInfoClick={handleInfoClick}
         />
       </li>
