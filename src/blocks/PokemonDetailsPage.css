@@ -20,7 +20,7 @@
   border-bottom: 1px solid rgb(var(--gray-300));
 }
 
-.pokemon-details__header-button {
+.pokemon-details__button-wrap {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -37,12 +37,8 @@
   width: 24px;
 }
 
-.pokemon-details__header-button:last-of-type {
+.pokemon-details__button-wrap:last-of-type {
   justify-content: flex-end;
-}
-
-.pokemon-details__header-button > .pokemon-details__header-icon:hover {
-  cursor: pointer;
 }
 
 .pokemon-details__title {

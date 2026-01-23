@@ -299,3 +299,13 @@ export const buildTeamTypes = (players) => {
   const uniqueTypes = Array.from(new Set(allTypes));
   return uniqueTypes;
 };
+
+export const getBreakpoint = (width, breakpoints) => {
+  for (const [name, maxWidth] of Object.entries(breakpoints)) {
+    if (width <= maxWidth) {
+      return name;
+    }
+  }
+
+  return "desktopLarge+"; // bigger than your largest breakpoint
+};

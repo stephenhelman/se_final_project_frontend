@@ -177,3 +177,22 @@
 .pokemon-card_type_small-selected {
   border: 2px solid rgb(var(--primary-color));
 }
+
+@media (max-width: 768px) {
+  .pokemon-card__description {
+    padding-bottom: 0;
+  }
+
+  .pokemon-card__info {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .pokemon-card__types-row {
+    display: none;
+  }
+}
+
+/* Mobile  */
+@media (max-width: 425px) {
+}

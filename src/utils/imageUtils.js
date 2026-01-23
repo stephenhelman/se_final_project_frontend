@@ -18,6 +18,8 @@ import showIcon from "../images/show.svg";
 import hideIcon from "../images/hide.svg";
 import showPasswordIcon from "../images/showPassword.svg";
 import hidePasswordIcon from "../images/hidePassword.svg";
+import filterIcon from "../images/filter.svg";
+import menuIcon from "../images/menu.svg";
 
 export default {
   addIcon,
@@ -40,4 +42,6 @@ export default {
   hideIcon,
   showPasswordIcon,
   hidePasswordIcon,
+  filterIcon,
+  menuIcon,
 };

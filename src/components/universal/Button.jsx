@@ -1,4 +1,3 @@
-//universal button component - primary, ghost, auth
 import "../../blocks/Button.css";
 import icons from "../../utils/imageUtils";
 
@@ -21,7 +20,7 @@ const Button = ({
         onClick={clickFunction ? clickFunction : null}
       >
         <img
-          src={icons[buttonIcon]}
+          src={size === "sprite" ? buttonIcon : icons[buttonIcon]}
           alt={buttonName}
           className="button__image"
         />
@@ -33,7 +32,7 @@ const Button = ({
       type={buttonType}
       className={`button button_type_${buttonCategory} ${
         isActive ? `button_type_${buttonCategory}_active` : ""
-      }`}
+      } ${size ? `button_type_${buttonCategory}-${size}` : ""}`}
       onClick={clickFunction ? clickFunction : null}
     >
       {buttonText}

@@ -1,7 +1,7 @@
 import Button from "./Button";
 import { useState } from "react";
 
-const SortMenu = ({ sortOptions, handleSelect, values }) => {
+const SortMenu = ({ sortOptions, handleSelect, values, isBreakpoint }) => {
   const [sortMenuOpen, setSortMenuOpen] = useState(false);
 
   const handleOpenMenu = () => {
@@ -12,6 +12,28 @@ const SortMenu = ({ sortOptions, handleSelect, values }) => {
     handleSelect("sortBy", option.id);
     setSortMenuOpen(false);
   };
+
+  if (isBreakpoint) {
+    return (
+      <div className="sort-menu__options">
+        {sortOptions.map((option) => (
+          <button
+            key={option.id}
+            type="button"
+            className={
+              "sort-menu__item" +
+              (values.sortBy === option.id ? " sort-menu__item_active" : "")
+            }
+            onClick={() => {
+              handleSelectOption(option);
+            }}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="searchbar__sort-menu sort-menu">

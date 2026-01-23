@@ -16,14 +16,17 @@ const PokemonCard = ({
   isSelected = false,
   handleInfoClick,
 }) => {
-  const [mousePosition, setMousePosition] = useState(false);
-
+  const [isHovering, setIsHovering] = useState(false);
   const mainPokemonType = pokemon?.types[0];
 
   const { toggleFavorite } = useAppData();
 
-  const handleMouseMove = () => {
-    setMousePosition((prev) => !prev);
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
   };
 
   const handleToggleFavoriteLocalPokemon = () => {
@@ -61,10 +64,10 @@ const PokemonCard = ({
             ? "pokemon-card_type_small-selected"
             : ""
         }`}
-        onMouseEnter={handleMouseMove}
-        onMouseLeave={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        {cardType === "team-builder" && mousePosition && (
+        {cardType === "team-builder" && isHovering && (
           <HoverButtons
             cardType={cardType}
             navigate={handleInfoClick}
@@ -75,7 +78,7 @@ const PokemonCard = ({
             lengthOfTeam={lengthOfTeam}
           />
         )}
-        {cardType === "team-builder-form" && mousePosition && (
+        {cardType === "team-builder-form" && isHovering && (
           <HoverButtons
             cardType={cardType}
             navigate={handleInfoClick}
@@ -106,10 +109,10 @@ const PokemonCard = ({
   return (
     <article
       className={`pokemon-card  pokemon-card_type_large`}
-      onMouseEnter={handleMouseMove}
-      onMouseLeave={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      {mousePosition && (
+      {isHovering && (
         <HoverButtons navigate={handleInfoClick} cardType={cardType} />
       )}
       <PokemonSprite

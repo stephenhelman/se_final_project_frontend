@@ -1,15 +1,108 @@
-//present on both pages (Pokedex and Teams)
+import { useState, useEffect } from "react";
+import { pokemonSortOptions } from "../../utils/constants";
+
 import TypeFiltersContent from "./filters/TypeFiltersContent";
 import Button from "../universal/Button";
+import SortMenu from "../universal/SortMenu";
+import Checkbox from "../universal/Checkbox";
+
+import useWindowWidth from "../../hooks/useWindowWidth";
 
 import "../../blocks/Sidebar.css";
 
-const Sidebar = ({ filterFunction, clearArray, selectedTypes }) => {
+const Sidebar = ({
+  filterFunction,
+  clearArray,
+  values,
+  showFilterMenu,
+  handleSelect,
+  toggleState,
+  handleReset,
+}) => {
+  const { isMobile, isTablet } = useWindowWidth();
+  const [activeFilter, setActiveFilter] = useState("");
+
+  useEffect(() => {
+    setActiveFilter("");
+  }, [showFilterMenu]);
+
   const handleClearFilters = () => {
+    if (isMobile || isTablet) {
+      return handleReset(["selectedTypes", "favoritesOnly", "sortBy"]);
+    }
     clearArray({ name: "selectedTypes" });
   };
+
+  const handleActiveFilterClicked = (filter) => {
+    if (filter === activeFilter) {
+      return setActiveFilter("");
+    }
+    setActiveFilter(filter);
+  };
+
+  if (isMobile || isTablet) {
+    return (
+      <section className={`sidebar ${showFilterMenu ? "sidebar_visible" : ""}`}>
+        <div className="sidebar__header">
+          <h4 className="sidebar__title">Filters</h4>
+          <Button
+            buttonText="Clear"
+            buttonType="button"
+            buttonCategory="ghost"
+            clickFunction={handleClearFilters}
+          />
+        </div>
+        <ul className="sidebar-mobile__wrapper">
+          <li className="sidebar-mobile__list-item">
+            <div className="sidebar-mobile__filter-title-wrapper">
+              <p className="sidebar-mobile__filter-title">Types</p>
+              <Button
+                buttonCategory="icon"
+                buttonIcon={activeFilter === "types" ? "showIcon" : "hideIcon"}
+                size="md"
+                clickFunction={() => handleActiveFilterClicked("types")}
+              />
+            </div>
+            {activeFilter === "types" && (
+              <TypeFiltersContent
+                filterFunction={filterFunction}
+                selectedTypes={values.selectedTypes}
+              />
+            )}
+          </li>
+          <li className="sidebar-mobile__list-item">
+            <div className="sidebar-mobile__filter-title-wrapper">
+              <p className="sidebar-mobile__filter-title">Sort</p>
+              <Button
+                buttonCategory="icon"
+                buttonIcon={activeFilter === "sort" ? "showIcon" : "hideIcon"}
+                size="md"
+                clickFunction={() => handleActiveFilterClicked("sort")}
+              />
+            </div>
+            {activeFilter === "sort" && (
+              <SortMenu
+                sortOptions={pokemonSortOptions}
+                handleSelect={handleSelect}
+                values={values}
+                isBreakpoint={Boolean(isMobile || isTablet)}
+              />
+            )}
+          </li>
+          <li className="sidebar-mobile__list-item">
+            <Checkbox
+              checked={values.favoritesOnly}
+              onChange={() => toggleState("favoritesOnly")}
+              label="Show Favorites Only"
+              id="favorites-filter"
+            />
+          </li>
+        </ul>
+      </section>
+    );
+  }
   return (
-    <section className="sidebar">
+    <section className={`sidebar ${showFilterMenu ? "sidebar_visible" : ""}`}>
       <div className="sidebar__header">
         <h4 className="sidebar__title">Filters</h4>
         <Button
@@ -21,7 +114,7 @@ const Sidebar = ({ filterFunction, clearArray, selectedTypes }) => {
       </div>
       <TypeFiltersContent
         filterFunction={filterFunction}
-        selectedTypes={selectedTypes}
+        selectedTypes={values.selectedTypes}
       />
     </section>
   );

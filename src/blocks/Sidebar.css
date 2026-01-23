@@ -25,7 +25,7 @@
 
 .sidebar__filters-container {
   margin: 0;
-  padding: 12px 12px;
+  padding: 12px 0 0 0;
 }
 .sidebar__filter-section {
   list-style: none;
@@ -51,4 +51,59 @@
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+/* Tablet  */
+@media (max-width: 1024px) {
+  .sidebar {
+    padding: 0 12px;
+    max-width: 200px;
+  }
+}
+
+/* Tablet small  */
+@media (max-width: 768px) {
+  .sidebar {
+    visibility: hidden;
+    position: absolute;
+    left: -272px;
+    z-index: 998;
+    max-width: 260px;
+    transition: all 1s ease-in-out;
+  }
+
+  .sidebar_visible {
+    visibility: visible;
+    left: 0;
+  }
+
+  .sidebar-mobile__wrapper {
+    padding: 0 12px 0 0;
+    margin: 12px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sidebar-mobile__list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .sidebar-mobile__filter-title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .sidebar-mobile__filter-title {
+    margin: 0;
+  }
+}
+
+/* Mobile  */
+@media (max-width: 425px) {
 }

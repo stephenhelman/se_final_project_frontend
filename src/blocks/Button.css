@@ -2,6 +2,8 @@
   box-sizing: border-box;
   border: 1px solid;
   border-radius: 12px;
+  display: grid;
+  place-content: center;
 }
 
 .button_type_primary {
@@ -34,14 +36,87 @@
   border: none;
   padding: 0;
   margin: 0;
-  border-radius: 0;
-  height: 15px;
-  width: 15px;
+}
+
+.button_type_icon-sm {
+  height: 20px;
+  width: 20px;
 }
 
 .button_type_icon-md {
-  height: 24px;
-  width: 24px;
+  height: 32px;
+  width: 32px;
+}
+
+.button_type_icon-lg {
+  height: 40px;
+  width: 40px;
+  padding: 8px;
+  border: 1px solid rgb(var(--gray-300));
+  background-color: rgb(var(--gray-200));
+}
+
+.button_type_icon-sprite {
+  height: 60px;
+  width: 60px;
+  background-color: #fff;
+  border-radius: 12px;
+}
+
+.button_type_auth {
+  padding: 12px 24px;
+  height: 40px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.button_type_auth-primary {
+  border-color: rgb(var(--primary-color));
+  background-color: rgb(var(--primary-color));
+  color: #fff;
+}
+
+.button_type_auth-secondary {
+  background-color: #fff;
+  color: rgb(var(--primary-color));
+}
+
+.button_type_link {
+  color: rgb(var(--gray-500));
+  flex: 1;
+  border: none;
+  background-color: rgb(var(--gray-50));
+}
+
+.button_type_link-sm {
+  color: rgb(var(--primary-color));
+  border-radius: 0;
+  border-bottom: 1px solid rgb(var(--primary-color));
+  font-size: 14px;
+  line-height: 1.5;
+  flex: 0;
+}
+
+.button_type_link-md {
+  padding: 5px 0;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.button_type_link-tab {
+  padding: 0 0 12px 0;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: rgb(var(--gray-700));
+  background-color: rgb(var(--gray-100));
+}
+
+.button_type_link_active {
+  color: rgb(var(--primary-color));
+  border-bottom: 2px solid rgb(var(--primary-color));
+  border-radius: 0;
 }
 
 .button__image {
@@ -49,17 +124,17 @@
   width: 100%;
 }
 
-.button__image:hover,
-.button_type_primary:hover,
-.button_type_ghost:hover {
+.button:hover {
   cursor: pointer;
 }
 
-.button_type_primary:hover {
+.button_type_primary:hover,
+.button_type_auth-primary:hover {
   background: rgb(var(--primary-light));
 }
 
-.button_type_ghost:hover {
+.button_type_ghost:hover,
+.button_type_auth-secondary:hover {
   background-color: rgb(var(--gray-100));
 }
 
@@ -71,8 +146,12 @@
   background-color: rgb(var(--gray-300));
 }
 
-.button_type_primary-auth {
-  flex: 1;
-  padding: 12px 24px;
-  height: 48px;
+.button-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.button-row__wrap {
+  gap: 24px;
 }

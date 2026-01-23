@@ -19,18 +19,6 @@
   padding: 12px;
 }
 
-.searchbar__button-row {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-}
-
-.searchbar__universal-buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-}
-
 .sort-menu {
   position: relative;
   display: inline-block;
@@ -61,4 +49,35 @@
   background-color: rgb(var(--gray-100));
   border-color: rgb(var(--gray-300));
   cursor: pointer;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .sort-menu__options {
+    position: relative;
+    top: unset;
+    right: unset;
+    width: 100%;
+  }
+
+  .sort-menu__item {
+    background-color: rgb(var(--gray-100));
+  }
+
+  .sort-menu__item_active {
+    background-color: rgb(var(--primary-color));
+    border-color: rgb(var(--primary-color));
+  }
+
+  .sort-menu__item:hover {
+    background-color: rgb(var(--primary-color));
+    border-color: rgb(var(--primary-color));
+  }
+}
+
+/* Mobile  */
+@media (max-width: 425px) {
+  .app {
+    max-width: 425px;
+  }
 }

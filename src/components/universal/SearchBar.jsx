@@ -1,17 +1,7 @@
-//universal search bar component. THe only change is the placeholder text
 import ButtonRow from "./ButtonRow";
 import "../../blocks/Searchbar.css";
 
-const SearchBar = ({
-  placeholder,
-  page,
-  values,
-  handleChange,
-  toggleState,
-  sortOptions,
-  handleSelect,
-}) => {
-  //state handler to pass state to context
+const SearchBar = ({ placeholder, values, handleChange, buttons }) => {
   return (
     <div className="searchbar">
       <input
@@ -22,13 +12,7 @@ const SearchBar = ({
         value={values.searchTerm}
         onChange={handleChange}
       />
-      <ButtonRow
-        page={page}
-        toggleState={toggleState}
-        sortOptions={sortOptions}
-        handleSelect={handleSelect}
-        values={values}
-      />
+      <ButtonRow buttons={buttons} />
     </div>
   );
 };

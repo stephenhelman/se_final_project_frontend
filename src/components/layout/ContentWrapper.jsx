@@ -6,21 +6,18 @@ const ContentWrapper = ({
   page,
   searchPlaceholder,
   values,
-  handleChange,
-  toggleState,
-  sortOptions,
   handleSelect,
+  buttons,
+  handleChange,
 }) => {
   return (
     <section className={`${page}__content`}>
       <h1 className={`${page}__title`}>{title}</h1>
       <SearchBar
         placeholder={searchPlaceholder}
-        page={page}
         values={values}
+        buttons={buttons}
         handleChange={handleChange}
-        toggleState={toggleState}
-        sortOptions={sortOptions}
         handleSelect={handleSelect}
       />
       {children}

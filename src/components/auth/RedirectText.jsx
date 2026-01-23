@@ -1,13 +1,15 @@
+import Button from "../universal/Button";
+
 const RedirectText = ({ redirectText, target, onSwitch }) => {
   return (
     <div className="auth-modal__redirect">
       <p className="auth-modal__redirect-text">{redirectText}</p>
-      <button
-        className="auth-modal__redirect-link"
-        onClick={() => onSwitch(target.toLowerCase())}
-      >
-        {target}
-      </button>
+      <Button
+        buttonCategory="link"
+        size="sm"
+        buttonText={target}
+        clickFunction={() => onSwitch(target.toLowerCase())}
+      />
     </div>
   );
 };

@@ -10,17 +10,23 @@ const PageLayout = ({
   searchPlaceholder,
   values,
   handleChange,
-  toggleState,
-  sortOptions,
-  handleSelect,
   clearArray,
+  buttons,
+  showFilterMenu,
+  handleSelect,
+  toggleState,
+  handleReset,
 }) => {
   return (
     <main className={mainClass}>
       <Sidebar
         filterFunction={filterFunction}
         clearArray={clearArray}
-        selectedTypes={values.selectedTypes}
+        values={values}
+        showFilterMenu={showFilterMenu}
+        handleSelect={handleSelect}
+        toggleState={toggleState}
+        handleReset={handleReset}
       />
       <ContentWrapper
         title={title}
@@ -28,9 +34,7 @@ const PageLayout = ({
         searchPlaceholder={searchPlaceholder}
         values={values}
         handleChange={handleChange}
-        toggleState={toggleState}
-        sortOptions={sortOptions}
-        handleSelect={handleSelect}
+        buttons={buttons}
       >
         {children}
       </ContentWrapper>

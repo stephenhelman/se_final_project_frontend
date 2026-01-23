@@ -50,16 +50,32 @@
 .app {
   height: 100vh;
   max-width: 1360px;
+  width: 100%;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  background-color: green;
 }
 
-/* Tablet and below */
+/* Desktop  */
 @media (max-width: 1024px) {
+  .app {
+    max-width: 1024px;
+  }
 }
 
-/* Mobile */
+/* Tablet  */
 @media (max-width: 768px) {
+  .app {
+    max-width: 768px;
+    overflow: hidden;
+  }
+}
+
+/* Mobile  */
+@media (max-width: 425px) {
+  .app {
+    max-width: 425px;
+  }
 }

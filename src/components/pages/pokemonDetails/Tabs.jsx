@@ -1,5 +1,5 @@
-//Row of tabs to naviagte different sections in details
 import "../../../blocks/Tabs.css";
+import Button from "../../universal/Button";
 
 const Tabs = ({ activeTab, handleTabClick }) => {
   const handleTypesClick = () => handleTabClick("types");
@@ -10,44 +10,40 @@ const Tabs = ({ activeTab, handleTabClick }) => {
   return (
     <ul className="tabs__navbar">
       <li className="tabs__list-item">
-        <button
-          className={`tabs__nav-button ${
-            activeTab === "types" ? "tabs__nav-button_active" : ""
-          }`}
-          onClick={handleTypesClick}
-        >
-          Types
-        </button>
+        <Button
+          buttonCategory="link"
+          size="tab"
+          isActive={activeTab === "types"}
+          clickFunction={handleTypesClick}
+          buttonText="Types"
+        />
       </li>
       <li className="tabs__list-item">
-        <button
-          className={`tabs__nav-button ${
-            activeTab === "stats" ? "tabs__nav-button_active" : ""
-          }`}
-          onClick={handleStatsClick}
-        >
-          Stats
-        </button>
+        <Button
+          buttonCategory="link"
+          size="tab"
+          isActive={activeTab === "stats"}
+          clickFunction={handleStatsClick}
+          buttonText="Stats"
+        />
       </li>
       <li className="tabs__list-item">
-        <button
-          className={`tabs__nav-button ${
-            activeTab === "evolutions" ? "tabs__nav-button_active" : ""
-          }`}
-          onClick={handleEvolutionsClick}
-        >
-          Evolutions
-        </button>
+        <Button
+          buttonCategory="link"
+          size="tab"
+          isActive={activeTab === "evolutions"}
+          clickFunction={handleEvolutionsClick}
+          buttonText="Evolutions"
+        />
       </li>
       <li className="tabs__list-item">
-        <button
-          className={`tabs__nav-button ${
-            activeTab === "moves" ? "tabs__nav-button_active" : ""
-          }`}
-          onClick={handleMovesClick}
-        >
-          Moves
-        </button>
+        <Button
+          buttonCategory="link"
+          size="tab"
+          isActive={activeTab === "moves"}
+          clickFunction={handleMovesClick}
+          buttonText="Moves"
+        />
       </li>
     </ul>
   );

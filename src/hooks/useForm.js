@@ -2,6 +2,18 @@ import { useState } from "react";
 
 const useForm = (inputValues) => {
   const [values, setValues] = useState(inputValues);
+  const defaults = inputValues;
+
+  const handleReset = (keys) => {
+    keys.forEach((key) => {
+      setValues((prev) => {
+        return {
+          ...prev,
+          [key]: defaults[key],
+        };
+      });
+    });
+  };
 
   const handleChange = (event) => {
     // get the name and value of the input because event.target is the input
@@ -106,6 +118,7 @@ const useForm = (inputValues) => {
     toggleInArray,
     toggleState,
     handleSelect,
+    handleReset,
   };
 };
 

@@ -62,18 +62,37 @@
   list-style: none;
 }
 
-/* Desktop small - 4 columns */
-@media (max-width: 1280px) {
-}
-
 /* Tablet - 3 columns */
 @media (max-width: 1024px) {
+  .pokedex {
+    max-width: 1024px;
+    gap: 12px;
+  }
+
+  .pokedex__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* Tablet small - 2 columns, hide sidebar */
 @media (max-width: 768px) {
+  .pokedex {
+    max-width: 768px;
+  }
+
+  .pokedex__grid_type_pokedex {
+    row-gap: 29px;
+    column-gap: 25px;
+  }
 }
 
 /* Mobile - 2 columns, smaller gaps */
-@media (max-width: 480px) {
+@media (max-width: 425px) {
+  .pokedex {
+    max-width: 425px;
+  }
+
+  .pokedex__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

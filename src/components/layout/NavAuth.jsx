@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Button from "../universal/Button";
 import icons from "../../utils/imageUtils";
 
 const NavAuth = ({ user, isAuthenticated, onLogout, handleShowModal }) => {
@@ -12,24 +13,27 @@ const NavAuth = ({ user, isAuthenticated, onLogout, handleShowModal }) => {
           className="navbar__avatar-image"
         />
       </Link>
-      <button className="navbar__logout" onClick={onLogout}>
-        <img src={icons.logoutIcon} alt="logout" />
-      </button>
+      <Button
+        buttonCategory="icon"
+        buttonIcon="logoutIcon"
+        size="md"
+        clickFunction={onLogout}
+      />
     </>
   ) : (
     <>
-      <button
-        className="button button_type_ghost"
-        onClick={() => handleShowModal("register")}
-      >
-        Register
-      </button>
-      <button
-        className="button button_type_primary"
-        onClick={() => handleShowModal("login")}
-      >
-        Login
-      </button>
+      <Button
+        buttonCategory="auth"
+        size="secondary"
+        clickFunction={() => handleShowModal("register")}
+        buttonText="Register"
+      />
+      <Button
+        buttonCategory="auth"
+        size="primary"
+        clickFunction={() => handleShowModal("login")}
+        buttonText="Login"
+      />
     </>
   );
   return content;

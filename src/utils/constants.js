@@ -139,6 +139,13 @@ export const sizes = {
   LEVEL_GAP: 50,
 };
 
+export const breakpoints = {
+  mobile: 425,
+  tablet: 768,
+  desktop: 1028,
+  desktopLarge: 1440,
+};
+
 export const teamSortOptions = [
   { id: "id-asc", label: "ID [0 - 9]" },
   { id: "id-dec", label: "ID [9 - 0]" },

@@ -1,0 +1,66 @@
+/* blocks/Checkbox.css */
+
+.custom-checkbox {
+  width: 100%;
+}
+
+.custom-checkbox__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Container for checkbox and label */
+.custom-checkbox__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  position: relative;
+}
+
+/* The custom checkbox box */
+.custom-checkbox__box {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  flex-shrink: 0;
+}
+
+/* Checkmark icon */
+.custom-checkbox__checkmark {
+  width: 16px;
+  height: 16px;
+  color: white;
+  opacity: 0;
+  transform: scale(0);
+}
+
+/* Label text */
+.custom-checkbox__text {
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Checked state */
+.custom-checkbox__input:checked
+  + .custom-checkbox__label
+  .custom-checkbox__box {
+  background: rgb(var(--primary-color));
+  border-color: rgb(var(--primary-color));
+}
+
+.custom-checkbox__input:checked
+  + .custom-checkbox__label
+  .custom-checkbox__checkmark {
+  opacity: 1;
+  transform: scale(1);
+}

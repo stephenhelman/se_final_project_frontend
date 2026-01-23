@@ -1,5 +1,6 @@
 import RedirectText from "./RedirectText";
 import Modal from "../universal/Modal";
+import Button from "../universal/Button";
 
 import "../../blocks/Auth.css";
 import ErrorMessage from "../universal/ErrorMessage";
@@ -22,18 +23,22 @@ const AuthModal = ({
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="auth-modal">
         <div className="auth-modal__header">
-          <button
-            className={`auth-modal__button ${activeModal === "login" ? "auth-modal__button_active" : ""}`}
-            onClick={() => onSwitch("login")}
-          >
-            Login
-          </button>
-          <button
-            className={`auth-modal__button ${activeModal === "register" ? "auth-modal__button_active" : ""}`}
-            onClick={() => onSwitch("register")}
-          >
-            Register
-          </button>
+          <Button
+            buttonCategory="link"
+            size="md"
+            buttonText="Register"
+            clickFunction={() => onSwitch("register")}
+            buttonType="button"
+            isActive={activeModal === "register"}
+          />
+          <Button
+            buttonCategory="link"
+            size="md"
+            buttonText="Login"
+            clickFunction={() => onSwitch("login")}
+            buttonType="button"
+            isActive={activeModal === "login"}
+          />
         </div>
         {error && <ErrorMessage type="message" message={error} />}
         <form className="auth-modal__form" onSubmit={onSubmit}>
@@ -42,9 +47,12 @@ const AuthModal = ({
             <p className="auth-modal__form-description">{description}</p>
           </div>
           {children}
-          <button className="button button_type_primary button_type_primary-auth">
-            {submitText}
-          </button>
+          <Button
+            buttonType="submit"
+            buttonCategory="auth"
+            size="primary"
+            buttonText={submitText}
+          />
         </form>
         <RedirectText
           redirectText={redirectText}
