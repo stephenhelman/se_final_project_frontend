@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import useTeamsContext from "../../../hooks/useTeamsContext";
 import useForm from "../../../hooks/useForm";
@@ -22,6 +23,8 @@ const TeamsPage = () => {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
 
   const handleModalClose = () => setShowDelete(false);
+
+  const navigate = useNavigate();
 
   const {
     values,
@@ -89,6 +92,7 @@ const TeamsPage = () => {
 
   const mobileFilterButton = (
     <Button
+      key="filter"
       buttonCategory="icon"
       buttonIcon="filterIcon"
       size="lg"
@@ -96,9 +100,19 @@ const TeamsPage = () => {
     />
   );
 
+  const mobileNewTeamButton = (
+    <Button
+      key="new"
+      buttonCategory="icon"
+      buttonIcon="addIcon"
+      size="lg"
+      clickFunction={() => navigate("/teams/new")}
+    />
+  );
+
   let buttons;
   if (isMobile || isTablet) {
-    buttons = [mobileFilterButton];
+    buttons = [mobileFilterButton, mobileNewTeamButton];
   } else {
     buttons = [sortButton, favoritesButton];
   }

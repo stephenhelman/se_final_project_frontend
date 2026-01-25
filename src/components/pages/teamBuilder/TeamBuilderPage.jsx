@@ -225,12 +225,14 @@ const TeamBuilderPage = () => {
           activePanel={activePanel}
           setActivePanel={() => setActivePanel("team-selector")}
         />
-        <ButtonRow
-          buttons={selectorButton}
-          direction="right"
-          isBreakpoint={true}
-          isVisible={Boolean(activePanel === "team-form")}
-        />
+        {(isMobile || isTablet) && (
+          <ButtonRow
+            buttons={selectorButton}
+            direction="right"
+            isBreakpoint={true}
+            isVisible={Boolean(activePanel === "team-form")}
+          />
+        )}
 
         <TeamBuilderSelector
           data={data}
@@ -247,12 +249,14 @@ const TeamBuilderPage = () => {
           activePanel={activePanel}
           setActivePanel={() => setActivePanel("team-form")}
         />
-        <ButtonRow
-          buttons={formButton}
-          direction="left"
-          isBreakpoint={true}
-          isVisible={Boolean(activePanel === "team-selector")}
-        />
+        {(isMobile || isTablet) && (
+          <ButtonRow
+            buttons={formButton}
+            direction="left"
+            isBreakpoint={true}
+            isVisible={Boolean(activePanel === "team-selector")}
+          />
+        )}
       </main>
     </>
   );

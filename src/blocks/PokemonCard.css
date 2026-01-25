@@ -236,6 +236,7 @@
 
   .pokemon-card__description {
     padding-bottom: 0;
+    flex-direction: column;
   }
 
   .pokemon-card__info {

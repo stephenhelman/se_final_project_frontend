@@ -136,7 +136,6 @@
 }
 
 .button_type_nav-tab-right {
-  transform-origin: center;
 }
 
 .button_type_nav-tab-left {
@@ -185,7 +184,6 @@
 .button-row_type_mobile-right {
   transform: rotate(-90deg);
   transform-origin: center;
-  flex-direction: row-reverse;
   top: 50%;
   left: -57px;
 }
@@ -220,4 +218,22 @@
 
 .button-row_type_mobile .button:only-child {
   border-radius: 12px 12px 0 0;
+}
+
+@media (max-width: 425px) {
+  .button-row_type_mobile-right {
+    left: -57px;
+  }
+
+  .button-row_type_mobile-left {
+    left: 392px;
+  }
+
+  .button-row_type_mobile-left_visible {
+    left: -34px;
+  }
+
+  .button-row_type_mobile-right_visible {
+    left: 368px;
+  }
 }

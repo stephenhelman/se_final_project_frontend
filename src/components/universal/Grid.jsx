@@ -12,7 +12,7 @@ const Grid = ({ elements, page, scrollRef }) => {
     );
   });
   return (
-    <div className="pokedex__wrapper" ref={scrollRef}>
+    <div className="grid__wrapper" ref={scrollRef}>
       <ul className={`grid`}>{content}</ul>
     </div>
   );

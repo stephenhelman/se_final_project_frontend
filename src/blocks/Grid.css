@@ -8,7 +8,7 @@
   padding: 0;
 }
 
-.grid-wrapper {
+.grid__wrapper {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
@@ -28,9 +28,16 @@
   height: 150px;
 }
 
+.grid__wrapper::-webkit-scrollbar,
+.grid::-webkit-scrollbar {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
+    row-gap: 35.5px;
+    column-gap: 14.67px;
   }
   .grid__list-item_type_pokedex {
     width: 150px;
@@ -39,13 +46,34 @@
 }
 
 @media (max-width: 768px) {
+  .grid__wrapper {
+    flex: unset;
+    width: 720px;
+    height: 590px;
+  }
+
   .grid__list-item {
     place-self: center;
+  }
+
+  .grid__list-item_type_pokedex {
+    width: 165px;
+    height: 224.5px;
   }
 }
 
 @media (max-width: 425px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid__list-item_type_team-builder {
+    width: 120px;
+    height: 142px;
+  }
+  .grid__wrapper {
+    flex: unset;
+    width: 377px;
+    height: 590px;
   }
 }

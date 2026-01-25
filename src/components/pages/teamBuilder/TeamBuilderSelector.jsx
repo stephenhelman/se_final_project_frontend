@@ -58,7 +58,7 @@ const TeamBuilderSelector = ({
 
   return (
     <section
-      className={`${activePanel === "team-selector" ? "team-builder__selector team-builder__selector_visible" : "team-builder__selector"} form`}
+      className={`${activePanel === "team-selector" ? "team-builder__selector team-builder__selector_visible" : "team-builder__selector"}`}
     >
       <Searchbar
         placeholder="Search Pokemon for your team..."
