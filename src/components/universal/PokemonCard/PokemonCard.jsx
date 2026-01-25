@@ -84,8 +84,10 @@ const PokemonCard = ({
         pokemonName={pokemon?.name}
         page={page}
       />
+
       <PokemonCardDescription pokemon={pokemon} page={page} />
-      {favoriteButton}
+
+      {page !== "evolutions" && favoriteButton}
     </article>
   );
 };

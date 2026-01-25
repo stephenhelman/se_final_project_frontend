@@ -20,7 +20,8 @@
 }
 
 .pokemon-card_type_team-builder,
-.pokemon-card_type_team-form {
+.pokemon-card_type_team-form,
+.pokemon-card_type_evolutions {
   max-width: 125px;
   max-height: 150px;
   gap: 2.5px;
@@ -40,7 +41,8 @@
 }
 
 .pokemon-card__info-wrapper_type_team-builder,
-.pokemon-card__info-wrapper_type_team-form {
+.pokemon-card__info-wrapper_type_team-form,
+.pokemon-card__info-wrapper_type_evolutions {
   gap: 0;
   flex-direction: row;
   align-items: center;
@@ -56,7 +58,8 @@
 }
 
 .pokemon-card__description_type_team-builder,
-.pokemon-card__description_type_team-form {
+.pokemon-card__description_type_team-form,
+.pokemon-card__description_type_evolutions {
   justify-content: center;
 }
 
@@ -83,7 +86,8 @@
 }
 
 .pokemon-card__name_type_team-builder,
-.pokemon-card__name_type_team-form {
+.pokemon-card__name_type_team-form,
+.pokemon-card__name_type_evolutions {
   font-size: 12px;
   line-height: 1.4;
   font-weight: 400;
@@ -106,7 +110,10 @@
 .pokemon-card__favorite-button_type_team-builder,
 .pokemon-card__id_type_team-form,
 .pokemon-card__types-row_type_team-form,
-.pokemon-card__favorite-button_type_team-form {
+.pokemon-card__favorite-button_type_team-form,
+.pokemon-card__id_type_evolutions,
+.pokemon-card__types-row_type_evolutions,
+.pokemon-card__favorite-button_type_evolutions {
   display: none;
 }
 
@@ -178,24 +185,6 @@
   border: 2px solid rgb(var(--primary-color));
 }
 
-.pokemon-card_type-team-selector {
-}
-
-.pokemon-card_type-team-selector-md {
-}
-
-.pokemon-card_type-team-selector-sm {
-}
-
-.pokemon-card_type_team-builder {
-}
-
-.pokemon-card_type_team-builder-md {
-}
-
-.pokemon-card_type_team-builder-sm {
-}
-
 @media (max-width: 1024px) {
   .pokemon-card_type_pokedex {
     padding-bottom: 10px;
@@ -216,7 +205,8 @@
   }
 
   .pokemon-card__name_type_team-builder,
-  .pokemon-card__name_type_team-form {
+  .pokemon-card__name_type_team-form,
+  .pokemon-card__name_type_evolutions {
     font-size: 12px;
     line-height: 1.4;
     font-weight: 400;

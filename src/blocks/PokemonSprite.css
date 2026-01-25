@@ -24,14 +24,14 @@
 .sprite_type_blank,
 .sprite_type_team-builder,
 .sprite_type_team-form,
-.sprite_type_evolution {
+.sprite_type_evolutions {
   max-width: 125px;
   max-height: 125px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.sprite_type_evolution {
+.sprite_type_evolutions {
   background-color: #fff;
 }
 

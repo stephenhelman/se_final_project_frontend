@@ -11,7 +11,11 @@ const useModalClose = (isOpen, onClose) => {
     };
 
     const handleOverlay = (e) => {
-      if (e.target.classList.contains("modal")) {
+      if (
+        e.target.classList.contains("modal") ||
+        (!e.target.closest(".sidebar") &&
+          !e.target.parentElement.classList.contains("button"))
+      ) {
         onClose();
       }
     };

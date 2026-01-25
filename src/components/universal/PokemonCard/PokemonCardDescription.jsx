@@ -22,9 +22,10 @@ const PokemonCardDescription = ({ pokemon, page }) => {
       <div
         className={`pokemon-card__types-row pokemon-card__types-row_type_${page}`}
       >
-        {pokemon?.types.map((type) => {
-          return <TypeChip type={type} key={type} size="small" />;
-        })}
+        {page !== "evolutions" &&
+          pokemon?.types.map((type) => {
+            return <TypeChip type={type} key={type} size="small" />;
+          })}
       </div>
     </div>
   );

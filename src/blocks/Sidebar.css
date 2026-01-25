@@ -126,6 +126,10 @@
     visibility: visible;
     left: 0;
   }
+
+  .sidebar_type_team-builder {
+    top: 24px;
+  }
 }
 
 /* Mobile  */

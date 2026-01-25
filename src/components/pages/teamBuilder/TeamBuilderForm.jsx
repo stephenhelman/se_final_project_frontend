@@ -74,7 +74,7 @@ const TeamBuilderForm = ({
 
   return (
     <form
-      className={`${activePanel === "team-form" ? "team-builder__form team-builder__form_visible" : "team-builder__form"} form`}
+      className={`team-builder__content ${activePanel === "team-form" ? "team-builder__form team-builder__form_visible" : "team-builder__form"} form`}
       onReset={handleCancel}
       onSubmit={handleSubmit}
     >

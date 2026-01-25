@@ -89,7 +89,7 @@ const PokemonDetailsPage = () => {
         handleToggleFavorite={handleToggleFavorite}
         handleNavigateBack={handleBackButtonClicked}
       />
-      <section className="pokemon-details__wrapper">
+      <section className="pokemon-details__content">
         <PokemonInfo pokemon={pokemonWithEvolution} />
         <TabsPage pokemon={pokemonWithEvolution} />
       </section>

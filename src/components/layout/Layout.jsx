@@ -15,6 +15,8 @@ const PageLayout = ({
   handleSelect,
   toggleState,
   handleReset,
+  sortOptions,
+  onFilterClose,
 }) => {
   return (
     <main className={page}>
@@ -27,6 +29,8 @@ const PageLayout = ({
         toggleState={toggleState}
         handleReset={handleReset}
         page={page}
+        sortOptions={sortOptions}
+        onClose={onFilterClose}
       />
       <ContentWrapper
         title={title}

@@ -39,6 +39,10 @@ const PokedexPage = () => {
     setShowFilterMenu((prev) => !prev);
   };
 
+  const handleCloseFilterMenu = () => {
+    setShowFilterMenu(false);
+  };
+
   const { isMobile, isTablet, isDesktop } = useWindowWidth();
 
   const { pokemon, isLoading, toggleFavorite } = useAppData();
@@ -73,6 +77,7 @@ const PokedexPage = () => {
 
   const mobileFilterButton = (
     <Button
+      key="mobile-filter"
       buttonCategory="icon"
       buttonIcon="filterIcon"
       size="lg"
@@ -135,6 +140,8 @@ const PokedexPage = () => {
         showFilterMenu={showFilterMenu}
         toggleState={toggleState}
         handleReset={handleReset}
+        sortOptions={pokemonSortOptions}
+        onFilterClose={handleCloseFilterMenu}
       >
         <Grid
           elements={pokemonElements}

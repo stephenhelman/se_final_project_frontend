@@ -6,16 +6,16 @@ import useForm from "../../../hooks/useForm";
 import useSort from "../../../hooks/useSort";
 import useScrollSaver from "../../../hooks/useScrollSaver";
 import useWindowWidth from "../../../hooks/useWindowWidth";
-import { teamSortOptions } from "../../../utils/constants";
 
 import PageLayout from "../../layout/Layout";
 import Preloader from "../../universal/Preloader";
 import TeamRowsContainer from "./TeamRowsContainer";
 import Button from "../../universal/Button";
 import SortMenu from "../../universal/SortMenu";
-
-import "../../../blocks/TeamsPage.css";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
+
+import { teamSortOptions } from "../../../utils/constants";
+import "../../../blocks/TeamsPage.css";
 
 const TeamsPage = () => {
   const [showDelete, setShowDelete] = useState(false);
@@ -66,6 +66,10 @@ const TeamsPage = () => {
     setShowFilterMenu((prev) => !prev);
   };
 
+  const handleCloseFilterMenu = () => {
+    setShowFilterMenu(false);
+  };
+
   const visibleTeams = useSort(teamList, values);
 
   if (isLoading || !teamList) return <Preloader />;
@@ -100,7 +104,7 @@ const TeamsPage = () => {
     />
   );
 
-  const mobileNewTeamButton = (
+  const newTeamButton = (
     <Button
       key="new"
       buttonCategory="icon"
@@ -112,9 +116,9 @@ const TeamsPage = () => {
 
   let buttons;
   if (isMobile || isTablet) {
-    buttons = [mobileFilterButton, mobileNewTeamButton];
+    buttons = [mobileFilterButton, newTeamButton];
   } else {
-    buttons = [sortButton, favoritesButton];
+    buttons = [sortButton, favoritesButton, newTeamButton];
   }
 
   return (
@@ -132,6 +136,8 @@ const TeamsPage = () => {
       showFilterMenu={showFilterMenu}
       toggleState={toggleState}
       handleReset={handleReset}
+      sortOptions={teamSortOptions}
+      onFilterClose={handleCloseFilterMenu}
     >
       <TeamRowsContainer
         teams={visibleTeams}

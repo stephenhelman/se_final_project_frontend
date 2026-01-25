@@ -26,14 +26,11 @@ const EvolutionNode = ({ pokemon, isSelected, onSelect, position, sizes }) => {
 
   return (
     <div className={classes} style={style} onClick={handleClick} role="button">
-      <div className="evolution__pokemon-card-wrapper">
-        <PokemonCard
-          pokemon={pokemon}
-          size="medium"
-          cardType="evolution"
-          isSelected={isSelected}
-        />
-      </div>
+      <PokemonCard
+        pokemon={pokemon}
+        page="evolutions"
+        isSelected={isSelected}
+      />
     </div>
   );
 };

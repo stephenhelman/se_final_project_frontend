@@ -4,7 +4,7 @@
   flex-shrink: 0;
 }
 
-.evolution__content {
+.evolution__wrapper {
   box-sizing: border-box;
   background-color: #fff;
   border-radius: 12px;
@@ -61,7 +61,7 @@
 }
 
 .evolution__info {
-  flex: 1;
+  flex: 2;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

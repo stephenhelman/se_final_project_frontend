@@ -93,6 +93,10 @@ const TeamBuilderPage = () => {
     setShowFilterMenu((prev) => !prev);
   };
 
+  const handleCloseFilterMenu = () => {
+    setShowFilterMenu(false);
+  };
+
   const handleCancel = () => {
     navigate("/teams");
   };
@@ -210,6 +214,8 @@ const TeamBuilderPage = () => {
           toggleState={toggleFilterState}
           handleReset={handleReset}
           page="team-builder"
+          sortOptions={pokemonSortOptions}
+          onClose={handleCloseFilterMenu}
         />
 
         <TeamBuilderForm

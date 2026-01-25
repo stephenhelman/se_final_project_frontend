@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { pokemonSortOptions } from "../../utils/constants";
 
 import TypeFiltersContent from "./filters/TypeFiltersContent";
 import Button from "../universal/Button";
@@ -7,6 +6,7 @@ import SortMenu from "../universal/SortMenu";
 import Checkbox from "../universal/Checkbox";
 
 import useWindowWidth from "../../hooks/useWindowWidth";
+import useModalClose from "../../hooks/useModalClose";
 
 import "../../blocks/Sidebar.css";
 
@@ -19,9 +19,12 @@ const Sidebar = ({
   toggleState,
   handleReset,
   page,
+  sortOptions,
+  onClose,
 }) => {
   const { isMobile, isTablet } = useWindowWidth();
   const [activeFilter, setActiveFilter] = useState("");
+  useModalClose(showFilterMenu ? true : false, onClose);
 
   useEffect(() => {
     setActiveFilter("");
@@ -85,7 +88,7 @@ const Sidebar = ({
             </div>
             {activeFilter === "sort" && (
               <SortMenu
-                sortOptions={pokemonSortOptions}
+                sortOptions={sortOptions}
                 handleSelect={handleSelect}
                 values={values}
                 isBreakpoint={Boolean(isMobile || isTablet)}
