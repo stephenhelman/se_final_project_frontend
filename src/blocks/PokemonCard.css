@@ -241,4 +241,8 @@
 
 /* Mobile  */
 @media (max-width: 425px) {
+  .pokemon-card_type_evolutions {
+    max-width: 100px;
+    max-height: 122px;
+  }
 }

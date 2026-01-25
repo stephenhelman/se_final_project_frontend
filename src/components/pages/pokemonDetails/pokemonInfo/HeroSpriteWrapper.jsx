@@ -2,7 +2,12 @@ import { parseGenderAndShiny } from "../../../../utils/utils";
 import HeroSprite from "./HeroSprite";
 import Button from "../../../universal/Button";
 
-const HeroSpriteWrapper = ({ heroSprite, onPrevClick, onNextClick }) => {
+const HeroSpriteWrapper = ({
+  heroSprite,
+  onPrevClick,
+  onNextClick,
+  isBreakpoint,
+}) => {
   const spriteDescription = parseGenderAndShiny(heroSprite.spriteName);
 
   return (
@@ -10,14 +15,14 @@ const HeroSpriteWrapper = ({ heroSprite, onPrevClick, onNextClick }) => {
       <div className="pokemon-info__sprite-nav-wrapper">
         <Button
           buttonCategory="icon"
-          size="sm"
+          size={isBreakpoint ? "md" : "sm"}
           clickFunction={onPrevClick}
           buttonIcon="prevIcon"
         />
         <HeroSprite sprite={heroSprite} />
         <Button
           buttonCategory="icon"
-          size="sm"
+          size={isBreakpoint ? "md" : "sm"}
           clickFunction={onNextClick}
           buttonIcon="nextIcon"
         />

@@ -24,7 +24,12 @@
 
 @media (max-width: 425px) {
   .info-modal__text-wrapper {
-    width: 225px;
+    position: absolute;
     white-space: unset;
+    max-width: 377px;
+    width: 100%;
+    position-area: top right;
+    top: var(--modal-y);
+    left: calc(var(--modal-x) - 24px);
   }
 }

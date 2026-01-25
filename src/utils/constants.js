@@ -41,13 +41,6 @@ export const statusFilterOptions = [
   },
 ];
 
-export const CACHE_KEYS = {
-  POKE_LIST: "poke:list:kanto151",
-  POKEDEX_INDEX: "poke:index:kanto151",
-  TYPE_LIST: "type:list",
-  TYPE_INDEX: "type:index",
-};
-
 export const mockTeams = [
   {
     id: "1",

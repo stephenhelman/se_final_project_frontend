@@ -72,6 +72,8 @@ const HoverButtons = ({
     return <div className="hover-buttons">{content}</div>;
   }
 
+  if (page === "evolutions") return;
+
   if (page !== "team-builder") {
     content = infoButton;
     return <div className="hover-buttons">{content}</div>;

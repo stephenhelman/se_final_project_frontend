@@ -10,10 +10,6 @@
   flex-direction: column;
   gap: 12px;
   width: 100%;
-  background-color: rgb(var(--gray-50));
-  border: 1px solid rgb(var(--gray-200));
-  padding: 24px;
-  border-radius: 12px;
   overflow-y: auto;
 }
 
@@ -41,6 +37,7 @@
   border-radius: 12px;
   border: 1px solid rgb(var(--gray-200));
   background-color: rgb(var(--gray-100));
+  max-width: 792px;
 }
 
 .moves__table {
@@ -106,4 +103,99 @@
 .moves__table-wrapper::-webkit-scrollbar,
 .moves__table::-webkit-scrollbar {
   display: none;
+}
+
+@media (max-width: 1024px) {
+  .moves__table-wrapper {
+    max-width: 522px;
+  }
+
+  .table__cell:nth-of-type(1) {
+    width: 60px;
+  }
+  .table__cell:nth-of-type(2) {
+    width: 100px;
+  }
+  .table__cell:nth-of-type(3) {
+    width: 80px;
+  }
+  .table__cell:nth-of-type(4) {
+    width: 80px;
+  }
+  .table__cell:nth-of-type(5) {
+    width: 60px;
+  }
+  .table__cell:nth-of-type(6) {
+    width: 60px;
+  }
+  .table__cell:nth-of-type(7) {
+    width: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .moves__table-wrapper {
+    max-width: 768px;
+  }
+
+  .table__cell:nth-of-type(1) {
+    width: 60px;
+  }
+  .table__cell:nth-of-type(2) {
+    width: 200px;
+  }
+  .table__cell:nth-of-type(3) {
+    width: 90px;
+  }
+  .table__cell:nth-of-type(4) {
+    width: 80px;
+  }
+  .table__cell:nth-of-type(5) {
+    width: 70px;
+  }
+  .table__cell:nth-of-type(6) {
+    width: 70px;
+  }
+  .table__cell:nth-of-type(7) {
+    width: 60px;
+  }
+}
+
+@media (max-width: 425px) {
+  .moves__table-wrapper {
+    max-width: 425px;
+  }
+
+  .table {
+    font-size: 11px;
+  }
+
+  .table__cell {
+    padding: 2px 3px;
+  }
+
+  .table__cell:nth-of-type(1) {
+    width: 30px;
+  }
+  .table__cell:nth-of-type(2) {
+    width: 70px;
+  }
+  .table__cell:nth-of-type(3) {
+    width: 60px;
+  }
+  .table__cell:nth-of-type(4) {
+    width: 50px;
+  }
+  .table__cell:nth-of-type(5) {
+    width: 60px;
+  }
+  .table__cell:nth-of-type(6) {
+    width: 40px;
+  }
+  .table__cell:nth-of-type(7) {
+    width: 20px;
+  }
+  .table__cell:nth-of-type(8) {
+    width: 25px;
+  }
 }

@@ -1,10 +1,10 @@
 import CardRow from "./CardRow";
 
-const TypeCard = ({ stats }) => {
+const TypeCard = ({ stats, isBreakpoint }) => {
   const content = Object.entries(stats).map((stat, index) => {
     return (
       <li key={index} className="types__list-item">
-        <CardRow stat={stat} />
+        <CardRow stat={stat} isBreakpoint={isBreakpoint} />
       </li>
     );
   });

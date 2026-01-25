@@ -15,6 +15,7 @@
 .type-chip_size_small {
   font-size: 12px;
   line-height: 1.4;
+  padding: 2px 5px;
 }
 
 .type-chip_size_large:hover {

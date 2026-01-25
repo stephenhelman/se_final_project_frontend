@@ -8,7 +8,7 @@ import CardWrapper from "./CardWrapper";
 
 import "../../../../blocks/TypesTab.css";
 
-const TypesTab = ({ pokemon }) => {
+const TypesTab = ({ pokemon, isBreakpoint }) => {
   const [activeType, setActiveType] = useState("");
   const { index } = useTypesContext();
 
@@ -30,7 +30,9 @@ const TypesTab = ({ pokemon }) => {
           Select a type to see their strength and weaknesses!
         </p>
       )}
-      {activeType && <CardWrapper type={typeToUse} />}
+      {activeType && (
+        <CardWrapper type={typeToUse} isBreakpoint={isBreakpoint} />
+      )}
     </section>
   );
 };

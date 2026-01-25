@@ -16,6 +16,7 @@
   height: 100%;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .evolution__graph {
@@ -58,6 +59,45 @@
 .evolution__graph-line-vertical {
   width: 2px;
   height: 100%;
+}
+
+.evolution__viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  background: var(--gray-50);
+  min-height: 175px;
+}
+
+.evolution__canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.evolution__canvas * {
+  pointer-events: auto;
+}
+
+.evolution__hint {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4px;
+  gap: 4px;
+}
+
+.evolution__hint-text {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .evolution__info {

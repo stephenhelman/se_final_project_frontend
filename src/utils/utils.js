@@ -1,5 +1,3 @@
-import { CACHE_KEYS } from "./constants";
-
 export const capitalize = (text) => {
   if (typeof text !== "string") return text;
   const splitText = text.split("-");
@@ -119,27 +117,6 @@ export const formatKeyTitle = (key) => {
 export const parseUrlForId = (url) => {
   const splitUrl = url.split("/");
   return splitUrl.at(-2);
-};
-
-export const resolveCacheKey = (key) => {
-  let cacheKey;
-  switch (key) {
-    case "pokemon-list":
-      cacheKey = CACHE_KEYS.POKE_LIST;
-      break;
-    case "pokemon-index":
-      cacheKey = CACHE_KEYS.POKEDEX_INDEX;
-      break;
-    case "type-list":
-      cacheKey = CACHE_KEYS.TYPE_LIST;
-      break;
-    case "type-index":
-      cacheKey = CACHE_KEYS.TYPE_INDEX;
-      break;
-    default:
-      break;
-  }
-  return cacheKey;
 };
 
 export const normalizeMachineName = (machine) => {

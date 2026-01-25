@@ -3,7 +3,7 @@
 import MovesHeader from "./MovesHeader";
 import MovesRow from "./MovesRow";
 
-const MovesTable = ({ moves, type }) => {
+const MovesTable = ({ moves, type, showInfo, isBreakpoint }) => {
   let sortedMoves;
   if (type === "level-up") {
     sortedMoves = moves.sort((a, b) => a.level - b.level);
@@ -28,7 +28,14 @@ const MovesTable = ({ moves, type }) => {
   }
 
   const moveContent = sortedMoves.map((move, i) => {
-    return <MovesRow key={i} move={move} />;
+    return (
+      <MovesRow
+        key={i}
+        move={move}
+        onShowInfo={showInfo}
+        isBreakpoint={isBreakpoint}
+      />
+    );
   });
 
   return (

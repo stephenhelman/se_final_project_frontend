@@ -5,9 +5,11 @@ import DetailsHeader from "./DetailsHeader";
 import PokemonInfo from "./pokemonInfo/PokemonInfo";
 import TabsPage from "./TabsPage";
 import Preloader from "../../universal/Preloader";
+import MobileDetailsPage from "./MobileDetailsPage";
 
 import useAppData from "../../../hooks/useAppData";
 import useGlobalError from "../../../hooks/useGlobalError";
+import useWindowWidth from "../../../hooks/useWindowWidth";
 import { updateEvolutionNodes } from "../../../utils/pokemonUtils";
 
 import "../../../blocks/PokemonDetailsPage.css";
@@ -17,6 +19,7 @@ const PokemonDetailsPage = () => {
   const { state } = useLocation();
   const { showError } = useGlobalError();
   const navigate = useNavigate();
+  const { isMobile, isTablet } = useWindowWidth();
 
   const {
     pokemon: pokemonList,
@@ -89,9 +92,19 @@ const PokemonDetailsPage = () => {
         handleToggleFavorite={handleToggleFavorite}
         handleNavigateBack={handleBackButtonClicked}
       />
+
       <section className="pokemon-details__content">
-        <PokemonInfo pokemon={pokemonWithEvolution} />
-        <TabsPage pokemon={pokemonWithEvolution} />
+        {isMobile || isTablet ? (
+          <MobileDetailsPage
+            pokemon={pokemonWithEvolution}
+            isBreakpoint={Boolean(isMobile || isTablet)}
+          />
+        ) : (
+          <>
+            <PokemonInfo pokemon={pokemonWithEvolution} />
+            <TabsPage pokemon={pokemonWithEvolution} />
+          </>
+        )}
       </section>
     </main>
   );

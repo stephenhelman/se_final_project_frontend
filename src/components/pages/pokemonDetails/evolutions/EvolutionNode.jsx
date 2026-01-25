@@ -25,7 +25,13 @@ const EvolutionNode = ({ pokemon, isSelected, onSelect, position, sizes }) => {
     : undefined;
 
   return (
-    <div className={classes} style={style} onClick={handleClick} role="button">
+    <div
+      className={classes}
+      style={style}
+      onClick={handleClick}
+      role="button"
+      data-evo-node
+    >
       <PokemonCard
         pokemon={pokemon}
         page="evolutions"

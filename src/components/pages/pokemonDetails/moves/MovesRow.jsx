@@ -3,8 +3,9 @@ import TypeChip from "../../../universal/TypeChip";
 import InfoModal from "../../../universal/InfoModal";
 
 import { normalizeMachineName, capitalize } from "../../../../utils/utils";
+import Button from "../../../universal/Button";
 
-const MovesRow = ({ move }) => {
+const MovesRow = ({ move, isBreakpoint, onShowInfo }) => {
   const [showInfo, setShowInfo] = useState(false);
   const handleShowInfoClicked = () => {
     setShowInfo((prev) => !prev);
@@ -15,7 +16,7 @@ const MovesRow = ({ move }) => {
       <td className="table__cell table__cell_body">{level}</td>
       <td className="table__cell table__cell_body">{capitalize(move.name)}</td>
       <td className="table__cell table__cell_body">
-        <TypeChip type={move.type} size="medium" />
+        <TypeChip type={move.type} size="small" />
       </td>
       <td className="table__cell table__cell_body">
         {capitalize(move.category)}
@@ -30,12 +31,21 @@ const MovesRow = ({ move }) => {
         {move.pp ? move.pp : "-"}
       </td>
       <td className="table__cell table__cell_body">
-        <InfoModal
-          clickFunction={handleShowInfoClicked}
-          showInfo={showInfo}
-          text={move.info}
-          page="moves"
-        />
+        {isBreakpoint ? (
+          <Button
+            buttonCategory="icon"
+            buttonType="button"
+            buttonIcon="infoIcon"
+            clickFunction={(e) => onShowInfo(e, move.info)}
+          />
+        ) : (
+          <InfoModal
+            clickFunction={handleShowInfoClicked}
+            showInfo={showInfo}
+            text={move.info}
+            page="moves"
+          />
+        )}
       </td>
     </tr>
   );

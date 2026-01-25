@@ -20,7 +20,7 @@ const Button = ({
         onClick={clickFunction ? clickFunction : null}
       >
         <img
-          src={size === "sprite" ? buttonIcon : icons[buttonIcon]}
+          src={size.includes("sprite") ? buttonIcon : icons[buttonIcon]}
           alt={buttonName}
           className="button__image"
         />

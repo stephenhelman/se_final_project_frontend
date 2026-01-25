@@ -106,3 +106,32 @@
     max-width: 522px;
   }
 }
+
+@media (max-width: 768px) {
+  .pokemon-details {
+    max-width: 768px;
+  }
+
+  .pokemon-details__pokemon-info {
+    max-width: 768px;
+    border: none;
+    padding: 0;
+  }
+
+  .pokemon-info__sprite-selection-wrapper {
+    width: 100%;
+  }
+
+  .pokemon-info__sprite-nav-wrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 425px) {
+  .pokemon-details {
+    max-width: 425px;
+  }
+  .pokemon-details__pokemon-info {
+    max-width: 425px;
+  }
+}

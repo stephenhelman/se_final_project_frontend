@@ -12,23 +12,27 @@
 .sprite_type_pokedex {
   max-width: 180px;
   max-height: 180px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
 }
 
-.sprite_type_blank {
-  background-color: rgb(var(--gray-200));
-}
-
+.sprite_type_pokedex,
 .sprite_type_teams,
-.sprite_type_blank,
 .sprite_type_team-builder,
 .sprite_type_team-form,
 .sprite_type_evolutions {
-  max-width: 125px;
-  max-height: 125px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.sprite_type_teams,
+.sprite_type_team-builder,
+.sprite_type_team-form,
+.sprite_type_evolutions,
+.sprite_type_blank {
+  max-width: 125px;
+  max-height: 125px;
+}
+.sprite_type_blank {
+  background-color: rgb(var(--gray-200));
 }
 
 .sprite_type_evolutions {

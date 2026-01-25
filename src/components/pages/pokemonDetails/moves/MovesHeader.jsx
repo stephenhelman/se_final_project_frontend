@@ -8,7 +8,7 @@ const MovesHeader = ({ type }) => {
       </th>
       <th className="table__cell table__cell_head">Name</th>
       <th className="table__cell table__cell_head">Type</th>
-      <th className="table__cell table__cell_head">Category</th>
+      <th className="table__cell table__cell_head">Class</th>
       <th className="table__cell table__cell_head">Accuracy</th>
       <th className="table__cell table__cell_head">Power</th>
       <th className="table__cell table__cell_head">PP</th>

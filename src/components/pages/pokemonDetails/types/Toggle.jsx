@@ -1,5 +1,3 @@
-import Button from "../../../universal/Button";
-
 const Toggle = ({ toggleFunction, activeCard }) => {
   return (
     <div className="types__toggle-wrapper">

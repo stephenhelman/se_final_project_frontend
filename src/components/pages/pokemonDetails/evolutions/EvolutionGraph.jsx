@@ -4,6 +4,8 @@ import EvolutionNode from "./EvolutionNode";
 import EvolutionConnector from "./EvolutionConnector";
 import EvolutionBranchConnector from "./EvolutionBranchConnector";
 
+import useWindowWidth from "../../../../hooks/useWindowWidth";
+
 import {
   buildLevels,
   buildLayout,
@@ -11,10 +13,18 @@ import {
 } from "../../../../utils/utils";
 import { sizes } from "../../../../utils/constants";
 
-// approx height
-
 const EvolutionGraph = ({ evolutionChain, selectedId, onSelectNode }) => {
   const { nodes = [], edges = [], path } = evolutionChain;
+  const { isMobile } = useWindowWidth();
+  const responsiveSizes = useMemo(() => {
+    return {
+      ROW_GAP: isMobile ? 25 : sizes.ROW_GAP,
+      LEVEL_GAP: isMobile ? 25 : sizes.LEVEL_GAP,
+      NODE_WIDTH: isMobile ? 100 : sizes.NODE_WIDTH,
+      NODE_HEIGHT: isMobile ? 122 : sizes.NODE_HEIGHT,
+    };
+  }, [isMobile]);
+  console.log(responsiveSizes);
   const isLinear = path === "linear";
 
   // For linear: ignore BFS levels & just sort along chain order
@@ -23,13 +33,13 @@ const EvolutionGraph = ({ evolutionChain, selectedId, onSelectNode }) => {
       isLinear
         ? [...nodes].sort((a, b) => a.id - b.id) // or your chain order
         : null,
-    [isLinear, nodes]
+    [isLinear, nodes],
   );
 
   // For branching: use your existing buildLevels
   const levels = useMemo(
     () => (!isLinear ? buildLevels(evolutionChain) : []),
-    [isLinear, evolutionChain]
+    [isLinear, evolutionChain],
   );
 
   const positions = useMemo(() => {
@@ -38,15 +48,15 @@ const EvolutionGraph = ({ evolutionChain, selectedId, onSelectNode }) => {
       const pos = {};
       linearNodes.forEach((node, index) => {
         pos[node.id] = {
-          x: index * (sizes.NODE_WIDTH + sizes.LEVEL_GAP),
+          x: index * (responsiveSizes.NODE_WIDTH + responsiveSizes.LEVEL_GAP),
           y: 0,
         };
       });
       return pos;
     }
     // branching – use level-based layout
-    return buildLayout(levels.levels, sizes);
-  }, [isLinear, linearNodes, levels]);
+    return buildLayout(levels.levels, responsiveSizes);
+  }, [isLinear, linearNodes, levels, responsiveSizes]);
 
   const edgesByParent = useMemo(() => {
     const map = new Map();
@@ -73,13 +83,14 @@ const EvolutionGraph = ({ evolutionChain, selectedId, onSelectNode }) => {
 
   const style = {
     "--graph-height": isLinear
-      ? `${sizes.NODE_HEIGHT}px`
+      ? `${responsiveSizes.NODE_HEIGHT}px`
       : `${
-          levels.levels.length * sizes.NODE_HEIGHT +
-          (levels.levels.length - 1) * sizes.ROW_GAP
+          levels.levels.length * responsiveSizes.NODE_HEIGHT +
+          (levels.levels.length - 1) * responsiveSizes.ROW_GAP
         }px`,
     "--graph-width": `${
-      longestArray * sizes.NODE_WIDTH + (longestArray - 1) * sizes.LEVEL_GAP
+      longestArray * responsiveSizes.NODE_WIDTH +
+      (longestArray - 1) * responsiveSizes.LEVEL_GAP
     }px`,
   };
 
@@ -98,7 +109,7 @@ const EvolutionGraph = ({ evolutionChain, selectedId, onSelectNode }) => {
                 position={positions[node.id]}
                 isSelected={Number(node.id) === Number(selectedId)}
                 onSelect={onSelectNode}
-                sizes={sizes}
+                sizes={responsiveSizes}
               />
             ))}
           </div>
@@ -112,7 +123,7 @@ const EvolutionGraph = ({ evolutionChain, selectedId, onSelectNode }) => {
                   position={positions[node.id]}
                   isSelected={Number(node.id) === Number(selectedId)}
                   onSelect={onSelectNode}
-                  sizes={sizes}
+                  sizes={responsiveSizes}
                 />
               ))}
             </div>
@@ -131,7 +142,7 @@ const EvolutionGraph = ({ evolutionChain, selectedId, onSelectNode }) => {
                   fromPos={positions[node.id]}
                   toPos={positions[linearNodes[idx + 1].id]}
                   orientation="horizontal"
-                  sizes={sizes}
+                  sizes={responsiveSizes}
                 />
               ))
           : [...edgesByParent.entries()].map(([fromId, edgeGroup]) => (
@@ -139,7 +150,7 @@ const EvolutionGraph = ({ evolutionChain, selectedId, onSelectNode }) => {
                 key={fromId}
                 parentPos={positions[fromId]}
                 childPositions={edgeGroup.map((e) => positions[e.toId])}
-                sizes={sizes}
+                sizes={responsiveSizes}
               />
             ))}
       </div>

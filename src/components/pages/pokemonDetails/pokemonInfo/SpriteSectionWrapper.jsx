@@ -3,7 +3,7 @@ import SpriteGallery from "./SpriteGallery";
 import { useState } from "react";
 import { buildSpriteGallery, rotateArrayLeft } from "../../../../utils/utils";
 
-const SpriteSectionWrapper = ({ pokemon }) => {
+const SpriteSectionWrapper = ({ pokemon, isBreakpoint }) => {
   const sprites = buildSpriteGallery(pokemon?.sprites);
   const [heroSprite, setHeroSprite] = useState(sprites.heroSprite);
   const [spriteGallery, setSpriteGallery] = useState(sprites.gallerySprites);
@@ -30,7 +30,7 @@ const SpriteSectionWrapper = ({ pokemon }) => {
     if (action === "thumb") {
       const galleryWithOldHero = [...spriteGallery, oldHero];
       const newSpriteIndex = galleryWithOldHero.findIndex(
-        (sprite) => sprite.id === newSprite.id
+        (sprite) => sprite.id === newSprite.id,
       );
       const newArray = rotateArrayLeft(galleryWithOldHero, newSpriteIndex);
       const newHero = newArray.shift();
@@ -62,7 +62,7 @@ const SpriteSectionWrapper = ({ pokemon }) => {
       heroSprite,
       spriteGallery,
       "thumb",
-      sprite
+      sprite,
     );
     setHeroSprite(hero);
     setSpriteGallery(gallery);
@@ -74,10 +74,12 @@ const SpriteSectionWrapper = ({ pokemon }) => {
         heroSprite={heroSprite}
         onPrevClick={handlePrevCLick}
         onNextClick={handleNextClick}
+        isBreakpoint={isBreakpoint}
       />
       <SpriteGallery
         sprites={spriteGallery}
         onThumbClick={handleSpriteThumbClick}
+        isBreakpoint={isBreakpoint}
       />
     </div>
   );
