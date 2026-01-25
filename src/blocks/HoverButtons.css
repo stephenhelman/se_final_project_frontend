@@ -7,8 +7,11 @@
 }
 
 .hover-button {
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hover-button_type_info {
@@ -19,13 +22,13 @@
 
 .hover-button_type_add {
   position: absolute;
-  right: 10px;
-  bottom: 5px;
+  right: 2.5px;
+  bottom: 2.5px;
 }
 
 .hover-button_type_delete,
 .hover-button_type_remove {
   position: absolute;
-  left: 10px;
-  bottom: 5px;
+  left: 2.5px;
+  bottom: 2.5px;
 }

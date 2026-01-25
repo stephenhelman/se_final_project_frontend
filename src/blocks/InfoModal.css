@@ -21,3 +21,10 @@
   font-size: 14px;
   line-height: 1.5;
 }
+
+@media (max-width: 425px) {
+  .info-modal__text-wrapper {
+    width: 225px;
+    white-space: unset;
+  }
+}

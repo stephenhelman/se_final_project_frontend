@@ -291,8 +291,8 @@ export const buildTeamTypes = (players) => {
   if (!players) {
     return [];
   }
-
-  const allTypes = players.flatMap((pokemon) => {
+  const playersArray = Array.from(players);
+  const allTypes = playersArray.flatMap((pokemon) => {
     return pokemon.types;
   });
 
@@ -308,4 +308,33 @@ export const getBreakpoint = (width, breakpoints) => {
   }
 
   return "desktopLarge+"; // bigger than your largest breakpoint
+};
+
+export const countOccurrences = (arr) => {
+  // Use a Map to store key-value pairs (item: count)
+  const counts = new Map();
+
+  for (const item of arr) {
+    // Get the current count or 0 if it doesn't exist, then increment it
+    counts.set(item.name, (counts.get(item.name) || 0) + 1);
+  }
+
+  // You can return the Map directly or convert it to a plain object
+  return Object.fromEntries(counts);
+};
+
+export const updatePokemonObjectIfOnTeam = (team, pokemon) => {
+  const teamCount = countOccurrences(team);
+  if (teamCount[pokemon.name]) {
+    return {
+      ...pokemon,
+      isOnTeam: true,
+      count: teamCount[pokemon.name],
+    };
+  }
+  return {
+    ...pokemon,
+    isOnTeam: false,
+    count: 0,
+  };
 };

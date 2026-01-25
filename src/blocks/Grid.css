@@ -1,0 +1,51 @@
+.grid {
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 31.6px;
+  column-gap: 29px;
+  margin: 0;
+  padding: 0;
+}
+
+.grid-wrapper {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.grid__list-item {
+  list-style-type: none;
+}
+
+.grid__list-item_type_pokedex {
+  width: 180px;
+  height: 253px;
+}
+
+.grid__list-item_type_team-builder {
+  width: 125px;
+  height: 150px;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .grid__list-item_type_pokedex {
+    width: 150px;
+    height: 222px;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid__list-item {
+    place-self: center;
+  }
+}
+
+@media (max-width: 425px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

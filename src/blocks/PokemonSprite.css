@@ -4,34 +4,44 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  border-top-right-radius: 12px;
-  border-top-left-radius: 12px;
   width: 100%;
   height: 100%;
+  border-radius: 11px;
 }
 
 .sprite_type_pokedex {
   max-width: 180px;
   max-height: 180px;
-}
-
-.sprite_type_teams,
-.sprite_type_blank {
-  border-radius: 12px;
-  max-width: 125px;
-  max-height: 125px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .sprite_type_blank {
   background-color: rgb(var(--gray-200));
 }
 
+.sprite_type_teams,
+.sprite_type_blank,
 .sprite_type_team-builder,
+.sprite_type_team-form,
 .sprite_type_evolution {
   max-width: 125px;
   max-height: 125px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .sprite_type_evolution {
   background-color: #fff;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+}
+
+@media (max-width: 768px) {
+}
+
+/* Mobile  */
+@media (max-width: 425px) {
 }

@@ -1,19 +1,21 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import useForm from "../../../hooks/useForm";
 import useSort from "../../../hooks/useSort";
-import useScrollSaver from "../../../hooks/useScrollSaver";
 import useWindowWidth from "../../../hooks/useWindowWidth";
-import { pokemonSortOptions } from "../../../utils/constants";
-import Button from "../../universal/Button";
+import useScrollSaver from "../../../hooks/useScrollSaver";
+import useAppData from "../../../hooks/useAppData";
 
+import Button from "../../universal/Button";
 import PageLayout from "../../layout/Layout";
 import Preloader from "../../universal/Preloader";
-import PokedexGrid from "./PokedexGrid";
-
-import "../../../blocks/Pokedex.css";
-import useAppData from "../../../hooks/useAppData";
+import Grid from "../../universal/Grid";
 import SortMenu from "../../universal/SortMenu";
+import PokemonCard from "../../universal/PokemonCard/PokemonCard";
+
+import { pokemonSortOptions } from "../../../utils/constants";
+import "../../../blocks/Pokedex.css";
 
 const PokedexPage = () => {
   const {
@@ -33,19 +35,21 @@ const PokedexPage = () => {
 
   const [showFilterMenu, setShowFilterMenu] = useState(false);
 
-  const handleShoeFilterMenuClicked = () => {
+  const handleShowFilterMenuClicked = () => {
     setShowFilterMenu((prev) => !prev);
   };
 
-  const { scrollRef, saveScrollPosition } = useScrollSaver("pokedex-scroll");
+  const { isMobile, isTablet, isDesktop } = useWindowWidth();
 
-  const { isMobile, isTablet } = useWindowWidth();
-
-  const { pokemon, isLoading } = useAppData();
+  const { pokemon, isLoading, toggleFavorite } = useAppData();
 
   const visiblePokemon = useSort(pokemon, values);
 
-  if (isLoading || !pokemon) return <Preloader />;
+  const navigate = useNavigate();
+
+  const { scrollRef, saveScrollPosition } = useScrollSaver(`pokedex-scroll`);
+
+  if (isLoading /* || !pokemon */) return <Preloader />;
 
   const favoritesButton = (
     <Button
@@ -72,7 +76,7 @@ const PokedexPage = () => {
       buttonCategory="icon"
       buttonIcon="filterIcon"
       size="lg"
-      clickFunction={handleShoeFilterMenuClicked}
+      clickFunction={handleShowFilterMenuClicked}
     />
   );
 
@@ -83,10 +87,42 @@ const PokedexPage = () => {
     buttons = [sortButton, favoritesButton];
   }
 
+  let size;
+  if (isDesktop || isTablet) {
+    size = "medium";
+  } else if (isMobile) {
+    size = "small";
+  } else {
+    size = "large";
+  }
+
+  const pokemonElements = visiblePokemon.map((element, i) => {
+    const handleInfoClick = () => {
+      saveScrollPosition();
+      navigate(`/pokemon/${element.id}`, {
+        state: { from: location.pathname },
+      });
+    };
+    const handleToggleFavorite = () => {
+      toggleFavorite(element.id);
+    };
+
+    return (
+      <PokemonCard
+        pokemon={element}
+        key={i}
+        onInfo={handleInfoClick}
+        onFavorite={handleToggleFavorite}
+        page="pokedex"
+        isMobile={isMobile}
+        isTablet={isTablet}
+      />
+    );
+  });
+
   return (
     <>
       <PageLayout
-        mainClass="pokedex"
         filterFunction={toggleInArray}
         title="Pokedex"
         page="pokedex"
@@ -100,12 +136,11 @@ const PokedexPage = () => {
         toggleState={toggleState}
         handleReset={handleReset}
       >
-        <PokedexGrid
-          cardType="pokedex"
-          size="large"
-          pokemon={visiblePokemon}
+        <Grid
+          elements={pokemonElements}
+          page="pokedex"
+          size={size}
           scrollRef={scrollRef}
-          saveScrollPosition={saveScrollPosition}
         />
       </PageLayout>
     </>

@@ -77,7 +77,6 @@ const useTeamsData = (pokemonList = []) => {
             .map((id) => pokemonList.find((p) => p.id === id))
             .filter(Boolean),
           types: buildTeamTypes({
-            ...savedTeam,
             players: savedTeam.players
               .map((id) => pokemonList.find((p) => p.id === id))
               .filter(Boolean),
@@ -123,7 +122,6 @@ const useTeamsData = (pokemonList = []) => {
             .map((id) => pokemonList.find((p) => p.id === id))
             .filter(Boolean),
           types: buildTeamTypes({
-            ...savedTeam,
             players: savedTeam.players
               .map((id) => pokemonList.find((p) => p.id === id))
               .filter(Boolean),

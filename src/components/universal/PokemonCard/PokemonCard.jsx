@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useAppData from "../../../hooks/useAppData";
 
 import PokemonSprite from "./PokemonSprite";
 import PokemonCardDescription from "./PokemonCardDescription";
@@ -9,17 +8,17 @@ import Button from "../Button";
 import "../../../blocks/PokemonCard.css";
 const PokemonCard = ({
   pokemon,
-  cardType,
-  size,
   lengthOfTeam,
   onTeamChange,
   isSelected = false,
-  handleInfoClick,
+  onInfo,
+  onFavorite,
+  page,
+  isMobile,
+  isTablet,
 }) => {
   const [isHovering, setIsHovering] = useState(false);
   const mainPokemonType = pokemon?.types[0];
-
-  const { toggleFavorite } = useAppData();
 
   const handleMouseEnter = () => {
     setIsHovering(true);
@@ -27,10 +26,6 @@ const PokemonCard = ({
 
   const handleMouseLeave = () => {
     setIsHovering(false);
-  };
-
-  const handleToggleFavoriteLocalPokemon = () => {
-    toggleFavorite(pokemon.id);
   };
 
   const addToTeam = () => {
@@ -42,92 +37,54 @@ const PokemonCard = ({
   };
 
   const favoriteButton = (
-    <div className="pokemon-card__favorite-button">
+    <div
+      className={`pokemon-card__favorite-button pokemon-card__favorite-button_type_${page}`}
+    >
       <Button
         buttonCategory="icon"
         buttonType="button"
         buttonIcon={pokemon.isFavorite ? "favoriteIconActive" : "favoriteIcon"}
-        clickFunction={handleToggleFavoriteLocalPokemon}
+        clickFunction={onFavorite}
       />
     </div>
   );
 
-  if (
-    cardType === "team-builder" ||
-    cardType === "team-builder-form" ||
-    cardType === "evolution"
-  ) {
-    return (
-      <article
-        className={`pokemon-card  pokemon-card_type_small ${
-          cardType === "evolution" && isSelected
-            ? "pokemon-card_type_small-selected"
-            : ""
-        }`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {cardType === "team-builder" && isHovering && (
-          <HoverButtons
-            cardType={cardType}
-            navigate={handleInfoClick}
-            remove={removeFromTeam}
-            increment={addToTeam}
-            decrement={removeFromTeam}
-            pokemonCount={pokemon.count}
-            lengthOfTeam={lengthOfTeam}
-          />
-        )}
-        {cardType === "team-builder-form" && isHovering && (
-          <HoverButtons
-            cardType={cardType}
-            navigate={handleInfoClick}
-            remove={removeFromTeam}
-            increment={addToTeam}
-            decrement={removeFromTeam}
-            pokemonCount={pokemon.count}
-            lengthOfTeam={lengthOfTeam}
-          />
-        )}
-        <PokemonSprite
-          source={pokemon?.sprite}
-          pokemonName={pokemon?.name}
-          cardType={cardType}
-        />
-        {size !== "small" && (
-          <PokemonCardDescription
-            pokemon={pokemon}
-            cardType="small"
-            size={size}
-            mainPokemonType={mainPokemonType}
-          />
-        )}
-      </article>
-    );
-  }
-
   return (
     <article
-      className={`pokemon-card  pokemon-card_type_large`}
+      className={`pokemon-card  pokemon-card_type_${page} pokemon-card_type_${mainPokemonType} ${isSelected ? "pokemon-card_selected" : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {isHovering && (
-        <HoverButtons navigate={handleInfoClick} cardType={cardType} />
+      {isMobile || isTablet ? (
+        <HoverButtons
+          page={page}
+          navigate={onInfo}
+          pokemonCount={pokemon.count}
+          remove={removeFromTeam}
+          decrement={removeFromTeam}
+          increment={addToTeam}
+          lengthOfTeam={lengthOfTeam}
+        />
+      ) : (
+        isHovering && (
+          <HoverButtons
+            page={page}
+            navigate={onInfo}
+            pokemonCount={pokemon.count}
+            remove={removeFromTeam}
+            decrement={removeFromTeam}
+            increment={addToTeam}
+            lengthOfTeam={lengthOfTeam}
+          />
+        )
       )}
+
       <PokemonSprite
         source={pokemon?.sprite}
         pokemonName={pokemon?.name}
-        cardType={cardType}
+        page={page}
       />
-      {size !== "small" && (
-        <PokemonCardDescription
-          pokemon={pokemon}
-          cardType="large"
-          size={size}
-          mainPokemonType={mainPokemonType}
-        />
-      )}
+      <PokemonCardDescription pokemon={pokemon} page={page} />
       {favoriteButton}
     </article>
   );

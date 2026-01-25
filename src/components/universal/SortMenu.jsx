@@ -1,7 +1,13 @@
 import Button from "./Button";
 import { useState } from "react";
 
-const SortMenu = ({ sortOptions, handleSelect, values, isBreakpoint }) => {
+const SortMenu = ({
+  sortOptions,
+  handleSelect,
+  values,
+  isBreakpoint,
+  page,
+}) => {
   const [sortMenuOpen, setSortMenuOpen] = useState(false);
 
   const handleOpenMenu = () => {
@@ -13,9 +19,11 @@ const SortMenu = ({ sortOptions, handleSelect, values, isBreakpoint }) => {
     setSortMenuOpen(false);
   };
 
-  if (isBreakpoint) {
+  if (isBreakpoint || page === "team-builder") {
     return (
-      <div className="sort-menu__options">
+      <div
+        className={`sort-menu__options ${page === "team-builder" ? "sort-menu__options_team-builder" : ""}`}
+      >
         {sortOptions.map((option) => (
           <button
             key={option.id}

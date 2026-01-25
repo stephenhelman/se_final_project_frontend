@@ -34,6 +34,13 @@
   flex-direction: column;
 }
 
+.sort-menu__options_team-builder {
+  position: relative;
+  top: unset;
+  right: unset;
+  width: 100%;
+}
+
 .sort-menu__item {
   border: 1px solid rgb(var(--gray-300));
   background-color: rgb(var(--gray-200));

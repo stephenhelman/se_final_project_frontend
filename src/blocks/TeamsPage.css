@@ -6,7 +6,7 @@
   background-color: rgb(var(--gray-100));
   display: flex;
   flex-direction: row;
-  gap: 24px;
+  gap: 12px;
   padding: 24px;
   flex: 1;
   min-height: 0;
@@ -112,4 +112,23 @@
   line-height: 1.5;
   font-weight: 400;
   color: rgb(var(--gray-600));
+}
+
+@media (max-width: 1024px) {
+  .teams__team-row {
+    padding: 10px 12px;
+  }
+
+  .teams__list-item {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* Mobile  */
+@media (max-width: 425px) {
+  .teams__team-players {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: row;
+  }
 }

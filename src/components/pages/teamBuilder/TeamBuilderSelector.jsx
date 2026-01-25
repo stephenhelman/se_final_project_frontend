@@ -1,42 +1,29 @@
+import { useNavigate } from "react-router-dom";
+
 import Searchbar from "../../universal/SearchBar";
-import PokedexGrid from "../pokedex/PokedexGrid";
+import Grid from "../../universal/Grid";
 import Button from "../../universal/Button";
-import useForm from "../../../hooks/useForm";
+
 import useSort from "../../../hooks/useSort";
-import { countOccurrences } from "../../../utils/test";
+
+import PokemonCard from "../../universal/PokemonCard/PokemonCard";
 
 const TeamBuilderSelector = ({
+  values,
+  handleChange,
   data,
   selectedPokemon,
   onTeamChange,
-  sortOptions,
+  buttons,
   scrollRef,
   saveScrollPosition,
+  activePanel,
+  isMobile,
+  isTablet,
 }) => {
-  const { values, handleChange, toggleState, handleSelect } = useForm({
-    selectedTypes: [],
-    searchTerm: "",
-    sortBy: "id-asc",
-    favoritesOnly: false,
-  });
+  const navigate = useNavigate();
 
-  const updatePokemonObjectIfOnTeam = (team, pokemon) => {
-    const teamCount = countOccurrences(team);
-    if (teamCount[pokemon.name]) {
-      return {
-        ...pokemon,
-        isOnTeam: true,
-        count: teamCount[pokemon.name],
-      };
-    }
-    return {
-      ...pokemon,
-      isOnTeam: false,
-      count: 0,
-    };
-  };
-
-  let pokemon;
+  let pokemon = data;
 
   const clearPokemonTeam = () => {
     pokemon = data.map((item) => {
@@ -46,23 +33,38 @@ const TeamBuilderSelector = ({
     onTeamChange("clear", { name: "players" });
   };
 
-  pokemon = data.map((item) => {
-    return selectedPokemon.length
-      ? updatePokemonObjectIfOnTeam(selectedPokemon, item)
-      : item;
-  });
-
   const visiblePokemon = useSort(pokemon, values);
 
+  const pokemonElements = visiblePokemon.map((element, index) => {
+    const handleInfoClick = () => {
+      saveScrollPosition();
+      navigate(`/pokemon/${element.id}`, {
+        state: { from: location.pathname },
+      });
+    };
+    return (
+      <PokemonCard
+        pokemon={element}
+        key={index}
+        lengthOfTeam={selectedPokemon.length}
+        onTeamChange={onTeamChange}
+        onInfo={handleInfoClick}
+        page="team-builder"
+        isMobile={isMobile}
+        isTablet={isTablet}
+      />
+    );
+  });
+
   return (
-    <section className="team-builder__selector">
+    <section
+      className={`${activePanel === "team-selector" ? "team-builder__selector team-builder__selector_visible" : "team-builder__selector"} form`}
+    >
       <Searchbar
         placeholder="Search Pokemon for your team..."
         values={values}
         handleChange={handleChange}
-        sortOptions={sortOptions}
-        handleSelect={handleSelect}
-        toggleState={toggleState}
+        buttons={buttons}
       />
       <header className="team-builder__selector-header">
         <h3 className="team-builder__selector-title">
@@ -75,14 +77,10 @@ const TeamBuilderSelector = ({
           clickFunction={clearPokemonTeam}
         />
       </header>
-      <PokedexGrid
-        pokemon={visiblePokemon}
-        onTeamChange={onTeamChange}
-        lengthOfTeam={selectedPokemon.length}
-        cardType="team-builder"
-        size="medium"
+      <Grid
+        elements={pokemonElements}
+        page="team-builder"
         scrollRef={scrollRef}
-        saveScrollPosition={saveScrollPosition}
       />
     </section>
   );

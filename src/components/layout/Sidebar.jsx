@@ -18,6 +18,7 @@ const Sidebar = ({
   handleSelect,
   toggleState,
   handleReset,
+  page,
 }) => {
   const { isMobile, isTablet } = useWindowWidth();
   const [activeFilter, setActiveFilter] = useState("");
@@ -27,7 +28,7 @@ const Sidebar = ({
   }, [showFilterMenu]);
 
   const handleClearFilters = () => {
-    if (isMobile || isTablet) {
+    if (isMobile || isTablet || page === "team-builder") {
       return handleReset(["selectedTypes", "favoritesOnly", "sortBy"]);
     }
     clearArray({ name: "selectedTypes" });
@@ -40,9 +41,11 @@ const Sidebar = ({
     setActiveFilter(filter);
   };
 
-  if (isMobile || isTablet) {
+  if (isMobile || isTablet || page === "team-builder") {
     return (
-      <section className={`sidebar ${showFilterMenu ? "sidebar_visible" : ""}`}>
+      <section
+        className={`sidebar sidebar_type_${page} ${showFilterMenu ? `sidebar_visible sidebar_visible_${page}` : ""}`}
+      >
         <div className="sidebar__header">
           <h4 className="sidebar__title">Filters</h4>
           <Button
@@ -86,6 +89,7 @@ const Sidebar = ({
                 handleSelect={handleSelect}
                 values={values}
                 isBreakpoint={Boolean(isMobile || isTablet)}
+                page={page}
               />
             )}
           </li>
@@ -102,7 +106,9 @@ const Sidebar = ({
     );
   }
   return (
-    <section className={`sidebar ${showFilterMenu ? "sidebar_visible" : ""}`}>
+    <section
+      className={`sidebar sidebar_type_${page} ${showFilterMenu ? `sidebar_visible sidebar_visible_${page}` : ""}`}
+    >
       <div className="sidebar__header">
         <h4 className="sidebar__title">Filters</h4>
         <Button

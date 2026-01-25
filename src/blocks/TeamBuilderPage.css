@@ -1,4 +1,5 @@
 .team-builder {
+  position: relative;
   box-sizing: border-box;
   width: 100%;
   max-width: 1360px;
@@ -12,9 +13,10 @@
 }
 
 .team-builder__form {
-  padding: 0 12px;
+  padding: 0 12px 0 0;
   border-right: 1px solid rgb(var(--gray-300));
   flex: 1;
+  max-width: 508px;
 }
 
 .form {
@@ -75,7 +77,7 @@
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: auto;
   row-gap: 20px;
-  column-gap: 40px;
+  column-gap: 54.5px;
   flex: 1;
 }
 
@@ -83,6 +85,7 @@
   list-style-type: none;
   width: 125px;
   height: 150px;
+  place-self: center;
 }
 
 .form__blank-card {
@@ -135,4 +138,54 @@
   line-height: 1.3;
   color: rgb(var(--gray-900));
   margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .team-builder {
+    max-width: 1024px;
+  }
+  .team-builder__form {
+    max-width: 420px;
+  }
+
+  .form__team {
+    column-gap: 10.5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .team-builder {
+    max-width: 768px;
+    padding: 0;
+  }
+
+  .team-builder__form,
+  .team-builder__selector {
+    max-width: 720px;
+    flex: 1;
+    position: absolute;
+    width: 100%;
+    padding: 24px;
+    visibility: hidden;
+    transition: all 1s ease-in-out;
+  }
+
+  .team-builder__form {
+    border: none;
+    left: -768px;
+  }
+
+  .team-builder__selector {
+    right: -768px;
+  }
+
+  .team-builder__selector_visible {
+    visibility: visible;
+    right: 0;
+  }
+
+  .team-builder__form_visible {
+    visibility: visible;
+    left: 0;
+  }
 }

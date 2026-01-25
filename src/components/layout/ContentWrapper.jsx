@@ -6,7 +6,6 @@ const ContentWrapper = ({
   page,
   searchPlaceholder,
   values,
-  handleSelect,
   buttons,
   handleChange,
 }) => {
@@ -18,7 +17,6 @@ const ContentWrapper = ({
         values={values}
         buttons={buttons}
         handleChange={handleChange}
-        handleSelect={handleSelect}
       />
       {children}
     </section>

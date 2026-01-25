@@ -6,6 +6,58 @@
   border-radius: 12px;
   border: 1px solid rgb(var(--gray-300));
   position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pokemon-card_type_pokedex {
+  max-width: 180px;
+  max-height: 253px;
+  gap: 5px;
+  padding-bottom: 12px;
+}
+
+.pokemon-card_type_team-builder,
+.pokemon-card_type_team-form {
+  max-width: 125px;
+  max-height: 150px;
+  gap: 2.5px;
+  padding-bottom: 2.5px;
+}
+
+.pokemon-card__info-wrapper {
+  box-sizing: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  max-width: 180px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding: 0 8px;
+}
+
+.pokemon-card__info-wrapper_type_team-builder,
+.pokemon-card__info-wrapper_type_team-form {
+  gap: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.pokemon-card__description {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pokemon-card__description_type_team-builder,
+.pokemon-card__description_type_team-form {
+  justify-content: center;
 }
 
 .pokemon-card__favorite-button {
@@ -18,37 +70,27 @@
   background-color: rgb(var(--highlight-color));
 }
 
-.pokemon-card__sprite {
-  width: 100%;
-  height: 100%;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  overflow: hidden;
-}
-
-.pokemon-card__description {
-  box-sizing: border-box;
-  border-bottom-left-radius: 11px;
-  border-bottom-right-radius: 11px;
-  width: 100%;
-}
-
-.pokemon-card__info {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .pokemon-card__name,
 .pokemon-card__id {
   margin: 0;
   padding: 0;
 }
 
+.pokemon-card__name {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.pokemon-card__name_type_team-builder,
+.pokemon-card__name_type_team-form {
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
 .pokemon-card__id {
   font-size: 14px;
-  font-weight: 400;
   line-height: 1.5;
   color: rgb(var(--gray-700));
 }
@@ -57,8 +99,17 @@
   display: flex;
   flex-direction: row;
   gap: 4px;
-  padding: 0 8px;
 }
+
+.pokemon-card__id_type_team-builder,
+.pokemon-card__types-row_type_team-builder,
+.pokemon-card__favorite-button_type_team-builder,
+.pokemon-card__id_type_team-form,
+.pokemon-card__types-row_type_team-form,
+.pokemon-card__favorite-button_type_team-form {
+  display: none;
+}
+
 .pokemon-card__hover-buttons {
   width: calc(100% - 10px);
   display: flex;
@@ -123,62 +174,66 @@
   background-color: rgba(var(--type-fairy), 0.8);
 }
 
-/* Styles for the Pokemon card on the pokedex*/
-.pokemon-card_type_large {
-  max-width: 180px;
-  max-height: 253px;
-  width: 100%;
-  height: 100%;
-}
-
-.pokemon-card__description_type_large {
-  max-width: 180px;
-  padding: 5px 0 12px 0;
-}
-
-.pokemon-card__info_type_large {
-  max-width: 180px;
-  padding: 0 8px;
-  margin-bottom: 5px;
-}
-
-.pokemon-card__name_type_large {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.3;
-  color: rgb(var(--gray-900));
-}
-
-/* Styles for Team Builder okemon Cards, and all medium sized cards*/
-.pokemon-card_type_small {
-  max-width: 125px;
-  max-height: 150px;
-  width: 100%;
-  height: 100%;
-}
-
-.pokemon-card__description_type_small {
-  max-width: 125px;
-  padding: 4px 0;
-}
-
-.pokemon-card__info_type_small {
-  max-width: 125px;
-  justify-content: center;
-}
-
-.pokemon-card__name_type_small {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.4;
-  color: rgb(var(--gray-900));
-}
-
-.pokemon-card_type_small-selected {
+.pokemon-card_selected {
   border: 2px solid rgb(var(--primary-color));
 }
 
+.pokemon-card_type-team-selector {
+}
+
+.pokemon-card_type-team-selector-md {
+}
+
+.pokemon-card_type-team-selector-sm {
+}
+
+.pokemon-card_type_team-builder {
+}
+
+.pokemon-card_type_team-builder-md {
+}
+
+.pokemon-card_type_team-builder-sm {
+}
+
+@media (max-width: 1024px) {
+  .pokemon-card_type_pokedex {
+    padding-bottom: 10px;
+  }
+
+  .pokemon-card__info-wrapper {
+    max-width: 150px;
+    padding: 0 4px;
+  }
+
+  .pokemon-card__name {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .pokemon-card__id {
+    font-size: 12px;
+  }
+
+  .pokemon-card__name_type_team-builder,
+  .pokemon-card__name_type_team-form {
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+}
+
 @media (max-width: 768px) {
+  .pokemon-card_type_pokedex {
+    width: 165px;
+    height: 224.5px;
+    padding-bottom: 5px;
+  }
+
+  .pokemon-card__info-wrapper {
+    max-width: 165px;
+  }
+
   .pokemon-card__description {
     padding-bottom: 0;
   }

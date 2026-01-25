@@ -79,14 +79,16 @@ const Navbar = () => {
           </li>
           {isMobile || isTablet ? mobileContent : desktopContent}
         </ul>
-        <NavMenu
-          showAuthMenu={showAuthMenu}
-          isAuthenticated={isAuthenticated}
-          handleLogout={handleLogout}
-          handleRegister={() => handleShowModal("register")}
-          handleLogin={() => handleShowModal("login")}
-          reset={() => setShowAuthMenu(false)}
-        />
+        {(isMobile || isTablet) && (
+          <NavMenu
+            showAuthMenu={showAuthMenu}
+            isAuthenticated={isAuthenticated}
+            handleLogout={handleLogout}
+            handleRegister={() => handleShowModal("register")}
+            handleLogin={() => handleShowModal("login")}
+            reset={() => setShowAuthMenu(false)}
+          />
+        )}
       </header>
       {activeModal === "login" && (
         <LoginModal

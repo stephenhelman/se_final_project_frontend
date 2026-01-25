@@ -3,7 +3,6 @@ import ContentWrapper from "./ContentWrapper";
 
 const PageLayout = ({
   children,
-  mainClass,
   filterFunction,
   title,
   page,
@@ -18,7 +17,7 @@ const PageLayout = ({
   handleReset,
 }) => {
   return (
-    <main className={mainClass}>
+    <main className={page}>
       <Sidebar
         filterFunction={filterFunction}
         clearArray={clearArray}
@@ -27,6 +26,7 @@ const PageLayout = ({
         handleSelect={handleSelect}
         toggleState={toggleState}
         handleReset={handleReset}
+        page={page}
       />
       <ContentWrapper
         title={title}

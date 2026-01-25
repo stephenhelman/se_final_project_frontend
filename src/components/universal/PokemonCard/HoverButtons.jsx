@@ -2,7 +2,7 @@ import Button from "../Button";
 import "../../../blocks/HoverButtons.css";
 
 const HoverButtons = ({
-  cardType,
+  page,
   pokemonCount,
   remove,
   decrement,
@@ -17,6 +17,7 @@ const HoverButtons = ({
         buttonCategory="icon"
         clickFunction={navigate}
         buttonIcon="infoIcon"
+        size="sm"
       />
     </div>
   );
@@ -27,6 +28,7 @@ const HoverButtons = ({
         buttonCategory="icon"
         clickFunction={increment}
         buttonIcon="addIcon"
+        size="sm"
       />
     </div>
   );
@@ -37,6 +39,7 @@ const HoverButtons = ({
         buttonCategory="icon"
         clickFunction={remove}
         buttonIcon="deleteIcon"
+        size="sm"
       />
     </div>
   );
@@ -47,6 +50,7 @@ const HoverButtons = ({
         buttonCategory="icon"
         clickFunction={decrement}
         buttonIcon="removeIcon"
+        size="sm"
       />
     </div>
   );
@@ -58,7 +62,7 @@ const HoverButtons = ({
 
   let content;
 
-  if (cardType === "team-builder-form") {
+  if (page === "team-form") {
     content = (
       <>
         {infoButton}
@@ -68,7 +72,7 @@ const HoverButtons = ({
     return <div className="hover-buttons">{content}</div>;
   }
 
-  if (cardType !== "team-builder") {
+  if (page !== "team-builder") {
     content = infoButton;
     return <div className="hover-buttons">{content}</div>;
   }
@@ -120,9 +124,6 @@ const HoverButtons = ({
     }
   }
 
-  if (cardType !== "team-builder") {
-    content = infoButton;
-  }
   return <div className="hover-buttons">{content}</div>;
 };
 
