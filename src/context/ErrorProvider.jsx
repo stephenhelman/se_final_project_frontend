@@ -1,4 +1,3 @@
-// components/context/ErrorProvider.jsx
 import { createContext, useState, useCallback } from "react";
 import ErrorModal from "../components/universal/ErrorModal";
 import {

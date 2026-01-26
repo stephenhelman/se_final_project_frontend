@@ -26,7 +26,6 @@ const useTeamsInfo = () => {
 
     setIsLoading(true);
 
-    //get team information from api
     const hydratedWithPokemonInfo = mockTeams.map((team) => {
       return {
         ...team,

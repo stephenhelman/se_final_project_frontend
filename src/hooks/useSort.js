@@ -7,7 +7,7 @@ const useSort = (
     searchTerm = "",
     sortBy = "id",
     favoritesOnly = false,
-  } = {}
+  } = {},
 ) => {
   const normalizedSearch = searchTerm.trim().toLowerCase();
 
@@ -16,14 +16,12 @@ const useSort = (
 
     let result = itemList;
 
-    // 1) Filter by selected types
     if (selectedTypes.length > 0) {
       result = result.filter((pokemon) =>
-        pokemon.types?.some((t) => selectedTypes.includes(t))
+        pokemon.types?.some((t) => selectedTypes.includes(t)),
       );
     }
 
-    // 2) Filter by search term (name or id)
     if (normalizedSearch) {
       result = result.filter((pokemon) => {
         const nameMatch = pokemon.name
@@ -37,12 +35,10 @@ const useSort = (
       });
     }
 
-    // 3) Filter favorites only
     if (favoritesOnly) {
       result = result.filter((pokemon) => pokemon.isFavorite);
     }
 
-    // 4) Sort
     const sorted = [...result].sort((a, b) => {
       switch (sortBy) {
         case "name-asc": {

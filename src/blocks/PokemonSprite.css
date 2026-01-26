@@ -38,14 +38,3 @@
 .sprite_type_evolutions {
   background-color: #fff;
 }
-
-/* Tablet */
-@media (max-width: 1024px) {
-}
-
-@media (max-width: 768px) {
-}
-
-/* Mobile  */
-@media (max-width: 425px) {
-}

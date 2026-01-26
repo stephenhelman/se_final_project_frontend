@@ -80,7 +80,7 @@ const filterFlavorText = (flavorTextArray, type) => {
         .filter((text) => {
           return text.language.name === "en";
         })
-        .map((text) => normalizeFlavorText(text[type]))
+        .map((text) => normalizeFlavorText(text[type])),
     ),
   ];
 };
@@ -113,14 +113,14 @@ const pickSprites = (spritesObject) => {
   return Object.entries(spritesObject).slice(0, 7);
 };
 
-const buildSPritesObject = (spriteEntry, index) => {
+const buildSPritesObject = (spriteEntry, i) => {
   if (spriteEntry[1] === null) {
     return {
       id: null,
     };
   }
   return {
-    id: index,
+    id: i,
     spriteName: spriteEntry[0],
     url: spriteEntry[1],
   };
@@ -129,8 +129,8 @@ const buildSPritesObject = (spriteEntry, index) => {
 const buildSpritesArray = (spritesData) => {
   const sprites = pickSprites(spritesData);
   const spritesArray = [];
-  sprites.forEach((sprite, index) => {
-    const spriteObject = buildSPritesObject(sprite, index);
+  sprites.forEach((sprite, i) => {
+    const spriteObject = buildSPritesObject(sprite, i);
     spritesArray.push(spriteObject);
   });
   return spritesArray.filter((sprite) => sprite.id !== null);
@@ -171,7 +171,6 @@ const toEdge = (fromSpecies, toSpecies, evoDetail) => {
       }
     : null;
 
-  // Optional “method” label for UI grouping
   let method = "other";
   if (trigger === "use-item" && item) method = "stone";
   if (trigger === "level-up") method = "level-up";
@@ -199,8 +198,7 @@ const parseEvolutionChain = (evoChainJson) => {
 
   const findValidRoot = (chainNode) => {
     const id = getIdFromUrl(chainNode.species.url);
-    if (id <= 151) return chainNode; // valid Gen1 root
-    // otherwise search children
+    if (id <= 151) return chainNode;
     for (const child of chainNode.evolves_to) {
       const valid = findValidRoot(child);
       if (valid) return valid;
@@ -290,7 +288,7 @@ const updateMoveObject = (moveObject, api) => {
         };
       })
       .catch((err) =>
-        console.log("Error getting single move information", err)
+        console.log("Error getting single move information", err),
       );
   }
   if (moveObject.method === "machine") {
@@ -319,12 +317,12 @@ const updateMoveObject = (moveObject, api) => {
             return moveObject;
           })
           .catch((err) =>
-            console.log("Error retrieving machine move info", err)
+            console.log("Error retrieving machine move info", err),
           );
       })
       .then((finalMoveObject) => finalMoveObject)
       .catch((err) =>
-        console.log("Error getting single move information", err)
+        console.log("Error getting single move information", err),
       );
   }
 };
@@ -342,7 +340,7 @@ const updateAllMoves = (pokemonObject, api) => {
       };
     })
     .catch((err) =>
-      console.log("Unable to retrieve all move information", err)
+      console.log("Unable to retrieve all move information", err),
     );
 };
 
@@ -365,14 +363,14 @@ const getSpeciesData = (pokemonObject, api) => {
     .then((results) => {
       pokemonObject.flavorText = filterFlavorText(
         results.flavor_text_entries,
-        "flavor_text"
+        "flavor_text",
       );
       pokemonObject.attributes = buildAttributesObjectTwo(
         results,
-        pokemonObject.attributes
+        pokemonObject.attributes,
       );
-      (pokemonObject.evoChainUrl = results.evolution_chain.url),
-        (pokemonObject.growthRate = results.growth_rate);
+      ((pokemonObject.evoChainUrl = results.evolution_chain.url),
+        (pokemonObject.growthRate = results.growth_rate));
       return pokemonObject;
     })
     .catch((err) => console.log("Error retreiving pokemon species data", err));

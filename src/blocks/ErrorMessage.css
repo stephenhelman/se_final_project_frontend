@@ -24,40 +24,53 @@
 .error__text {
   flex: 1;
   color: inherit;
+  margin: 2px 0;
+}
+
+.error_type_message {
+  border-left: 3px solid;
 }
 
 .error_type_message-error {
   background-color: rgba(var(--semantic-error), 0.15);
-  border-left: 3px solid rgb(var(--semantic-error));
+  border-color: rgb(var(--semantic-error));
   color: rgb(var(--semantic-error));
 }
 
 .error_type_message-warning {
   background-color: rgba(var(--semantic-warning), 0.15);
-  border-left: 3px solid rgb(var(--semantic-warning));
+  border-color: 3px solid rgb(var(--semantic-warning));
   color: rgb(var(--semantic-warning));
 }
 
 .error_type_message-info {
   background-color: rgba(var(--semantic-info), 0.15);
-  border-left: 3px solid rgb(var(--semantic-info));
+  border-color: 3px solid rgb(var(--semantic-info));
   color: rgb(var(--semantic-info));
 }
 
 .error_type_message-success {
   background-color: rgba(var(--semantic-success), 0.15);
-  border-left: 3px solid rgb(var(--semantic-success));
+  border-color: 3px solid rgb(var(--semantic-success));
   color: rgb(var(--semantic-success));
 }
 
 .error_type_form {
-  color: rgb(var(--semantic-error));
   font-size: 13px;
   margin: 4px 0 0 0;
   display: flex;
   align-items: center;
   gap: 4px;
   animation: fadeIn 0.2s ease-out;
+}
+
+.error_type_form-error {
+  color: rgb(var(--semantic-error));
+  background-color: rgba(var(--semantic-error), 0.15);
+}
+.error_type_form-warning {
+  color: rgb(var(--semantic-warning));
+  background-color: rgba(var(--semantic-warning), 0.15);
 }
 
 .error_type_form::before {
@@ -72,15 +85,4 @@
   to {
     opacity: 1;
   }
-}
-
-/* When input has error */
-.error_type_form-error {
-  border-color: #dc3545;
-  background-color: rgba(var(--semantic-error), 0.15);
-}
-
-.error_type_form-error:focus {
-  border-color: #dc3545;
-  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
 }

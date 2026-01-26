@@ -1,4 +1,3 @@
-// hooks/usePokemonData.js
 import { useState, useEffect, useCallback } from "react";
 import PokeApi from "../api/PokeApi";
 import { POKE_BASE_URL } from "../utils/constants";
@@ -17,12 +16,10 @@ const usePokemonData = (limit = 151) => {
   const { showError } = useGlobalError();
   const cache = useApiCache();
 
-  // Fetch all Pokemon on mount
   useEffect(() => {
     const fetchPokemon = async () => {
       const cacheKey = `pokemon-list-${limit}`;
 
-      // Check cache first
       const cached = cache.get(cacheKey);
       if (cached) {
         setPokemon(cached);
@@ -36,18 +33,15 @@ const usePokemonData = (limit = 151) => {
       try {
         const api = new PokeApi(POKE_BASE_URL);
 
-        // 1. Fetch the list of Pokemon (just names and URLs)
         const response = await api.getAllPokemon(limit);
         const pokemonList = response?.results || [];
 
-        // 2. Fetch lightweight data for each Pokemon
-        const pokemonPromises = pokemonList.map((item, index) =>
-          api.getOnePokemon(index + 1).then(buildLightweightPokemon),
+        const pokemonPromises = pokemonList.map((item, i) =>
+          api.getOnePokemon(i + 1).then(buildLightweightPokemon),
         );
 
         const allPokemon = await Promise.all(pokemonPromises);
 
-        // 3. Cache and store
         cache.set(cacheKey, allPokemon);
         setPokemon(allPokemon);
         setGlobalError(null);
@@ -67,13 +61,11 @@ const usePokemonData = (limit = 151) => {
     async (pokemonId) => {
       const cacheKey = `pokemon-details-${pokemonId}`;
 
-      // Check cache first
       const cached = cache.get(cacheKey);
       if (cached) {
         return cached;
       }
 
-      // Find the lightweight Pokemon
       const lightPokemon = pokemon.find((p) => p.id === pokemonId);
       if (!lightPokemon) {
         throw new Error(`Pokemon with ID ${pokemonId} not found`);
@@ -83,7 +75,6 @@ const usePokemonData = (limit = 151) => {
         const api = new PokeApi(POKE_BASE_URL);
         const detailedPokemon = await buildDetailPokemon(lightPokemon, api);
 
-        // Cache the result
         cache.set(cacheKey, detailedPokemon);
 
         return detailedPokemon;

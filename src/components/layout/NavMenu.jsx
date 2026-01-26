@@ -7,9 +7,14 @@ const NavMenu = ({
   handleLogin,
   reset,
   showAuthMenu,
+  user,
 }) => {
   const content = isAuthenticated ? (
     <>
+      <li className="nav-menu__list-item nav-menu__user">
+        <p className="nav-menu__user-greeting">Welcome back</p>
+        <p className="nav-menu__user-name">{user.username}</p>
+      </li>
       <li className="nav-menu__list-item">
         <Link to="/" onClick={reset} className="nav-menu__link">
           Pokedex
@@ -21,7 +26,7 @@ const NavMenu = ({
         </Link>
       </li>
       <li className="nav-menu__list-item">
-        <Link to="/teams" onClick={reset} className="nav-menu__link">
+        <Link to="/" onClick={reset} className="nav-menu__link">
           Edit Profile
         </Link>
       </li>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import useTeamsContext from "../../../hooks/useTeamsContext";
@@ -6,6 +6,7 @@ import useForm from "../../../hooks/useForm";
 import useSort from "../../../hooks/useSort";
 import useScrollSaver from "../../../hooks/useScrollSaver";
 import useWindowWidth from "../../../hooks/useWindowWidth";
+import InfoModal from "../../universal/InfoModal";
 
 import PageLayout from "../../layout/Layout";
 import Preloader from "../../universal/Preloader";
@@ -21,8 +22,20 @@ const TeamsPage = () => {
   const [showDelete, setShowDelete] = useState(false);
   const [teamToDelete, setTeamToDelete] = useState(null);
   const [showFilterMenu, setShowFilterMenu] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
+  const [teamFlavor, setTeamFlavor] = useState("");
+  const [coordinates, setCoordinates] = useState({ x: "", y: "" });
 
-  const handleModalClose = () => setShowDelete(false);
+  const handleDeleteClose = () => setShowDelete(false);
+  const handleShowInfo = (e, flavorText) => {
+    setCoordinates({ x: e.pageX, y: e.pageY });
+    setTeamFlavor(flavorText);
+    setShowInfo(true);
+  };
+  const handleHideInfo = () => {
+    setTeamFlavor("");
+    setShowInfo(false);
+  };
 
   const navigate = useNavigate();
 
@@ -44,17 +57,20 @@ const TeamsPage = () => {
   const { teamList, isLoading, deleteTeam, toggleFavorite } = useTeamsContext();
   const { scrollRef, saveScrollPosition } = useScrollSaver("teams-scroll");
   const { isMobile, isTablet } = useWindowWidth();
+  const isBreakpoint = useMemo(() => {
+    return Boolean(isMobile || isTablet);
+  }, [isMobile, isTablet]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     deleteTeam(teamToDelete.id);
     setTeamToDelete(null);
-    handleModalClose();
+    handleDeleteClose();
   };
 
   const handleCancel = () => {
     setTeamToDelete(null);
-    handleModalClose();
+    handleDeleteClose();
   };
 
   const handleDeleteTeam = (team) => {
@@ -145,12 +161,23 @@ const TeamsPage = () => {
         scrollRef={scrollRef}
         saveScrollPosition={saveScrollPosition}
         toggleFavorite={toggleFavorite}
+        showInfo={handleShowInfo}
+        isBreakpoint={isBreakpoint}
       />
+      {showInfo && (
+        <InfoModal
+          text={teamFlavor}
+          isOpen={showInfo}
+          onClose={handleHideInfo}
+          isBreakpoint={isBreakpoint}
+          coordinates={coordinates}
+        />
+      )}
       {showDelete && (
         <ConfirmDeleteModal
           team={teamToDelete}
           isOpen={showDelete}
-          onClose={handleModalClose}
+          onClose={handleDeleteClose}
           handleSubmit={handleSubmit}
           handleCancel={handleCancel}
         />

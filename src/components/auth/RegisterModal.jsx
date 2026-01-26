@@ -77,7 +77,6 @@ const RegisterModal = ({ onClose, isOpen, onSwitch, activeModal }) => {
       });
 
       if (result.ok) {
-        // Successfully registered
         onClose?.();
       } else {
         setGeneralError(result.error || "Registration failed");

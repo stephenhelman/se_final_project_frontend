@@ -19,6 +19,7 @@ const TeamBuilderForm = ({
   activePanel,
 }) => {
   const navigate = useNavigate();
+
   let teamElements;
   if (values.players.length !== 6) {
     teamElements = values.players.map((pokemon, i) => {

@@ -17,7 +17,6 @@ const useApiCache = () => {
 
   const has = useCallback(
     (key) => {
-      // Check existence and expiration
       const item = get(key);
       return item !== null;
     },
@@ -28,9 +27,6 @@ const useApiCache = () => {
     cache.current.delete(key);
   }, []);
 
-  /**
-   * Clear entire cache
-   */
   const clear = useCallback(() => {
     cache.current.clear();
   }, []);

@@ -8,6 +8,8 @@ const TeamRowsContainer = ({
   scrollRef,
   saveScrollPosition,
   toggleFavorite,
+  showInfo,
+  isBreakpoint,
 }) => {
   const navigate = useNavigate();
 
@@ -23,6 +25,8 @@ const TeamRowsContainer = ({
         handleDeleteTeam={handleDeleteTeam}
         handleEditButton={handleEditButton}
         toggleFavorite={toggleFavorite}
+        showInfo={showInfo}
+        isBreakpoint={isBreakpoint}
       />
     );
   });

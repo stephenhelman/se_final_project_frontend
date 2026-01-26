@@ -12,7 +12,7 @@ const FlavorText = ({ pokemon }) => {
         const nextIndex = prevIndex + 1;
         return nextIndex < flavorTexts.length ? nextIndex : 0;
       });
-    }, 10000); // 10 seconds
+    }, 10000);
 
     return () => clearInterval(interval);
   }, [flavorTexts]);

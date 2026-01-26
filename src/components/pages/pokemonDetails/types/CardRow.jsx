@@ -14,9 +14,9 @@ const CardRow = ({ stat, isBreakpoint }) => {
       </li>
     );
   } else {
-    types = stat[1].map((type, index) => {
+    types = stat[1].map((type, i) => {
       return (
-        <li key={index} className="types__list-item">
+        <li key={i} className="types__list-item">
           <TypeChip
             type={type}
             size={isBreakpoint ? "large" : "small"}

@@ -35,7 +35,7 @@ const TeamBuilderSelector = ({
 
   const visiblePokemon = useSort(pokemon, values);
 
-  const pokemonElements = visiblePokemon.map((element, index) => {
+  const pokemonElements = visiblePokemon.map((element, i) => {
     const handleInfoClick = () => {
       saveScrollPosition();
       navigate(`/pokemon/${element.id}`, {
@@ -45,7 +45,7 @@ const TeamBuilderSelector = ({
     return (
       <PokemonCard
         pokemon={element}
-        key={index}
+        key={i}
         lengthOfTeam={selectedPokemon.length}
         onTeamChange={onTeamChange}
         onInfo={handleInfoClick}

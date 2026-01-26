@@ -1,4 +1,3 @@
-//wrapper forstats section
 import BaseStats from "./BaseStats";
 import Attributes from "./Attributes";
 

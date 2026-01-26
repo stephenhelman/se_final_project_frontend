@@ -1,4 +1,3 @@
-//description section that will display the pokemon information, whether it be just the name, or the name, id, and types
 import TypeChip from "../TypeChip";
 import { formatPokemonId } from "../../../utils/utils";
 

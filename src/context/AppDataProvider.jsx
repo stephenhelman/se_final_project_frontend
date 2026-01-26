@@ -47,7 +47,6 @@ export const AppDataProvider = ({ children }) => {
     }
   }, [user, updateProfile, set, get]);
 
-  // Merge favorites into Pokemon data
   const pokemonWithFavorites = useMemo(() => {
     return pokemonList.map((pokemon) => ({
       ...pokemon,
@@ -76,8 +75,6 @@ export const AppDataProvider = ({ children }) => {
           set("favorites", Array.from(newFavorites));
         }
 
-        // Persist to localStorage
-
         return newFavorites;
       });
     },
@@ -96,12 +93,10 @@ export const AppDataProvider = ({ children }) => {
   );
 
   const value = {
-    // Core data
     pokemon: pokemonWithFavorites,
     isLoading,
     error,
 
-    // Helper methods
     getPokemonById,
     getPokemonDetails,
     getFavorites,

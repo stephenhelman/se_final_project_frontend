@@ -1,5 +1,3 @@
-//header for the tabel
-
 const MovesHeader = ({ type }) => {
   return (
     <tr className="table__row table__row_head">

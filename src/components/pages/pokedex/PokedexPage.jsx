@@ -53,7 +53,7 @@ const PokedexPage = () => {
 
   const { scrollRef, saveScrollPosition } = useScrollSaver(`pokedex-scroll`);
 
-  if (isLoading /* || !pokemon */) return <Preloader />;
+  if (isLoading || !pokemon) return <Preloader />;
 
   const favoritesButton = (
     <Button

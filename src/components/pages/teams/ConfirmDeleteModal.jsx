@@ -10,7 +10,7 @@ const ConfirmDeleteModal = ({
   handleCancel,
 }) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} type="modal">
       <form
         onSubmit={handleSubmit}
         onReset={handleCancel}

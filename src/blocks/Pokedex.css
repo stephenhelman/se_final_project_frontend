@@ -62,7 +62,6 @@
   list-style: none;
 }
 
-/* Tablet - 3 columns */
 @media (max-width: 1024px) {
   .pokedex {
     max-width: 1024px;
@@ -74,7 +73,6 @@
   }
 }
 
-/* Tablet small - 2 columns, hide sidebar */
 @media (max-width: 768px) {
   .pokedex {
     max-width: 768px;
@@ -86,7 +84,6 @@
   }
 }
 
-/* Mobile - 2 columns, smaller gaps */
 @media (max-width: 425px) {
   .pokedex {
     max-width: 425px;

@@ -1,4 +1,3 @@
-//gallery of smaller SpriteTHumbs
 import SpriteThumb from "./SpriteThumb";
 
 const SpriteGallery = ({ sprites, onThumbClick, isBreakpoint }) => {

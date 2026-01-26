@@ -2,10 +2,10 @@ import { formatNameOwnership } from "../../../../utils/utils";
 import TypeChip from "../../../universal/TypeChip";
 
 const TypesHeader = ({ pokemon, typeToggleFunction, activeType }) => {
-  const types = pokemon.types.map((type, index) => {
+  const types = pokemon.types.map((type, i) => {
     if (activeType === type) {
       return (
-        <li key={index} className="types__list-item">
+        <li key={i} className="types__list-item">
           <TypeChip
             type={type}
             size="large"
@@ -16,7 +16,7 @@ const TypesHeader = ({ pokemon, typeToggleFunction, activeType }) => {
       );
     }
     return (
-      <li key={index} className="types__list-item">
+      <li key={i} className="types__list-item">
         <TypeChip
           type={type}
           size="large"

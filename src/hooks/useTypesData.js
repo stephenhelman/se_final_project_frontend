@@ -14,7 +14,6 @@ const useTypesData = (limit = 18) => {
     const fetchTypes = async () => {
       const cacheKey = `types-${limit}`;
 
-      // Check cache first
       const cached = cache.get(cacheKey);
       if (cached) {
         setTypes(cached);
@@ -28,18 +27,15 @@ const useTypesData = (limit = 18) => {
       try {
         const api = new PokeApi(POKE_BASE_URL);
 
-        // 1. Fetch the list of types
         const response = await api.getAllTypes(limit);
         const typesList = response?.results || [];
 
-        // 2. Fetch detailed data for each type
         const typesPromises = typesList.map((type) =>
           api.getOneType(type.url).then(buildTypeMatchupModel),
         );
 
         const allTypes = await Promise.all(typesPromises);
 
-        // 3. Cache and store
         cache.set(cacheKey, allTypes);
         setTypes(allTypes);
         setError(null);

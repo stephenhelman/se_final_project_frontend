@@ -1,5 +1,3 @@
-//table to hold all moves
-
 import MovesHeader from "./MovesHeader";
 import MovesRow from "./MovesRow";
 

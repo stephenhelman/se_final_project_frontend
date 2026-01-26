@@ -1,4 +1,3 @@
-// components/context/AuthProviderNew.jsx
 import { createContext, useState, useCallback, useEffect } from "react";
 import useStorage from "../hooks/useStorage";
 
@@ -137,13 +136,11 @@ export const AuthProvider = ({ children }) => {
   );
 
   const value = {
-    // User state
     user,
     isLoading,
     isAuthenticated: !!user,
     error,
 
-    // Auth methods
     login,
     register,
     logout,

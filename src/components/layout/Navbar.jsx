@@ -10,6 +10,7 @@ import NavMenu from "./NavMenu";
 import Button from "../universal/Button";
 
 import useWindowWidth from "../../hooks/useWindowWidth";
+import useModalClose from "../../hooks/useModalClose";
 
 import "../../blocks/Navbar.css";
 
@@ -38,6 +39,8 @@ const Navbar = () => {
   const handleLogout = () => {
     logout();
   };
+
+  useModalClose(showAuthMenu, () => setShowAuthMenu(false), "menu");
 
   const mobileContent = (
     <Button
@@ -84,6 +87,7 @@ const Navbar = () => {
             showAuthMenu={showAuthMenu}
             isAuthenticated={isAuthenticated}
             handleLogout={handleLogout}
+            user={user}
             handleRegister={() => handleShowModal("register")}
             handleLogin={() => handleShowModal("login")}
             reset={() => setShowAuthMenu(false)}

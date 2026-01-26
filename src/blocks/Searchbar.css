@@ -58,7 +58,6 @@
   cursor: pointer;
 }
 
-/* Tablet */
 @media (max-width: 768px) {
   .sort-menu__options {
     position: relative;
@@ -82,7 +81,6 @@
   }
 }
 
-/* Mobile  */
 @media (max-width: 425px) {
   .app {
     max-width: 425px;

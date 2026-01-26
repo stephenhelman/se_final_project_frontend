@@ -58,14 +58,12 @@
   overflow: hidden;
 }
 
-/* Desktop  */
 @media (max-width: 1024px) {
   .app {
     max-width: 1024px;
   }
 }
 
-/* Tablet  */
 @media (max-width: 768px) {
   .app {
     max-width: 768px;
@@ -73,7 +71,6 @@
   }
 }
 
-/* Mobile  */
 @media (max-width: 425px) {
   .app {
     max-width: 425px;

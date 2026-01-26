@@ -57,12 +57,11 @@ const LoginModal = ({ onClose, onSwitch, isOpen, activeModal }) => {
 
     try {
       const result = await login({
-        email: values.email,
+        email: values.email.toLowerCase(),
         password: values.password,
       });
 
       if (result.ok) {
-        // Successfully logged in
         onClose?.();
       } else {
         setGeneralError(result.error);
@@ -138,6 +137,13 @@ const LoginModal = ({ onClose, onSwitch, isOpen, activeModal }) => {
         {fieldErrors.password && (
           <ErrorMessage type="form" message={fieldErrors.password} />
         )}
+        <div className="error error_type_form error_type_form-warning">
+          <div>
+            <p className="error__text">Stubbed Login Info</p>
+            <p className="error__text">Username: Stephenhelman18@gmail.com</p>
+            <p className="error__text">Password: Pokemon123!</p>
+          </div>
+        </div>
       </fieldset>
     </AuthModal>
   );

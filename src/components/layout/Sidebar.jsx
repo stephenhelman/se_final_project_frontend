@@ -24,7 +24,7 @@ const Sidebar = ({
 }) => {
   const { isMobile, isTablet } = useWindowWidth();
   const [activeFilter, setActiveFilter] = useState("");
-  useModalClose(showFilterMenu ? true : false, onClose);
+  useModalClose(showFilterMenu ? true : false, onClose, "sidebar");
 
   useEffect(() => {
     setActiveFilter("");

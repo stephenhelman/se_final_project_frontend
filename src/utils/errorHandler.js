@@ -5,7 +5,6 @@ import {
 } from "./constants";
 
 export const classifyError = (error) => {
-  // Network errors
   if (!navigator.onLine) {
     return {
       severity: ERROR_SEVERITY.CRITICAL,
@@ -14,11 +13,9 @@ export const classifyError = (error) => {
     };
   }
 
-  // HTTP Status codes
   if (error.status || error.statusCode) {
     const status = error.status || error.statusCode;
 
-    // 401 Unauthorized
     if (status === 401) {
       return {
         severity: ERROR_SEVERITY.CRITICAL,
@@ -27,7 +24,6 @@ export const classifyError = (error) => {
       };
     }
 
-    // 403 Forbidden
     if (status === 403) {
       return {
         severity: ERROR_SEVERITY.CRITICAL,
@@ -36,7 +32,6 @@ export const classifyError = (error) => {
       };
     }
 
-    // 408 Timeout
     if (status === 408) {
       return {
         severity: ERROR_SEVERITY.CRITICAL,
@@ -45,7 +40,6 @@ export const classifyError = (error) => {
       };
     }
 
-    // 500-599 Server errors
     if (status >= 500) {
       return {
         severity: ERROR_SEVERITY.CRITICAL,
@@ -54,7 +48,6 @@ export const classifyError = (error) => {
       };
     }
 
-    // 400-499 Client errors (except auth)
     if (status >= 400) {
       return {
         severity: ERROR_SEVERITY.ERROR,
@@ -65,7 +58,6 @@ export const classifyError = (error) => {
     }
   }
 
-  // Timeout errors
   if (error.message?.toLowerCase().includes("timeout")) {
     return {
       severity: ERROR_SEVERITY.CRITICAL,
@@ -74,7 +66,6 @@ export const classifyError = (error) => {
     };
   }
 
-  // Network errors
   if (
     error.message?.toLowerCase().includes("network") ||
     error.message?.toLowerCase().includes("fetch")
@@ -86,7 +77,6 @@ export const classifyError = (error) => {
     };
   }
 
-  // Custom error types
   if (error.type && CRITICAL_ERROR_TYPES[error.type]) {
     return {
       severity: ERROR_SEVERITY.CRITICAL,
@@ -95,7 +85,6 @@ export const classifyError = (error) => {
     };
   }
 
-  // Validation errors (field level)
   if (error.field || error.validationError) {
     return {
       severity: ERROR_SEVERITY.FIELD,
@@ -106,7 +95,6 @@ export const classifyError = (error) => {
     };
   }
 
-  // Default to general error
   return {
     severity: ERROR_SEVERITY.ERROR,
     type: "GENERAL_ERROR",

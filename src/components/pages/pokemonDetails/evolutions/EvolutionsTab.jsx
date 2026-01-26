@@ -26,9 +26,6 @@ const EvolutionsTab = ({ pokemon }) => {
     setCurrentPokemon(pokemon);
   };
 
-  //pass sprites/order/path into evolution chain
-  //pass stats for leveling up to evolution info
-
   return (
     <section className="tabs__evolution evolution">
       <EvolutionChain

@@ -1,4 +1,3 @@
-//Type chip for each pokemon type (normal, fire, water, etc...)
 import { capitalize } from "../../utils/utils";
 import "../../blocks/TypeChip.css";
 const TypeChip = ({ type, size, clickFunction = null, isActive }) => {

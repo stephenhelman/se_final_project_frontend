@@ -48,14 +48,11 @@ export const TeamsProvider = () => {
   };
 
   const value = {
-    // Data
     teamList: teams,
     isLoading,
     error,
     teamError,
-    isTeamLoading: isLoading, // Alias for compatibility
 
-    // Methods
     createTeam: handleCreateTeam,
     updateTeam: handleUpdateTeam,
     deleteTeam: handleDeleteTeam,

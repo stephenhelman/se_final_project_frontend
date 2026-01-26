@@ -9,7 +9,7 @@ const EvolutionBranchConnector = ({ parentPos, childPositions, sizes }) => {
   const maxX = Math.max(...xs);
 
   // vertical from parent down
-  const verticalLength = 20; // px
+  const verticalLength = 20;
   const horizontalY = parentBottomY + verticalLength;
 
   return (

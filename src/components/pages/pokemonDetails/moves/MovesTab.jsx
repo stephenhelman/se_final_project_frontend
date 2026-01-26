@@ -1,4 +1,3 @@
-//container for moves section
 import { useState } from "react";
 import MovesTable from "./MovesTable";
 import Button from "../../../universal/Button";

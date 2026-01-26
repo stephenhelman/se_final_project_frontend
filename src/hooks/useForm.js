@@ -16,9 +16,7 @@ const useForm = (inputValues) => {
   };
 
   const handleChange = (event) => {
-    // get the name and value of the input because event.target is the input
     const { value, name } = event.target;
-    // set the value into the object using the name
     setValues({ ...values, [name]: value });
   };
 
@@ -41,7 +39,6 @@ const useForm = (inputValues) => {
   const removeFromArrayUsingId = ({ name, itemToRemove }) => {
     setValues((prev) => {
       const array = prev[name];
-      // Find the INDEX of the first matching item
       const indexToRemove = array.findIndex(
         (item) => item.id === itemToRemove.id,
       );
@@ -56,7 +53,6 @@ const useForm = (inputValues) => {
         };
       }
 
-      // If not found, return unchanged
       return prev;
     });
   };

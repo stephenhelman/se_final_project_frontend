@@ -27,16 +27,11 @@ const EvolutionGraph = ({ evolutionChain, selectedId, onSelectNode }) => {
   console.log(responsiveSizes);
   const isLinear = path === "linear";
 
-  // For linear: ignore BFS levels & just sort along chain order
   const linearNodes = useMemo(
-    () =>
-      isLinear
-        ? [...nodes].sort((a, b) => a.id - b.id) // or your chain order
-        : null,
+    () => (isLinear ? [...nodes].sort((a, b) => a.id - b.id) : null),
     [isLinear, nodes],
   );
 
-  // For branching: use your existing buildLevels
   const levels = useMemo(
     () => (!isLinear ? buildLevels(evolutionChain) : []),
     [isLinear, evolutionChain],
@@ -44,17 +39,15 @@ const EvolutionGraph = ({ evolutionChain, selectedId, onSelectNode }) => {
 
   const positions = useMemo(() => {
     if (isLinear && linearNodes) {
-      // simple row layout
       const pos = {};
-      linearNodes.forEach((node, index) => {
+      linearNodes.forEach((node, i) => {
         pos[node.id] = {
-          x: index * (responsiveSizes.NODE_WIDTH + responsiveSizes.LEVEL_GAP),
+          x: i * (responsiveSizes.NODE_WIDTH + responsiveSizes.LEVEL_GAP),
           y: 0,
         };
       });
       return pos;
     }
-    // branching – use level-based layout
     return buildLayout(levels.levels, responsiveSizes);
   }, [isLinear, linearNodes, levels, responsiveSizes]);
 
@@ -133,8 +126,7 @@ const EvolutionGraph = ({ evolutionChain, selectedId, onSelectNode }) => {
 
       <div className="evolution__graph-connectors">
         {isLinear
-          ? // simple pairwise connectors
-            linearNodes
+          ? linearNodes
               .slice(0, -1)
               .map((node, idx) => (
                 <EvolutionConnector

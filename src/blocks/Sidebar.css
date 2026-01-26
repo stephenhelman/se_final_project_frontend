@@ -94,7 +94,6 @@
   margin: 0;
 }
 
-/* Desktop  */
 @media (max-width: 1024px) {
   .sidebar {
     padding: 0 12px 0 0;
@@ -110,7 +109,6 @@
   }
 }
 
-/* Tablet small  */
 @media (max-width: 768px) {
   .sidebar {
     visibility: hidden;
@@ -130,8 +128,4 @@
   .sidebar_type_team-builder {
     top: 24px;
   }
-}
-
-/* Mobile  */
-@media (max-width: 425px) {
 }

@@ -180,35 +180,29 @@ export const VALIDATION_PATTERNS = {
 };
 
 export const ERROR_SEVERITY = {
-  CRITICAL: "critical", // Blocks user, requires modal
-  ERROR: "error", // Important but not blocking
-  WARNING: "warning", // Caution message
-  INFO: "info", // Informational
-  FIELD: "field", // Form field validation
+  CRITICAL: "critical",
+  ERROR: "error",
+  WARNING: "warning",
+  INFO: "info",
+  FIELD: "field",
 };
 
 export const CRITICAL_ERROR_TYPES = {
-  // Network/API Errors
   NETWORK_ERROR: "NETWORK_ERROR",
   API_TIMEOUT: "API_TIMEOUT",
   SERVER_ERROR: "SERVER_ERROR",
 
-  // Authentication Errors
   SESSION_EXPIRED: "SESSION_EXPIRED",
   UNAUTHORIZED: "UNAUTHORIZED",
 
-  // Data Errors
   DATA_CORRUPTION: "DATA_CORRUPTION",
   LOAD_FAILURE: "LOAD_FAILURE",
   SAVE_FAILURE: "SAVE_FAILURE",
 
-  // Application Errors
   FATAL_ERROR: "FATAL_ERROR",
   INCOMPATIBLE_VERSION: "INCOMPATIBLE_VERSION",
 
-  // User Action Required
   ACCOUNT_LOCKED: "ACCOUNT_LOCKED",
-  PAYMENT_REQUIRED: "PAYMENT_REQUIRED",
 };
 
 export const CRITICAL_ERROR_MESSAGES = {
@@ -274,11 +268,5 @@ export const CRITICAL_ERROR_MESSAGES = {
     message:
       "Your account has been locked. Please contact support to unlock your account.",
     action: "Contact Support",
-  },
-  [CRITICAL_ERROR_TYPES.PAYMENT_REQUIRED]: {
-    title: "Payment Required",
-    message:
-      "Your subscription has expired. Please update your payment method to continue.",
-    action: "Update Payment",
   },
 };

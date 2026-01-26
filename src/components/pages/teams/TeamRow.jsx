@@ -1,6 +1,8 @@
 import TeamPlayers from "../../universal/TeamPlayers";
 import TeamHeader from "./TeamHeader";
 import TeamMeta from "./TeamMeta";
+import PokemonSprite from "../../universal/PokemonCard/PokemonSprite";
+import BlankSprite from "./BlankSprite";
 
 import { useState } from "react";
 
@@ -9,6 +11,8 @@ const TeamRow = ({
   handleDeleteTeam,
   handleEditButton,
   toggleFavorite,
+  showInfo,
+  isBreakpoint,
 }) => {
   const [isFavorite, setIsFavorite] = useState(team.isFavorite);
 
@@ -21,6 +25,43 @@ const TeamRow = ({
     toggleFavorite(team.id, !isFavorite);
   };
 
+  let teamElements;
+  if (team.players.length !== 6) {
+    teamElements = team.players.map((pokemon, i) => {
+      return (
+        <li key={i} className="teams__list-item">
+          <PokemonSprite
+            pokemonName={pokemon.name}
+            source={pokemon.sprite}
+            cardType="teams"
+          />
+        </li>
+      );
+    });
+
+    const emptySpaces = 6 - team.players.length;
+
+    for (let i = 0; i < emptySpaces; i++) {
+      teamElements.push(
+        <li key={i + team.length} className="teams__list-item">
+          <BlankSprite />
+        </li>,
+      );
+    }
+  } else {
+    teamElements = team.players.map((pokemon, i) => {
+      return (
+        <li key={i} className="teams__list-item">
+          <PokemonSprite
+            pokemonName={pokemon.name}
+            source={pokemon.sprite}
+            cardType="teams"
+          />
+        </li>
+      );
+    });
+  }
+
   return (
     <li className="teams__team-row">
       <TeamHeader
@@ -30,8 +71,10 @@ const TeamRow = ({
         editFunction={handleEditButton}
         toggleFavorite={handleToggleFavorite}
         deleteFunction={handleDeleteButton}
+        showInfo={showInfo}
+        isBreakpoint={isBreakpoint}
       />
-      <TeamPlayers team={team.players} page="teams" />
+      <TeamPlayers team={teamElements} page="teams" />
       <TeamMeta updated={team.lastUpdated} numPokemon={team.players.length} />
     </li>
   );

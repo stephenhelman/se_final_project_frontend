@@ -1,4 +1,3 @@
-// components/context/TypesProviderNew.jsx
 import { createContext } from "react";
 import { Outlet } from "react-router-dom";
 import useTypesData from "../hooks/useTypesData";
@@ -12,8 +11,6 @@ export const TypesProvider = () => {
     types,
     isLoading,
     error,
-    // Legacy alias for backward compatibility
-    index: types,
   };
 
   return (

@@ -1,4 +1,3 @@
-//displays information on evolution requriements
 import InfoRow from "./InfoRow";
 
 const EvolutionInfo = ({ edge, currentPokemon }) => {

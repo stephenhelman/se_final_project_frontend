@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-const useModalClose = (isOpen, onClose) => {
+const useModalClose = (isOpen, onClose, type) => {
   useEffect(() => {
-    if (!isOpen) return; // stop the effect if the modal is not open
+    if (!isOpen) return;
 
     const handleEscape = (e) => {
       if (e.key === "Escape") {
@@ -10,25 +10,52 @@ const useModalClose = (isOpen, onClose) => {
       }
     };
 
-    const handleOverlay = (e) => {
+    const handleModalOverlay = (e) => {
+      if (e.target.classList.contains("modal")) {
+        onClose();
+      }
+    };
+
+    const handleFilterOverlay = (e) => {
       if (
-        e.target.classList.contains("modal") ||
-        (!e.target.closest(".sidebar") &&
-          !e.target.parentElement.classList.contains("button"))
+        !e.target.closest(".sidebar") &&
+        !e.target.parentElement.classList.contains("button")
       ) {
         onClose();
       }
     };
 
-    document.addEventListener("keydown", handleEscape);
-    document.addEventListener("mousedown", handleOverlay);
+    const handleAuthNavOverlay = (e) => {
+      if (
+        !e.target.closest(".auth") &&
+        !e.target.parentElement.classList.contains("button")
+      ) {
+        onClose();
+      }
+    };
+    let mouseFunc;
 
-    // don't forget to remove both listeners in the clean up function
+    switch (type) {
+      case "sidebar":
+        mouseFunc = handleFilterOverlay;
+        break;
+      case "menu":
+        mouseFunc = handleAuthNavOverlay;
+        break;
+
+      default:
+        mouseFunc = handleModalOverlay;
+        break;
+    }
+
+    document.addEventListener("keydown", handleEscape);
+    document.addEventListener("mousedown", mouseFunc);
+
     return () => {
       document.removeEventListener("keydown", handleEscape);
-      document.removeEventListener("mousedown", handleOverlay);
+      document.removeEventListener("mousedown", mouseFunc);
     };
-  }, [isOpen, onClose]); // watch isOpen to add the listeners only when the modal is open
+  }, [isOpen, onClose, type]);
 };
 
 export default useModalClose;

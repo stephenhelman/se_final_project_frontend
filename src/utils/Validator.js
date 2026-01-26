@@ -1,4 +1,3 @@
-// utils/Validator.js
 import { validationRules } from "./validationRules";
 
 class Validator {

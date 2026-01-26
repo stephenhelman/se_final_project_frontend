@@ -1,12 +1,9 @@
-//base stats card
 import Stat from "./Stat";
 
 const BaseStats = ({ pokemon }) => {
-  //title
-  //stats section
   const stats = pokemon.stats;
-  const statsContent = Object.entries(stats).map((stat, index) => {
-    return <Stat stat={stat} key={index} type="base-stat" />;
+  const statsContent = Object.entries(stats).map((stat, i) => {
+    return <Stat stat={stat} key={i} type="base-stat" />;
   });
   return (
     <section className="stats__stats-card">

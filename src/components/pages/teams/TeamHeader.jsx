@@ -8,6 +8,8 @@ const TeamHeader = ({
   editFunction,
   toggleFavorite,
   deleteFunction,
+  showInfo,
+  isBreakpoint,
 }) => {
   return (
     <div className="teams__header">
@@ -24,6 +26,8 @@ const TeamHeader = ({
         description={description}
         editFunction={editFunction}
         deleteFunction={deleteFunction}
+        onShowInfo={showInfo}
+        isBreakpoint={isBreakpoint}
       />
     </div>
   );

@@ -20,7 +20,7 @@ const AuthModal = ({
   error,
 }) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} type="modal">
       <div className="auth-modal">
         <div className="auth-modal__header">
           <Button

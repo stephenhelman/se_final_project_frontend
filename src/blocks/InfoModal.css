@@ -22,14 +22,21 @@
   line-height: 1.5;
 }
 
+@media (max-width: 768px) {
+  .info-modal__text-wrapper {
+    position: absolute;
+    white-space: unset;
+    top: calc(var(--modal-y) - 14px);
+    right: calc(100% - var(--modal-x) + 12px);
+    max-width: 400px;
+  }
+}
 @media (max-width: 425px) {
   .info-modal__text-wrapper {
     position: absolute;
     white-space: unset;
-    max-width: 377px;
-    width: 100%;
-    position-area: top right;
-    top: var(--modal-y);
-    left: calc(var(--modal-x) - 24px);
+    top: calc(var(--modal-y) - 14px);
+    right: calc(100% - var(--modal-x) + 12px);
+    max-width: 250px;
   }
 }

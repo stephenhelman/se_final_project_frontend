@@ -8,7 +8,7 @@ const useWindowWidth = () => {
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize); // Cleanup event listener on unmount
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const currentBreakpoint = useMemo(() => {

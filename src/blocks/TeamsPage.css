@@ -125,7 +125,6 @@
   }
 }
 
-/* Mobile  */
 @media (max-width: 425px) {
   .teams__team-players {
     grid-template-columns: repeat(3, 1fr);

@@ -1,12 +1,9 @@
 import "../../blocks/Grid.css";
 
 const Grid = ({ elements, page, scrollRef }) => {
-  const content = elements.map((element, index) => {
+  const content = elements.map((element, i) => {
     return (
-      <li
-        key={index}
-        className={`grid__list-item grid__list-item_type_${page}`}
-      >
+      <li key={i} className={`grid__list-item grid__list-item_type_${page}`}>
         {element}
       </li>
     );

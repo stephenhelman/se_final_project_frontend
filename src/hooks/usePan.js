@@ -22,7 +22,6 @@ const usePan = ({
     startRef.current = { x: e.clientX, y: e.clientY };
     originRef.current = { x: pos.x, y: pos.y };
 
-    // capture pointer so movement keeps working even if leaving the element
     if (e.currentTarget.setPointerCapture) {
       e.currentTarget.setPointerCapture(e.pointerId);
     }
@@ -45,7 +44,9 @@ const usePan = ({
     if (e.currentTarget.releasePointerCapture) {
       try {
         e.currentTarget.releasePointerCapture(e.pointerId);
-      } catch (_) {}
+      } catch (e) {
+        () => {};
+      }
     }
   };
 

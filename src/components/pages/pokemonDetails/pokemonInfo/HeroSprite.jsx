@@ -1,5 +1,3 @@
-//Main Pokemon Sprite in Gallery section
-
 const HeroSprite = ({ sprite }) => {
   return (
     <img

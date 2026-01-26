@@ -3,7 +3,13 @@ import { useState } from "react";
 import Button from "../../universal/Button";
 import InfoModal from "../../universal/InfoModal";
 
-const TeamUtilityButtons = ({ editFunction, description, deleteFunction }) => {
+const TeamUtilityButtons = ({
+  editFunction,
+  description,
+  deleteFunction,
+  onShowInfo,
+  isBreakpoint,
+}) => {
   const [showInfo, setShowInfo] = useState(false);
 
   const handleShowInfoClicked = () => {
@@ -11,12 +17,21 @@ const TeamUtilityButtons = ({ editFunction, description, deleteFunction }) => {
   };
   return (
     <div className="teams__utility-buttons">
-      <InfoModal
-        text={description}
-        clickFunction={handleShowInfoClicked}
-        showInfo={showInfo}
-        page="team"
-      />
+      {isBreakpoint ? (
+        <Button
+          buttonCategory="icon"
+          buttonType="button"
+          buttonIcon="infoIcon"
+          clickFunction={(e) => onShowInfo(e, description)}
+        />
+      ) : (
+        <InfoModal
+          text={description}
+          clickFunction={handleShowInfoClicked}
+          showInfo={showInfo}
+          page="team"
+        />
+      )}
       <Button
         buttonCategory="icon"
         buttonIcon="editIcon"

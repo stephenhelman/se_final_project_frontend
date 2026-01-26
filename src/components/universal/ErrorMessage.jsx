@@ -1,6 +1,5 @@
 import "../../blocks/ErrorMessage.css";
 
-//types => form, message
 const ErrorMessage = ({ message, type = "message", category = "error" }) => {
   if (!message) return null;
 

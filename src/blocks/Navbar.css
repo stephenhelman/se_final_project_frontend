@@ -108,7 +108,6 @@
   cursor: pointer;
 }
 
-/* Tablet */
 @media (max-width: 768px) {
   .navbar {
     position: relative;
@@ -152,8 +151,27 @@
     margin: 0;
     flex: 1;
   }
-}
 
-/* Mobile */
-@media (max-width: 480px) {
+  .nav-menu__user {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(var(--primary-color));
+    border: none;
+    gap: 4px;
+  }
+
+  .nav-menu__user-greeting,
+  .nav-menu__user-name {
+    margin: 0;
+    color: #fff;
+  }
+
+  .nav-menu__user-greeting {
+    font-size: 14px;
+  }
+
+  .nav-menu__user-name {
+    font-size: 18px;
+    font-weight: 600;
+  }
 }
